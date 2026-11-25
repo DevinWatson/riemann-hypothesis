@@ -1,6 +1,5 @@
 module
 
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinkowskiBound.PowerSumStep
 public import Mathlib.RingTheory.Polynomial.Cyclotomic.Basic
 public import Mathlib.RingTheory.Polynomial.Cyclotomic.Roots
 public import Formalism.PeriodIntegrals.Minkowski
@@ -15,6 +14,8 @@ import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.TypeStar
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.TotallySplit
+public import Mathlib.GroupTheory.PGroup
+public import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinkowskiBound.CharpolyDvdOfPowEqOne, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinkowskiBound.Assemble, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinkowskiBound.MinkowskiBoundOfSteps, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinkowskiBound.PowerSum, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.Minkowski
@@ -22,6 +23,30 @@ import Mathlib.RingTheory.TotallySplit
 -- ===== clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinkowskiBound.CharpolyDvdOfPowEqOne =====
 -- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinkowskiBound.CharpolyDvdOfPowEqOne", "h": "module\n\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinkowskiBound.PowerSumStep\npublic import Mathlib.RingTheory.Polynomial.Cyclotomic.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Rat\nimport Mathlib.Algebra.Ring.IsFormallyReal\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Artinian.Instances\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.RingTheory.Polynomial.Cyclotomic.Roots\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+namespace PI.Mk
+
+open Matrix
+
+def TraceStep : Prop :=
+  ∀ (N ℓ a : ℕ), ℓ.Prime → ∀ g : Matrix (Fin N) (Fin N) ℤ, g ^ (ℓ ^ a) = 1 →
+    ∃ y : ℕ, y ≤ N / (ℓ - 1) ∧ g.trace = (N : ℤ) - (ℓ : ℤ) * (y : ℤ) ∧ (y = 0 → g = 1)
+
+def PowerSumStep : Prop :=
+  ∀ (N : ℕ) (P : Subgroup (Matrix.GeneralLinearGroup (Fin N) ℤ)) [Fintype P] (k : ℕ),
+    (Fintype.card P : ℤ) ∣ ∑ g : P, (Matrix.trace ((g : Matrix.GeneralLinearGroup (Fin N) ℤ) :
+      Matrix (Fin N) (Fin N) ℤ)) ^ k
+
+def PGroupStep : Prop :=
+  ∀ (N ℓ : ℕ), ℓ.Prime → ∀ P : Subgroup (Matrix.GeneralLinearGroup (Fin N) ℤ), Finite P →
+    IsPGroup ℓ P → Nat.card P ∣ ℓ ^ (N / (ℓ - 1)) * (N / (ℓ - 1)).factorial
+
+end PI.Mk
+end
+end
+
 @[expose] public section
 
 namespace PI.Mk
