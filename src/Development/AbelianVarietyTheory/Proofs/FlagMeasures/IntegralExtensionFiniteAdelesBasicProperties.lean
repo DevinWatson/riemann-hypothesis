@@ -6,6 +6,7 @@ public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.Integr
 public import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Afsplit
 public import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsGlob
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsGlobApprox
+import Formalism.LocalToGlobal.Columns.RecLevelLoc
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
@@ -81,52 +82,8 @@ private theorem sum_afsplitI_one_apply_of_not_mem (S : Finset (HeightOneSpectrum
   exact Finset.sum_eq_zero (fun v hv => afsplitI_ne v w (fun h => hw (by rw [h]; exact hv)) 1)
 
 theorem mem_of_local (a : E ⊗[F] Ad F)
-    (h : ∀ v : HeightOneSpectrum (𝓞 F), prV (E := E) v a ∈ intV E v) : a ∈ OAd F E := by
-  classical
-  obtain ⟨d, hd0, hd⟩ := levelaf_denom (E := E) a
-  have hfin := levelaf_finite_places (F := F) d hd0
-  set S := hfin.toFinset with hS
-  set dF : F := algebraMap (𝓞 F) F d with hdF
-  have hdF0 : dF ≠ 0 := (map_ne_zero_iff _ (IsFractionRing.injective (𝓞 F) F)).mpr hd0
-  set s : Ad F := ∑ v ∈ S, afsplitI v (1 : v.adicCompletion F) with hs
-  set u : Ad F := (1 - s) * algebraMap F (Ad F) dF⁻¹ with hu
-  have hu_int : u ∈ intAd F := by
-    show ∀ w : HeightOneSpectrum (𝓞 F), u w ∈ w.adicCompletionIntegers F
-    intro w
-    have hcomp : u w = (1 - s w) * (dF⁻¹ • (1 : w.adicCompletion F)) := by
-      rw [hu, afsplit_mul_apply, afsplit_sub_apply, afsplit_one_apply,
-        Algebra.algebraMap_eq_smul_one, afsplit_smul_apply, afsplit_one_apply]
-    by_cases hw : w ∈ S
-    · rw [hcomp, hs, sum_afsplitI_one_apply_of_mem S w hw, sub_self, zero_mul]
-      exact zero_mem _
-    · rw [hcomp, hs, sum_afsplitI_one_apply_of_not_mem S w hw, sub_zero, one_mul, Algebra.smul_def, mul_one, map_inv₀,
-        HeightOneSpectrum.mem_adicCompletionIntegers, map_inv₀]
-      have h1 := levelaf_int_mem_v w d
-      rw [HeightOneSpectrum.mem_adicCompletionIntegers] at h1
-      have h2 : ¬ Valued.v (algebraMap (𝓞 F) (w.adicCompletion F) d) < 1 :=
-        fun hlt => hw (hfin.mem_toFinset.mpr hlt)
-      have h3 : Valued.v (algebraMap (𝓞 F) (w.adicCompletion F) d) = 1 :=
-        le_antisymm h1 (not_lt.mp h2)
-      rw [hdF, ← IsScalarTower.algebraMap_apply, h3, inv_one]
-  have he : ∑ v ∈ S, afsplitEps E v = (1 : E) ⊗ₜ[F] s := by
-    rw [hs, TensorProduct.tmul_sum]
-    refine Finset.sum_congr rfl (fun v _ => ?_)
-    rw [afsplitEps, Algebra.TensorProduct.one_def, afsplitIE_tmul]
-  have h1 : (1 : E ⊗[F] Ad F) - ∑ v ∈ S, afsplitEps E v = ((1 : E) ⊗ₜ[F] u) * levelafC E d := by
-    rw [he, levelafC, Algebra.TensorProduct.tmul_mul_tmul, one_mul, hu, mul_assoc,
-      IsScalarTower.algebraMap_apply (𝓞 F) F (Ad F) d, ← hdF, ← map_mul, inv_mul_cancel₀ hdF0,
-      map_one, mul_one, TensorProduct.tmul_sub, ← Algebra.TensorProduct.one_def]
-  have hsplit : a = (∑ v ∈ S, afsplitEps E v) * a + ((1 : E) ⊗ₜ[F] u) * (levelafC E d * a) := by
-    rw [← mul_assoc, ← h1]
-    ring
-  rw [hsplit]
-  refine add_mem ?_ (mul_mem ?_ hd)
-  · rw [Finset.sum_mul]
-    refine sum_mem (fun v _ => ?_)
-    rw [← afsplit_decomp]
-    exact afsplit_IE_int v _ (h v)
-  · have hmem := levelaf_tmul_mem (E := E) (1 : 𝓞 E) hu_int
-    rwa [map_one] at hmem
+    (h : ∀ v : HeightOneSpectrum (𝓞 F), prV (E := E) v a ∈ intV E v) : a ∈ OAd F E :=
+  Formalism.L2.Col.rll_int_of_loc a h
 
 theorem expand_trace {ι : Type} [Fintype ι] [DecidableEq ι] (β : Module.Basis ι F E)
     (a : E ⊗[F] Ad F) :
