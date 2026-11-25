@@ -14,33 +14,43 @@ public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.PsiFor
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdDefs
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdLowerA
-public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdScale
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.JacobianLeExp
-public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.HsEighthLeOfSmall
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.JacBound
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.PBridge
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.ProdSubLtEqFactorial
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdUpperA
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.IntegrableOfContinuousCompact
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.RaisingLoweringNormIdentities
-public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdConst
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdPointwise
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdStep
-public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.SumNormAdjointSqEqHsOp
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.RangeDatumEmbedding
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FBridge
-public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.PsiMExpPmat
-public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.Imports
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.ImportsAlt
 import Mathlib.Tactic.TypeStar
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.HaarMirror
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.Exists
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.CategoryTheory.Countable
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.SCoefGeTwoOfHc
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.SCoefGeTwoOfHc
 import Mathlib.Algebra.Ring.IsFormallyReal
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.PolarBasic
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.VolUFactProdMulLe
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.VolUFactProdMulLe
+import Mathlib.Topology.Separation.CompletelyRegular
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.TraceMulSelfEqSumEigenvaluesSq
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.RhoNSubNab
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.AdKMeasurePreserving
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.KFacts
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.KSchur
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.KinstSecondCountable
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.PolarBasicA
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.SumInnerBasisSqEqAdjoint
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.ExpInPPosDef
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.B3b
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.InvMulSelfOfMemIndefiniteUnitary
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.MatrixCoeffBoundsImplyBound
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.NoncompactLoweringNormSmall
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.NormMatrixTripleProductLe
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.SmInfUnitary
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Sandwich, ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdConsA, ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdLower, ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdUpperB, ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdUpper, ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.ThmFD, ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdCons
@@ -48,6 +58,535 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.VolUFactPro
 -- ===== clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Sandwich =====
 -- clump-header: {"m": "ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Sandwich", "h": "module\n\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Residue\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Transported\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.SandwichA\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+noncomputable section
+
+open Finset Matrix MeasureTheory
+open scoped InnerProductSpace
+
+namespace ReciprocityTheory.ChartRestriction.DS
+
+open ReciprocityTheory.ChartRestriction.DS.S7
+
+variable {n : ℕ}
+
+theorem finrank_pcoord (ε : Fin n → Bool) :
+    Module.finrank ℝ (PCoord ε → ℂ) = 2 * (pOf ε * qOf ε) := by
+  rw [Module.finrank_pi_fintype, Complex.finrank_real_complex, Finset.sum_const, Finset.card_univ,
+    card_PCoord, smul_eq_mul, mul_comm]
+
+theorem lintegral_pcoord_smul {ε : Fin n → Bool} (f : (PCoord ε → ℂ) → ENNReal) {s : ℝ} (hs : 0 < s) :
+    ∫⁻ z, f z = ENNReal.ofReal (s ^ (2 * (pOf ε * qOf ε))) * ∫⁻ y, f ((s : ℂ) • y) := by
+  have hsm : (fun y : PCoord ε → ℂ => f ((s : ℂ) • y)) = fun y => f (s • y) := by
+    funext y
+    rw [Complex.coe_smul]
+  have key : ∫⁻ y, f (s • y) =
+      ENNReal.ofReal |(s ^ Module.finrank ℝ (PCoord ε → ℂ))⁻¹| * ∫⁻ z, f z := by
+    have h1 := lintegral_map_equiv f (MeasurableEquiv.smul₀ (α := PCoord ε → ℂ) s hs.ne')
+      (μ := volume)
+    have h2 : (⇑(MeasurableEquiv.smul₀ (α := PCoord ε → ℂ) s hs.ne')) = (s • ·) := rfl
+    rw [h2, Measure.map_addHaar_smul volume hs.ne', lintegral_smul_measure, smul_eq_mul] at h1
+    exact h1.symm
+  rw [hsm, key, finrank_pcoord, ← mul_assoc,
+    ← ENNReal.ofReal_mul (by positivity), abs_of_pos (by positivity), mul_inv_cancel₀ (by positivity),
+    ENNReal.ofReal_one, one_mul]
+
+end ReciprocityTheory.ChartRestriction.DS
+end
+end
+end
+
+section
+@[expose] public section
+
+noncomputable section
+
+open Finset Matrix MeasureTheory
+open scoped InnerProductSpace
+
+namespace ReciprocityTheory.ChartRestriction.DS
+
+open ReciprocityTheory.ChartRestriction.DS.S7
+
+variable {n : ℕ}
+
+theorem pmat_smul {ε : Fin n → Bool} (c : ℝ) (z : PCoord ε → ℂ) :
+    pmat (c • z) = (c : ℂ) • pmat z := by
+  ext a b
+  simp only [pmat, Pi.smul_apply, Matrix.smul_apply]
+  split_ifs <;> simp [Complex.real_smul]
+
+theorem hs_pmat_smul {ε : Fin n → Bool} (c : ℝ) (z : PCoord ε → ℂ) :
+    hs (pmat (c • z)) = c ^ 2 * hs (pmat z) := by
+  rw [hs_pmat, hs_pmat, Finset.mul_sum, Finset.mul_sum, Finset.mul_sum]
+  refine Finset.sum_congr rfl fun ab _ => ?_
+  rw [Pi.smul_apply, norm_smul, Real.norm_eq_abs, mul_pow, sq_abs]
+  ring
+
+theorem hs_half_le_quadratic {ε : Fin n → Bool} (z : PCoord ε → ℂ) :
+    hs (pmat z) / 2 ≤ Qf (0 : Fin n → ℝ) z := by
+  have e : hs (pmat z) / 2 = ∑ ab, ‖z ab‖ ^ 2 := by rw [hs_pmat]; ring
+  rw [e, Qf]
+  refine Finset.sum_le_sum fun ab _ => ?_
+  have hv : ((ab.1.2 : ℕ) : ℝ) + 1 ≤ ((ab.1.1 : ℕ) : ℝ) := by exact_mod_cast Fin.lt_def.mp ab.2.1
+  have hw : 1 ≤ wab (0 : Fin n → ℝ) ab.1.1 ab.1.2 := by simp only [wab, Pi.zero_apply]; linarith
+  exact le_mul_of_one_le_left (by positivity) hw
+
+theorem hs_eighth_le_of_small {ε : Fin n → Bool} (z : PCoord ε → ℂ) (h : rhoP z ≤ 1 / 2) :
+    hs (pmat z) / 8 ≤ Ph (0 : Fin n → ℝ) (pmat z) := by
+  have hA : Antitone (0 : Fin n → ℝ) := fun _ _ _ => le_rfl
+  have h1 := ph_lower hA z h (by norm_num : (1 / 2 : ℝ) ≤ 1)
+  have h2 := hs_half_le_quadratic z
+  linarith
+
+theorem potential_lower_min {ε : Fin n → Bool} (z : PCoord ε → ℂ) :
+    1 / 16 * min (hs (pmat z)) (Real.sqrt (hs (pmat z)) / Real.sqrt (2 * (q0 ε : ℝ))) ≤
+      Ph (0 : Fin n → ℝ) (pmat z) := by
+  have hA : Antitone (0 : Fin n → ℝ) := fun _ _ _ => le_rfl
+  have hH0 : 0 ≤ hs (pmat z) := by rw [hs_pmat]; positivity
+  have hP0 := ph_nonneg hA z
+  rcases Nat.eq_zero_or_pos (q0 ε) with hq | hq
+  · have e : min (hs (pmat z)) (Real.sqrt (hs (pmat z)) / Real.sqrt (2 * (q0 ε : ℝ))) = 0 := by
+      rw [hq]; simp [hH0]
+    rw [e]; linarith
+  · set c := Real.sqrt (2 * (q0 ε : ℝ)) with hc
+    have hq1 : (1 : ℝ) ≤ (q0 ε : ℝ) := by exact_mod_cast hq
+    have hc0 : 0 < c := Real.sqrt_pos.mpr (by linarith)
+    set r := Real.sqrt (hs (pmat z)) with hr
+    have hrr : r ^ 2 = hs (pmat z) := Real.sq_sqrt hH0
+    have hr0 : 0 ≤ r := Real.sqrt_nonneg _
+    have hrho : rhoP z = c * r := rfl
+    by_cases hsm : c * r ≤ 1 / 2
+    · have := hs_eighth_le_of_small z (by rw [hrho]; exact hsm)
+      have hm := min_le_left (hs (pmat z)) (r / c)
+      nlinarith
+    · replace hsm := lt_of_not_ge hsm
+      have hrp : 0 < r := by
+        by_contra h0
+        have : r = 0 := le_antisymm (not_lt.mp h0) hr0
+        rw [this, mul_zero] at hsm; linarith
+      set t := 2 * c * r with ht
+      have ht1 : 1 ≤ t := by rw [ht]; linarith
+      have ht0 : 0 < t := by linarith
+      set z' := (1 / t) • z with hz'
+      have hpz : pmat z = (t : ℂ) • pmat z' := by
+        rw [hz', pmat_smul, smul_smul, ← Complex.ofReal_mul, mul_one_div_cancel ht0.ne',
+          Complex.ofReal_one, one_smul]
+      have hhs : hs (pmat z') = (1 / t) ^ 2 * r ^ 2 := by rw [hz', hs_pmat_smul, hrr]
+      have hsq : Real.sqrt (hs (pmat z')) = 1 / t * r := by
+        rw [hhs, ← mul_pow, Real.sqrt_sq (by positivity)]
+      have hrho' : rhoP z' ≤ 1 / 2 := by
+        have e2 : rhoP z' = c * Real.sqrt (hs (pmat z')) := rfl
+        rw [e2, hsq, ht]
+        field_simp
+        linarith
+      have hsm' := hs_eighth_le_of_small z' hrho'
+      have hsc := ph_scale hA z' ht1
+      rw [← hpz] at hsc
+      have hm := min_le_right (hs (pmat z)) (r / c)
+      have key : 1 / 16 * (r / c) ≤ t * (hs (pmat z') / 8) := by
+        rw [hhs, ht]
+        field_simp
+        nlinarith
+      have := mul_le_mul_of_nonneg_left hsm' ht0.le
+      nlinarith
+
+end ReciprocityTheory.ChartRestriction.DS
+end
+end
+end
+
+section
+@[expose] public section
+
+noncomputable section
+
+open Finset Matrix MeasureTheory Filter Topology
+open scoped InnerProductSpace
+
+namespace ReciprocityTheory.ChartRestriction.DS
+
+open ReciprocityTheory.ChartRestriction.DS.S7
+
+variable {n : ℕ}
+
+theorem fdc_ncProd (ε : Fin n → Bool) (f : Fin n → Fin n → ℝ) :
+    ∏ a : Fin n, ∏ b ∈ univ.filter (fun b : Fin n => a < b ∧ ¬ ε a = ε b), f a b =
+      ∏ ab : PCoord ε, f ab.1.2 ab.1.1 := by
+  rw [Finset.prod_sigma']
+  refine Finset.prod_bij' (fun x hx => (⟨(x.2, x.1), by
+      simp only [Finset.mem_sigma, Finset.mem_univ, Finset.mem_filter, true_and] at hx
+      exact ⟨hx.1, fun h => hx.2 h.symm⟩⟩ : PCoord ε))
+    (fun ab _ => (⟨ab.1.2, ab.1.1⟩ : (_ : Fin n) × Fin n))
+    (fun _ _ => Finset.mem_univ _)
+    (fun ab _ => by
+      simp only [Finset.mem_sigma, Finset.mem_univ, Finset.mem_filter, true_and]
+      exact ⟨ab.2.1, fun h => ab.2.2 h.symm⟩)
+    (fun _ _ => rfl) (fun _ _ => rfl) (fun _ _ => rfl)
+
+theorem fdc_vand_split (ε : Fin n → Bool) (μ : Fin n → ℝ) :
+    Vand μ = (∏ a : Fin n, ∏ b ∈ univ.filter (fun b : Fin n => a < b ∧ ε a = ε b), (μ a - μ b)) *
+      ∏ ab : PCoord ε, (μ ab.1.2 - μ ab.1.1) := by
+  have hnc := fdc_ncProd ε (fun a b => μ a - μ b)
+  rw [← hnc, ← Finset.prod_mul_distrib]
+  unfold Vand
+  refine Finset.prod_congr rfl (fun a _ => ?_)
+  rw [← Finset.prod_filter_mul_prod_filter_not (univ.filter (fun b : Fin n => a < b)) (fun b => ε a = ε b),
+    Finset.filter_filter, Finset.filter_filter]
+
+theorem pi_weight_at_zero_eq (ε : Fin n → Bool) :
+    PiW ε 0 = Real.pi ^ (pOf ε * qOf ε) / ∏ ab : PCoord ε, (((ab.1.1 : ℕ) : ℝ) - ((ab.1.2 : ℕ) : ℝ)) := by
+  unfold PiW wab
+  simp only [Pi.zero_apply, sub_self, zero_add]
+  rw [Finset.prod_div_distrib, Finset.prod_const, Finset.card_univ, card_PCoord]
+
+theorem fdc_ncpos (ε : Fin n → Bool) :
+    0 < ∏ ab : PCoord ε, (((ab.1.1 : ℕ) : ℝ) - ((ab.1.2 : ℕ) : ℝ)) := by
+  refine Finset.prod_pos (fun ab _ => ?_)
+  have h := ab.2.1
+  rw [sub_pos]
+  exact_mod_cast h
+
+theorem fdc_tend1 (α k m : ℝ) (hm : 0 < m) :
+    Tendsto (fun t : ℕ => (α + (t : ℝ) * m + k) / (α + (t : ℝ) * m)) atTop (𝓝 1) := by
+  have h : Tendsto (fun t : ℕ => α + (t : ℝ) * m) atTop atTop :=
+    tendsto_atTop_add_const_left _ _ (tendsto_natCast_atTop_atTop.atTop_mul_const hm)
+  have h2 : Tendsto (fun t : ℕ => k / (α + (t : ℝ) * m)) atTop (𝓝 0) :=
+    tendsto_const_nhds.div_atTop h
+  have h3 : Tendsto (fun t : ℕ => 1 + k / (α + (t : ℝ) * m)) atTop (𝓝 1) := by
+    simpa using (tendsto_const_nhds (x := (1 : ℝ))).add h2
+  refine h3.congr' ?_
+  filter_upwards [h.eventually_gt_atTop 0] with t ht
+  rw [add_div _ k, div_self ht.ne']
+
+theorem fdc_tend2 (α m : ℝ) (hm : 0 < m) :
+    Tendsto (fun t : ℕ => (t : ℝ) / (α + (t : ℝ) * m)) atTop (𝓝 (1 / m)) := by
+  have h1 : Tendsto (fun t : ℕ => α / (t : ℝ)) atTop (𝓝 0) :=
+    tendsto_const_nhds.div_atTop tendsto_natCast_atTop_atTop
+  have h2 : Tendsto (fun t : ℕ => 1 / (α / (t : ℝ) + m)) atTop (𝓝 (1 / (0 + m))) :=
+    tendsto_const_nhds.div (h1.add tendsto_const_nhds) (by rw [zero_add]; exact hm.ne')
+  rw [zero_add] at h2
+  refine h2.congr' ?_
+  filter_upwards [eventually_gt_atTop 0] with t ht
+  have ht' : (0 : ℝ) < t := by exact_mod_cast ht
+  rw [div_add' _ _ _ ht'.ne', one_div_div, mul_comm m (t : ℝ)]
+
+theorem formal_degree_constant_eq {ε : Fin n → Bool} {lam : Fin n → ℝ} (hlam : IsHCParam lam) (d : ℕ → ℝ)
+    (T : ∀ t : ℕ, KType ε (lowK ε (lamT lam t)))
+    (h1 : ∀ t, d t / Vand (lamT lam t) = d 0 / Vand lam) (hd0 : 0 < d 0)
+    (hup : Filter.limsup (fun t : ℕ => ENNReal.ofReal ((t : ℝ) ^ (pOf ε * qOf ε) *
+      (Module.finrank ℂ (T t).V : ℝ) / d t)) Filter.atTop ≤ ENNReal.ofReal (cPQ ε * PiW ε 0))
+    (hlow : ENNReal.ofReal (cPQ ε * PiW ε 0) ≤ Filter.liminf (fun t : ℕ => ENNReal.ofReal ((t : ℝ) ^ (pOf ε * qOf ε) *
+      (Module.finrank ℂ (T t).V : ℝ) / d t)) Filter.atTop) :
+    d 0 = dimVlam lam := by
+  have hV := vand_pos hlam.1
+  have hVt : ∀ t, 0 < Vand (lamT lam t) := fun t => vand_pos (strictAnti_lamT hlam.1 t)
+  have hFp : 0 < (∏ i ∈ range (pOf ε), (i.factorial : ℝ)) * ∏ i ∈ range (qOf ε), (i.factorial : ℝ) :=
+    mul_pos (volU_factProd_pos _) (volU_factProd_pos _)
+  have hP := fdc_ncpos ε
+  have hform : ∀ t : ℕ, (t : ℝ) ^ (pOf ε * qOf ε) * (Module.finrank ℂ (T t).V : ℝ) / d t =
+      Vand lam / (d 0 * ((∏ i ∈ range (pOf ε), (i.factorial : ℝ)) * ∏ i ∈ range (qOf ε), (i.factorial : ℝ))) *
+        (∏ a : Fin n, ∏ b ∈ univ.filter (fun b : Fin n => a < b ∧ ε a = ε b),
+          ((lamT lam t a - lamT lam t b + (nab ε a b : ℝ)) / (lamT lam t a - lamT lam t b))) *
+        ∏ ab : PCoord ε, ((t : ℝ) / (lamT lam t ab.1.2 - lamT lam t ab.1.1)) := by
+    intro t
+    have hsplit := fdc_vand_split ε (lamT lam t)
+    have hd : d t = d 0 / Vand lam * Vand (lamT lam t) := by
+      have := h1 t; rw [div_eq_iff (hVt t).ne'] at this; exact this
+    have hne : Vand (lamT lam t) ≠ 0 := (hVt t).ne'
+    rw [hsplit] at hne
+    have hQ := left_ne_zero_of_mul hne
+    have hPn := right_ne_zero_of_mul hne
+    simp only [Finset.prod_div_distrib, Finset.prod_const, Finset.card_univ, card_PCoord]
+    rw [hd, lemma7 (T t), hsplit]
+    field_simp
+  have hR1 : Tendsto (fun t : ℕ => ∏ a : Fin n, ∏ b ∈ univ.filter (fun b : Fin n => a < b ∧ ε a = ε b),
+      ((lamT lam t a - lamT lam t b + (nab ε a b : ℝ)) / (lamT lam t a - lamT lam t b))) atTop
+      (𝓝 (∏ a : Fin n, ∏ b ∈ univ.filter (fun b : Fin n => a < b ∧ ε a = ε b), (1 : ℝ))) := by
+    refine tendsto_finsetProd _ fun a _ => tendsto_finsetProd _ fun b hb => ?_
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hb
+    simp only [lamT_sub]
+    refine fdc_tend1 _ _ _ (sub_pos.2 ?_)
+    exact_mod_cast hb.1
+  have hR2 : Tendsto (fun t : ℕ => ∏ ab : PCoord ε, ((t : ℝ) / (lamT lam t ab.1.2 - lamT lam t ab.1.1))) atTop
+      (𝓝 (∏ ab : PCoord ε, 1 / (((ab.1.1 : ℕ) : ℝ) - ((ab.1.2 : ℕ) : ℝ)))) := by
+    refine tendsto_finsetProd _ fun ab _ => ?_
+    simp only [lamT_sub]
+    refine fdc_tend2 _ _ (sub_pos.2 ?_)
+    exact_mod_cast ab.2.1
+  have hX := ((tendsto_const_nhds (x := Vand lam / (d 0 * ((∏ i ∈ range (pOf ε), (i.factorial : ℝ)) *
+      ∏ i ∈ range (qOf ε), (i.factorial : ℝ))))).mul hR1).mul hR2
+  have hval : Vand lam / (d 0 * ((∏ i ∈ range (pOf ε), (i.factorial : ℝ)) * ∏ i ∈ range (qOf ε), (i.factorial : ℝ))) *
+        (∏ a : Fin n, ∏ b ∈ univ.filter (fun b : Fin n => a < b ∧ ε a = ε b), (1 : ℝ)) *
+        (∏ ab : PCoord ε, 1 / (((ab.1.1 : ℕ) : ℝ) - ((ab.1.2 : ℕ) : ℝ))) =
+      Vand lam / (d 0 * ((∏ i ∈ range (pOf ε), (i.factorial : ℝ)) *
+        ∏ i ∈ range (qOf ε), (i.factorial : ℝ))) * (1 / ∏ ab : PCoord ε, (((ab.1.1 : ℕ) : ℝ) - ((ab.1.2 : ℕ) : ℝ))) := by
+    simp only [Finset.prod_const_one, mul_one, Finset.prod_div_distrib]
+  rw [hval] at hX
+  have hX' := hX.congr (fun t => (hform t).symm)
+  have hE := ENNReal.tendsto_ofReal hX'
+  have e1 := hE.limsup_eq
+  have e2 := hE.liminf_eq
+  rw [e1] at hup
+  rw [e2] at hlow
+  have hC : 0 ≤ cPQ ε * PiW ε 0 := by
+    rw [pi_weight_at_zero_eq]; unfold cPQ
+    have := volU_factProd_pos n
+    have := volU_factProd_pos (pOf ε)
+    have := volU_factProd_pos (qOf ε)
+    positivity
+  have hL : 0 ≤ Vand lam / (d 0 * ((∏ i ∈ range (pOf ε), (i.factorial : ℝ)) *
+      ∏ i ∈ range (qOf ε), (i.factorial : ℝ))) * (1 / ∏ ab : PCoord ε, (((ab.1.1 : ℕ) : ℝ) - ((ab.1.2 : ℕ) : ℝ))) := by
+    positivity
+  have heq := (ENNReal.ofReal_eq_ofReal_iff hL hC).1 (le_antisymm hup hlow)
+  rw [pi_weight_at_zero_eq] at heq
+  unfold cPQ at heq
+  have hpi : 0 < Real.pi ^ (pOf ε * qOf ε) := pow_pos Real.pi_pos _
+  have hI := volU_factProd_pos n
+  rw [dimVlam_eq_vand hlam.1]
+  field_simp at heq
+  field_simp
+  nlinarith [heq]
+
+end ReciprocityTheory.ChartRestriction.DS
+end
+end
+end
+
+section
+@[expose] public section
+
+noncomputable section
+
+open Finset Matrix MeasureTheory
+open scoped InnerProductSpace
+
+namespace ReciprocityTheory.ChartRestriction.DS
+
+open ReciprocityTheory.ChartRestriction.DS.S7
+
+variable {n : ℕ}
+
+open CompactHaarProbability in
+theorem fF_conj_pmat_eq_op_inv_mul_fF_mul_op {ε : Fin n → Bool} {lam : Fin n → ℝ} (T : KType ε (lowK ε lam)) (k : KG ε) (z : PCoord ε → ℂ) :
+    fF ε lam T (toMK k⁻¹ * pmat z * toMK k) = T.op k⁻¹ * fF ε lam T (pmat z) * T.op k := by
+  rw [fF_eq_integral, fF_eq_integral]
+  have h1 : ∀ (c : ℂ) (I : T.V →L[ℂ] T.V), T.op k⁻¹ * (c • I) * T.op k = c • conjE T k⁻¹ I := by
+    intro c I
+    rw [conjE_apply, inv_inv, mul_smul_comm, smul_mul_assoc]
+  rw [h1, ← ContinuousLinearEquiv.integral_comp_comm]
+  congr 1
+  conv_rhs => rw [← integral_mul_left_eq_self _ k]
+  refine integral_congr_ae (Filter.Eventually.of_forall fun x => ?_)
+  have hm : ∀ a b : KG ε, toMK (a * b) = toMK a * toMK b := fun _ _ => rfl
+  have he : toMK (k * x)⁻¹ * pmat z * toMK (k * x) = toMK x⁻¹ * (toMK k⁻¹ * pmat z * toMK k) * toMK x := by
+    rw [_root_.mul_inv_rev, hm, hm]
+    simp only [Matrix.mul_assoc]
+  have hop : T.op k⁻¹ * (T.op (k * x) * projW T * T.op (k * x)⁻¹) * T.op k = T.op x * projW T * T.op x⁻¹ := by
+    rw [_root_.mul_inv_rev, op_mul, op_mul]
+    simp only [mul_assoc]
+    rw [op_inv_mul, mul_one, ← mul_assoc (T.op k⁻¹), op_inv_mul, one_mul]
+  beta_reduce
+  rw [conjE_apply, inv_inv, mul_smul_comm, smul_mul_assoc, he, hop]
+
+theorem sum_norm_adjoint_sq_eq_hsOp {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V] [FiniteDimensional ℂ V]
+    [CompleteSpace V] (A : V →L[ℂ] V) :
+    ∑ i, ‖(ContinuousLinearMap.adjoint A) (stdOrthonormalBasis ℂ V i)‖ ^ 2 = hsOp A := by
+  unfold hsOp
+  set b := stdOrthonormalBasis ℂ V
+  have h1 : ∀ i, ‖(ContinuousLinearMap.adjoint A) (b i)‖ ^ 2 = ∑ j, ‖⟪b i, A (b j)⟫_ℂ‖ ^ 2 := by
+    intro i
+    rw [← b.sum_sq_norm_inner_right]
+    refine sum_congr rfl fun j _ => ?_
+    rw [ContinuousLinearMap.adjoint_inner_right, norm_inner_symm]
+  have h2 : ∀ j, ‖A (b j)‖ ^ 2 = ∑ i, ‖⟪b i, A (b j)⟫_ℂ‖ ^ 2 := fun j => (b.sum_sq_norm_inner_right _).symm
+  simp_rw [h1, h2]
+  exact sum_comm
+
+theorem hsOp_ge_integral {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KType ε Λ) (A : T.V →L[ℂ] T.V) :
+    (Module.finrank ℂ T.V : ℝ) * ∫ k, ‖⟪T.op k T.w, A (T.op k T.w)⟫_ℂ‖ ^ 2 ∂(dk ε) ≤ hsOp A := by
+  set b := stdOrthonormalBasis ℂ T.V
+  set B := ContinuousLinearMap.adjoint A
+  have hc : Continuous fun k : KG ε => T.op k T.w := (KType_continuous_op T).clm_apply continuous_const
+  have hpt : ∀ k : KG ε, ‖⟪T.op k T.w, A (T.op k T.w)⟫_ℂ‖ ^ 2 ≤ ∑ i, ‖⟪B (b i), T.op k T.w⟫_ℂ‖ ^ 2 := by
+    intro k
+    have hn : ‖T.op k T.w‖ = 1 := by rw [KType_norm_op_apply, T.w_norm]
+    have e : ∑ i, ‖⟪B (b i), T.op k T.w⟫_ℂ‖ ^ 2 = ‖A (T.op k T.w)‖ ^ 2 := by
+      rw [← b.sum_sq_norm_inner_right]
+      refine sum_congr rfl fun i _ => ?_
+      rw [ContinuousLinearMap.adjoint_inner_left]
+    rw [e]
+    have := norm_inner_le_norm (𝕜 := ℂ) (T.op k T.w) (A (T.op k T.w))
+    rw [hn, one_mul] at this
+    exact pow_le_pow_left₀ (norm_nonneg _) this 2
+  have hI1 : Integrable (fun k : KG ε => ‖⟪T.op k T.w, A (T.op k T.w)⟫_ℂ‖ ^ 2) (dk ε) :=
+    integrable_dk_of_continuous ((continuous_inner.comp (hc.prodMk (A.continuous.comp hc))).norm.pow 2)
+  have hI2 : ∀ i, Integrable (fun k : KG ε => ‖⟪B (b i), T.op k T.w⟫_ℂ‖ ^ 2) (dk ε) := fun i =>
+    integrable_dk_of_continuous ((continuous_const.inner hc).norm.pow 2)
+  have hmono := integral_mono hI1 (integrable_finsetSum _ fun i _ => hI2 i) hpt
+  rw [integral_finsetSum _ fun i _ => hI2 i] at hmono
+  have hd : (0 : ℝ) ≤ Module.finrank ℂ T.V := Nat.cast_nonneg _
+  calc (Module.finrank ℂ T.V : ℝ) * ∫ k, ‖⟪T.op k T.w, A (T.op k T.w)⟫_ℂ‖ ^ 2 ∂(dk ε)
+      ≤ (Module.finrank ℂ T.V : ℝ) * ∑ i, ∫ k, ‖⟪B (b i), T.op k T.w⟫_ℂ‖ ^ 2 ∂(dk ε) :=
+        mul_le_mul_of_nonneg_left hmono hd
+    _ = ∑ i, ‖B (b i)‖ ^ 2 := by
+        rw [mul_sum]
+        refine sum_congr rfl fun i _ => ?_
+        rw [kschur_coef, T.w_norm, one_pow, one_mul]
+    _ = hsOp A := sum_norm_adjoint_sq_eq_hsOp A
+
+open CompactHaarProbability in
+theorem continuous_fF (ε : Fin n → Bool) (lam : Fin n → ℝ) {Λ : Fin n → ℝ} (T : KType ε Λ) :
+    Continuous fun z : PCoord ε → ℂ => fF ε lam T (pmat z) := by
+  letI : IsProbabilityMeasure (dk ε) := ⟨by
+    change (muK ε Set.univ)⁻¹ * muK ε Set.univ = 1
+    exact ENNReal.inv_mul_cancel
+      (ENNReal.toReal_pos_iff.mp (muK_univ_pos ε)).1.ne'
+      (ENNReal.toReal_pos_iff.mp (muK_univ_pos ε)).2.ne⟩
+  letI : IsFiniteMeasureOnCompacts (dk ε) := ⟨fun K hK =>
+    (measure_mono (Set.subset_univ K)).trans_lt (measure_lt_top (dk ε) Set.univ)⟩
+  have hf : Continuous (fun p : (PCoord ε → ℂ) × KG ε =>
+      ((Real.exp (-Ph lam (toMK p.2⁻¹ * pmat p.1 * toMK p.2)) : ℝ) : ℂ) • (T.op p.2 * projW T * T.op p.2⁻¹)) :=
+    (Complex.continuous_ofReal.comp (Real.continuous_exp.comp (continuous_potential_conj_prod lam).neg)).smul
+      ((cont_conj T _).comp continuous_snd)
+  have h2 := continuous_parametric_integral_of_continuous (μ := dk ε)
+    (f := fun z k => ((Real.exp (-Ph lam (toMK k⁻¹ * pmat z * toMK k)) : ℝ) : ℂ) • (T.op k * projW T * T.op k⁻¹))
+    hf isCompact_univ
+  simp only [Measure.restrict_univ] at h2
+  have he : (fun z : PCoord ε → ℂ => fF ε lam T (pmat z)) = fun z => ((Module.finrank ℂ T.V : ℝ) : ℂ) •
+      ∫ k, ((Real.exp (-Ph lam (toMK k⁻¹ * pmat z * toMK k)) : ℝ) : ℂ) • (T.op k * projW T * T.op k⁻¹) ∂(dk ε) :=
+    funext fun z => fF_eq_integral lam T _
+  rw [he]
+  exact (continuous_const : Continuous fun _ : PCoord ε → ℂ => ((Module.finrank ℂ T.V : ℝ) : ℂ)).smul h2
+
+theorem inner_fF_conj {ε : Fin n → Bool} {lam : Fin n → ℝ} (T : KType ε (lowK ε lam)) (k : KG ε)
+    (z : PCoord ε → ℂ) :
+    ⟪T.w, fF ε lam T (pmat (adK k⁻¹ z)) T.w⟫_ℂ = ⟪T.op k T.w, fF ε lam T (pmat z) (T.op k T.w)⟫_ℂ := by
+  rw [← conj_pmat_eq_adK, fF_conj_pmat_eq_op_inv_mul_fF_mul_op, KType_op_inv_eq_adjoint, ContinuousLinearMap.mul_apply, ContinuousLinearMap.mul_apply,
+    ContinuousLinearMap.adjoint_inner_right]
+
+theorem formal_degree_inequality {ε : Fin n → Bool} {lam : Fin n → ℝ} {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+    [CompleteSpace H] {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} {T : KType ε (lowK ε lam)}
+    {j : T.V →L[ℂ] H} (hF : FData ε lam σ T j) {d : ℝ} (hd : Formalism.MainNotions.S.IsFdeg (muCD ε) σ d) :
+    ENNReal.ofReal (cPQ ε) *
+        ∫⁻ z : PCoord ε → ℂ, ENNReal.ofReal (‖⟪T.w, fF ε lam T (pmat z) T.w⟫_ℂ‖ ^ 2 * Jac z) ≤
+      ENNReal.ofReal ((Module.finrank ℂ T.V : ℝ) / d) := by
+  letI : IsProbabilityMeasure (dk ε) := ⟨by
+    change (muK ε Set.univ)⁻¹ * muK ε Set.univ = 1
+    exact ENNReal.inv_mul_cancel
+      (ENNReal.toReal_pos_iff.mp (muK_univ_pos ε)).1.ne'
+      (ENNReal.toReal_pos_iff.mp (muK_univ_pos ε)).2.ne⟩
+  letI : IsFiniteMeasureOnCompacts (dk ε) := ⟨fun K hK =>
+    (measure_mono (Set.subset_univ K)).trans_lt (measure_lt_top (dk ε) Set.univ)⟩
+  letI : SFinite (dk ε) := by infer_instance
+  have hpos : 0 < (Module.finrank ℂ T.V : ℝ) := by
+    have : Nontrivial T.V := ⟨⟨T.w, 0, fun h => by
+      have := T.w_norm; rw [h, norm_zero] at this; exact zero_ne_one this⟩⟩
+    exact_mod_cast Module.finrank_pos
+  have l6 := lemma6a hF hd
+  set D : ℝ := (Module.finrank ℂ T.V : ℝ) with hD
+  set G : (PCoord ε → ℂ) → ℝ := fun z => ‖⟪T.w, fF ε lam T (pmat z) T.w⟫_ℂ‖ ^ 2 with hG
+  set h : KG ε → (PCoord ε → ℂ) → ℝ :=
+    fun k z => ‖⟪T.op k T.w, fF ε lam T (pmat z) (T.op k T.w)⟫_ℂ‖ ^ 2 * Jac z with hh
+  have hFc := continuous_fF ε lam T
+  have hJc := pb_jac_continuous ε
+  have hGc : Continuous G := (continuous_const.inner (hFc.clm_apply continuous_const)).norm.pow 2
+  have hc : Continuous fun k : KG ε => T.op k T.w := (KType_continuous_op T).clm_apply continuous_const
+  have hhc : Continuous (Function.uncurry h) := by
+    have a : Continuous fun p : KG ε × (PCoord ε → ℂ) => T.op p.1 T.w := hc.comp continuous_fst
+    exact ((a.inner ((hFc.comp continuous_snd).clm_apply a)).norm.pow 2).mul (hJc.comp continuous_snd)
+  have s1 : ∀ k : KG ε, ∫⁻ z, ENNReal.ofReal (h k z) = ∫⁻ z, ENNReal.ofReal (G z * Jac z) := by
+    intro k
+    have hm : Measurable fun z => ENNReal.ofReal (G z * Jac z) :=
+      ENNReal.measurable_ofReal.comp (hGc.mul hJc).measurable
+    rw [← (adK_measurePreserving k⁻¹).lintegral_comp hm]
+    refine lintegral_congr fun z => ?_
+    simp only [h, G, inner_fF_conj, jac_adK]
+  have s2 : ∫⁻ z, ENNReal.ofReal (G z * Jac z) = ∫⁻ z, ∫⁻ k, ENNReal.ofReal (h k z) ∂(dk ε) := by
+    have e : ∫⁻ z, ENNReal.ofReal (G z * Jac z) = ∫⁻ k, (∫⁻ z, ENNReal.ofReal (h k z)) ∂(dk ε) := by
+      simp only [s1, lintegral_const]
+      rw [measure_univ, mul_one]
+    rw [e, lintegral_lintegral_swap (f := fun k z => ENNReal.ofReal (h k z)) (μ := dk ε) (ν := volume)
+      (ENNReal.measurable_ofReal.comp hhc.measurable).aemeasurable]
+  have s3 : ∀ z, ENNReal.ofReal D * ∫⁻ k, ENNReal.ofReal (h k z) ∂(dk ε) ≤
+      ENNReal.ofReal (hsOp (fF ε lam T (pmat z)) * Jac z) := by
+    intro z
+    have hi : Integrable (fun k => ‖⟪T.op k T.w, fF ε lam T (pmat z) (T.op k T.w)⟫_ℂ‖ ^ 2) (dk ε) :=
+      integrable_dk_of_continuous ((continuous_inner.comp (hc.prodMk ((fF ε lam T (pmat z)).continuous.comp hc))).norm.pow 2)
+    rw [← ofReal_integral_eq_lintegral_ofReal (hi.mul_const _)
+      (Filter.Eventually.of_forall fun k => mul_nonneg (by positivity) (jacobian_nonneg z)),
+      integral_mul_const, ← ENNReal.ofReal_mul hpos.le, ← mul_assoc]
+    exact ENNReal.ofReal_le_ofReal (mul_le_mul_of_nonneg_right (hsOp_ge_integral T _) (jacobian_nonneg z))
+  have s4 : ENNReal.ofReal D * ∫⁻ z, ENNReal.ofReal (G z * Jac z) ≤
+      ∫⁻ z : PCoord ε → ℂ, ENNReal.ofReal (hsOp (fF ε lam T (pmat z)) * Jac z) := by
+    rw [s2, ← lintegral_const_mul' _ _ ENNReal.ofReal_ne_top]
+    exact lintegral_mono s3
+  have s5 : ENNReal.ofReal D * (ENNReal.ofReal (cPQ ε) * ∫⁻ z, ENNReal.ofReal (G z * Jac z)) ≤
+      ENNReal.ofReal D * ENNReal.ofReal (D / d) := by
+    rw [← ENNReal.ofReal_mul hpos.le, show D * (D / d) = D ^ 2 / d by ring, l6, mul_left_comm]
+    exact mul_le_mul_right s4 _
+  exact (ENNReal.mul_le_mul_iff_right (ENNReal.ofReal_pos.mpr hpos).ne' ENNReal.ofReal_ne_top).1 s5
+
+end ReciprocityTheory.ChartRestriction.DS
+end
+end
+end
+
+section
+@[expose] public section
+
+noncomputable section
+
+open Finset Matrix MeasureTheory
+open scoped InnerProductSpace
+
+namespace ReciprocityTheory.ChartRestriction.DS
+
+open ReciprocityTheory.ChartRestriction.DS.S7
+
+variable {n : ℕ}
+
+theorem psiM_polar {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KType ε Λ) (μ : Fin n → ℤ) (k : KG ε)
+    (z : PCoord ε → ℂ) :
+    PsiM T μ (toMK k * NormedSpace.exp (pmat z)) = T.op k * psM T μ (NormedSpace.exp (pmat z)) := by
+  have hX := pmat_inP z
+  have hex : ∃ (k' : KG ε) (X' : Matrix (Fin n) (Fin n) ℂ), inP ε X' ∧
+      toMK k * NormedSpace.exp (pmat z) = toMK k' * NormedSpace.exp X' := ⟨k, pmat z, hX, rfl⟩
+  unfold PsiM
+  rw [dite_eq_left hex]
+  obtain ⟨hP, hEq⟩ := hex.choose_spec.choose_spec
+  obtain ⟨h1, h2⟩ := polar_unique hX hP hEq
+  rw [← h2, ← h1]
+
+theorem psiM_exp_pmat {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KType ε Λ) (μ : Fin n → ℤ)
+    (z : PCoord ε → ℂ) : PsiM T μ (NormedSpace.exp (pmat z)) = psM T μ (NormedSpace.exp (pmat z)) := by
+  have h := psiM_polar T μ (1 : KG ε) z
+  have e : toMK (1 : KG ε) = 1 := rfl
+  have o : T.op (1 : KG ε) = 1 := by simp [KType.op, map_one]
+  rwa [e, Matrix.one_mul, o, one_mul] at h
+
+end ReciprocityTheory.ChartRestriction.DS
+end
+end
+end
+
+section
+@[expose] public section
+
+noncomputable section
+
+namespace ReciprocityTheory.ChartRestriction.DS.Lap.Base
+
+theorem b3 : TangentPairingStatement :=
+  matrixCoeffBounds_imply_bound b2 b3a b3b b3c smInfUnitary
+
+end ReciprocityTheory.ChartRestriction.DS.Lap.Base
+end
+end
+end
+
 @[expose] public section
 
 noncomputable section
