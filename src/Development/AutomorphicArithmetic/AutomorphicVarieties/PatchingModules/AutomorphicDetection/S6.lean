@@ -2,7 +2,6 @@ module
 
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.InvAlg
 public import Mathlib.LinearAlgebra.Matrix.Trace
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.UnitsBasic
 public import Mathlib.Data.Matrix.Basis
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.ClosureConjugation.GrAlg
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.DGmap
@@ -29,6 +28,7 @@ import Mathlib.RingTheory.AdicCompletion.Noetherian
 import Mathlib.RingTheory.PowerSeries.NoZeroDivisors
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.DTrCoeff
 import Mathlib.RingTheory.SimpleModule.WedderburnArtin
+import Mathlib.Tactic.NormNum.LegendreSymbol
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.ThetaDiag, Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.VrRange, Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.VrReduction, Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.ClosureConjugation.ComplOddPart, Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.UnitsOneBlock, Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.ClosureConjugation.GrI, Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.ClosureConjugation.HatChi, Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.ClosureConjugation.HatRange, Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.ClosureConjugation.HatSt, Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.ClosureConjugation.RFSurj, Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.DGmaDet, Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.ClosureConjugation.GrDet, Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.AlghomOfUnits, Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.ClosureConjugation.GrSs, Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.ClosureConjugation.GrThick, Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.ClosureConjugation.UrepOf, Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.AutomorphicDetection.S6
@@ -36,6 +36,69 @@ import Mathlib.RingTheory.SimpleModule.WedderburnArtin
 -- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.ThetaDiag =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.ThetaDiag", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.InvAlg\npublic import Mathlib.LinearAlgebra.Matrix.Trace\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.UnitsBasic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
+
+section
+@[expose] public section
+
+open Polynomial Matrix IsLocalRing TensorProduct UpperTheory.V.AlgebraTools
+
+private theorem units_x_mul_ep_and_st_idempotent_identities {B E : Type} [CommRing B] [Ring E] [Algebra B E] (T : TrInv B E) {ι : Type} [Fintype ι] [DecidableEq ι] (o : ι → ι) (U : T.Units ι o) (i : ι) :
+    U.x i * U.ep i = U.x i ∧ U.ep (o i) * U.x i = U.x i ∧ T.st (U.x i) * U.ep (o i) = T.st (U.x i) ∧ U.ep i * T.st (U.x i) = T.st (U.x i) := by
+  have hr : U.x i * U.ep i = U.x i := by
+    conv_rhs => rw [← U.x_mem i]
+    conv_lhs => rw [← U.x_mem i]
+    rw [mul_assoc _ (U.ep i) (U.ep i), (U.coi.idem i).eq]
+  have hl : U.ep (o i) * U.x i = U.x i := by
+    conv_rhs => rw [← U.x_mem i]
+    conv_lhs => rw [← U.x_mem i]
+    simp only [← mul_assoc, (U.coi.idem (o i)).eq]
+  refine ⟨hr, hl, ?_, ?_⟩
+  · have h := congrArg T.st hl
+    rwa [T.st_mul, U.st_ep] at h
+  · have h := congrArg T.st hr
+    rwa [T.st_mul, U.st_ep] at h
+
+theorem UpperTheory.V.AlgebraTools.units_basic :
+    ∀ {B E : Type} [CommRing B] [Ring E] [Algebra B E] (T : TrInv B E) {ι : Type} [Fintype ι] [DecidableEq ι] (o : ι → ι) (U : T.Units ι o), (∀ i j, i ≠ j → U.x i * T.st (U.x j) = 0) ∧ ∑ i, T.st (U.x i) * U.x i = 1 ∧ (∀ i j y, i ≠ j → T.tr (U.ep i * y * U.ep j) = 0) ∧ (∀ y, T.tr y = ∑ i, T.tr (U.x i * y * T.st (U.x i))) ∧ (∀ i j y, o i = o j → U.x i * y * T.st (U.x j) = T.tr (U.x i * y * T.st (U.x j)) • U.ep (o i)) ∧ (∀ y, y = ∑ i, ∑ j, T.st (U.x i) * (U.x i * y * T.st (U.x j)) * U.x j) ∧ ∀ i j y, U.ep (o i) * (U.x i * y * T.st (U.x j)) * U.ep (o j) = U.x i * y * T.st (U.x j) := by
+  intro B E _ _ _ T ι _ _ o U
+  have key : ∀ i j y, U.ep (o i) * (U.x i * y * T.st (U.x j)) * U.ep (o j) = U.x i * y * T.st (U.x j) := by
+    intro i j y
+    obtain ⟨-, hl, hs, -⟩ := units_x_mul_ep_and_st_idempotent_identities T o U i
+    obtain ⟨-, -, hs', -⟩ := units_x_mul_ep_and_st_idempotent_identities T o U j
+    simp only [← mul_assoc]
+    rw [hl, mul_assoc _ (T.st (U.x j)), hs']
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, key⟩
+  · intro i j h
+    obtain ⟨hr, -, -, -⟩ := units_x_mul_ep_and_st_idempotent_identities T o U i
+    obtain ⟨-, -, -, hs⟩ := units_x_mul_ep_and_st_idempotent_identities T o U j
+    rw [← hr, ← hs, mul_assoc, ← mul_assoc (U.ep i), U.coi.ortho h, zero_mul, mul_zero]
+  · simp_rw [U.st_mul_x_eq]
+    exact U.coi.complete
+  · intro i j y h
+    rw [T.tr_comm, ← mul_assoc, U.coi.ortho (Ne.symm h), zero_mul, map_zero]
+  · intro y
+    have h : ∀ i, T.tr (U.x i * y * T.st (U.x i)) = T.tr (U.ep i * y) := by
+      intro i
+      rw [T.tr_comm, ← mul_assoc, U.st_mul_x_eq]
+    simp_rw [h]
+
+    rw [← map_sum, ← Finset.sum_mul, U.coi.complete, one_mul]
+  · intro i j y h
+    have h7 := key i j y
+    rw [← h] at h7
+    calc U.x i * y * T.st (U.x j)
+        = U.ep (o i) * (U.x i * y * T.st (U.x j)) * U.ep (o i) := h7.symm
+      _ = T.tr (U.ep (o i) * (U.x i * y * T.st (U.x j)) * U.ep (o i)) • U.ep (o i) := U.corner_eq _ _
+      _ = T.tr (U.x i * y * T.st (U.x j)) • U.ep (o i) := by rw [h7]
+  · intro y
+    have h : ∀ i j, T.st (U.x i) * (U.x i * y * T.st (U.x j)) * U.x j = U.ep i * y * U.ep j := by
+      intro i j
+      rw [← U.st_mul_x_eq i, ← U.st_mul_x_eq j]
+      simp only [mul_assoc]
+    simp_rw [h, ← Finset.mul_sum, ← Finset.sum_mul, U.coi.complete, mul_one, one_mul]
+end
+end
+
 @[expose] public section
 
 open Polynomial Matrix IsLocalRing TensorProduct UpperTheory.V.AlgebraTools

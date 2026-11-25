@@ -1,7 +1,6 @@
 module
 
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.AffineSplittingSpan.CoreDefs
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.AffineSplittingSpan.CoreSteps
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.AffineSplittingSpan.SuccAboveEqFc
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.AffineSplittingSpan.Transfer
 import Mathlib.Tactic.Linter.Style
@@ -46,6 +45,49 @@ end -- clump:auto
 -- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.AffineSplittingSpan.E2VanishingOtherColumnsOfColKillP =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.AffineSplittingSpan.E2VanishingOtherColumnsOfColKillP", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.AffineSplittingSpan.CoreSteps\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.AffineSplittingSpan.HhZero\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.AffineSplittingSpan.SuccAboveEqFc\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
+
+section
+@[expose] public section
+
+noncomputable section
+
+namespace PositivityTheory.KB.SplitAffineSpectral.NormTraceLemmas
+
+def SplitA : Prop :=
+  ∀ (P Q : Type) [Group P] [Group Q] (pr : P →* Q) (q : ℕ) (b : (Fin (q + 2) → Q) → ℝ), dc b = 0 →
+    Wtop pr b = dv (zz pr b 1 (q + 1))
+
+def SplitS : Prop :=
+  ∀ (P Q : Type) [Group P] [Group Q] (pr : P →* Q) (p q : ℕ) (b : (Fin (p + q + 3) → Q) → ℝ), dc b = 0 →
+    dh (zz pr b (p + 1) (q + 2)) = (-1 : ℝ) ^ (p + 1) • dv (zz pr b (p + 2) (q + 1))
+
+def SplitB : Prop :=
+  ∀ (P Q : Type) [Group P] [Group Q] (pr : P →* Q) (N : ℕ) (b : (Fin (N + 2) → Q) → ℝ), dc b = 0 →
+    dh (zz pr b (N + 1) 1) = (-1 : ℝ) ^ (N + 1) • (fun x _ => b x : Bi P Q (N + 2) 1)
+
+def ZInv : Prop :=
+  ∀ (P Q : Type) [Group P] [Group Q] (pr : P →* Q) (n a c : ℕ) (b : (Fin n → Q) → ℝ), a + c = n →
+    (∀ (g : Q) x, b (fun i => g * x i) = b x) → PInv pr (zz pr b a c)
+
+def E2VanishingFirstColumn : Prop :=
+  ∀ (P Q : Type) [Group P] [Group Q] (pr : P →* Q) (s : Q →* P), (∀ g, pr (s g) = g) →
+    ∀ u : Q, (∀ g, g * u = u * g) → ∀ m : ℕ, ColPoly pr s u m → ∀ q : ℕ, q + 1 ≤ m →
+    ∀ x : Bi P Q 1 (q + 2), PInv pr x → dv x = 0 → dh x = 0 →
+      ∃ e : Bi P Q 1 (q + 1), PInv pr e ∧ x = dv e
+
+def E2VanishingOtherColumns : Prop :=
+  ∀ (P Q : Type) [Group P] [Group Q] (pr : P →* Q) (s : Q →* P), (∀ g, pr (s g) = g) →
+    ∀ u : Q, (∀ g, g * u = u * g) → ∀ m : ℕ, ColPoly pr s u m → ∀ p q : ℕ, q + 1 ≤ m →
+    ∀ x : Bi P Q (p + 2) (q + 2), PInv pr x → dv x = 0 → dh x = 0 →
+      ∃ (w : Bi P Q (p + 1) (q + 2)) (e : Bi P Q (p + 2) (q + 1)),
+        PInv pr w ∧ dv w = 0 ∧ PInv pr e ∧ x = dh w + dv e
+
+end PositivityTheory.KB.SplitAffineSpectral.NormTraceLemmas
+
+end
+end
+end
+
 @[expose] public section
 
 noncomputable section
