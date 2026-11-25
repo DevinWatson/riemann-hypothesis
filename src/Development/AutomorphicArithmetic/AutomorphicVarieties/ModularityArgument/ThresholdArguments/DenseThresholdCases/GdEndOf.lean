@@ -33,16 +33,13 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThre
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.ExistsIsFlagOnOfEigenvectorNormalSubgroup
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.SubSmulMulSubSmulEqZeroOfQuadratic
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AdmissibleResidues.AdmissibleResidualOfHyp
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.AutomorphyLifting.AutomorphyDescent.LocalConditionRankThreeEvenLevel
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.PlDefs
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.AutEnd3AltAlt
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.AutomorphyLifting.AutomorphyDescent.Loc2
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.AutomorphyLifting.LocalConditionCharacters.NewDefs
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IneLeFixingSubgroup
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CharacterLevelBounds.ClsFacts
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.FinEndOfFinPt
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.LkMarks
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.AutEnd3Alt
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
@@ -89,6 +86,13 @@ import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.MatGstar
 import Mathlib.Algebra.Order.Star.Rat
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.DvrFacts
+import Mathlib.Algebra.Module.Torsion.PrimaryComponent
+public import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.HostFrameEx
+public import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.PropagationTheoremGL2
+public import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.ExistsNrep3
+public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.GalEmbTop
+import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicCases.AutomorphyClauseStatement
+import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ContinuousHom
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.WinPairs, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.FirstConditionUp, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.Across2, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.UpperTriangularPlaces.KeepsGap, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.UpperTriangularPlaces.KatoThreePlus, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.AutEnd2, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.GdEndOf
@@ -96,6 +100,198 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.Selm
 -- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.WinPairs =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.WinPairs", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.AfDesc\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.RatTorsionFree\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.AutomorphyLifting.AAcrossOf\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AdmissibleResidues.SphericalOfHasSat\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V UpperTheory.V.HV GlobalTheory.GalOfCusp UpperTheory.V.U3 UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.Th UpperTheory.V.Z.J
+open UpperTheory.V.Z.Win
+
+namespace UpperTheory.V.Z.Win.Dn
+
+def LocalConditionRankThreeEvenLevel : Prop :=
+  ∀ (Ω : Type) [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] (l : ℕ) [Fact l.Prime] (c : Coef l) [CharP (ResidueField c.O) l] (N : ℕ) [NeZero N] (e : ℕ) (ψ : DirichletCharacter c.O N), Even N → ∀ (η : G ℚ Ω →* ℤˣ) (σ g₁ : G ℚ Ω) (B : ValuationSubring Ω) (M : ℕ), Pr.LinkHyp c N e η σ B M → ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] [Algebra L Ω] [IsAlgClosure L Ω] (Φ : Fr.Frame l (ResidueField c.O)) (C₀ : ℕ) (k : Pr.GalLink η (Chr.Psi l e (Chr.dirG ℚ Ω ψ)) σ g₁ B M L Φ), Φ.Ok C₀ → Φ.Big C₀ → Pr.SeedClause c η (Chr.Psi l e (Chr.dirG ℚ Ω ψ)) σ L → ∀ (A : Subalgebra c.O (PadicAlgCl l)) [IsDiscreteValuationRing A] [Module.Finite c.O A] (r : G ℚ Ω →* GG (m := 3) (R := A)), Pr.OrdPt l η (Chr.Psi l e (Chr.dirG ℚ Ω ψ)) σ g₁ B r → (∀ U : Subgroup (G ℚ Ω), IsOpen (U : Set (G ℚ Ω)) → U ≤ η.ker → MatIrr U (mats (UnitaryThreeInertia.push A.val r))) → ∀ (K : Type) [Field K] [NumberField K] [IsCMField K] [Algebra K Ω] [IsAlgClosure K Ω], η.ker = galOf ℚ K Ω → ∀ [Algebra K L] [IsScalarTower K L Ω] (ρ : G K Ω →* GL (Fin 3) (Qbar l)), (∀ s, (ρ s).val = (UnitaryThreeInertia.push A.val r (galEmb ℚ K Ω s)).mat) → Z.Win.Keeps ρ L
+
+end UpperTheory.V.Z.Win.Dn
+end
+end
+
+section
+@[expose] public section
+
+open NumberField IsLocalRing Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Aut UpperTheory.V.Pr UpperTheory.V
+
+theorem UpperTheory.V.Pr.finEnd_of_finPt :
+    ∀ {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsLocalRing O] {η : G ℚ Ω →* ℤˣ} {Ψ : G ℚ Ω →* Oˣ} {σ g₁ : G ℚ Ω} {B : ValuationSubring Ω} {M : ℕ}
+      {L : Type} [Field L] [NumberField L] [Algebra L Ω] {Φ : Fr.Frame l (ResidueField O)} (k : GalLink η Ψ σ g₁ B M L Φ) [CharP (ResidueField O) l] {C₀ : ℕ}, Φ.Ok C₀ → l ∣ M → σ * σ = 1 →
+    FinPt O Φ 3 → FinEnd l η Ψ σ g₁ B := by
+  intro Ω _ _ _ l _ O _ _ η Ψ σ g₁ B M L _ _ _ Φ k _ C₀ hok hl hσ hF
+  haveI : Module.IsTorsionFree L Ω := DivisionSemiring.to_moduleIsTorsionFree
+  haveI : IsAlgClosure L Ω := ⟨IsAlgClosure.isAlgClosed ℚ, Algebra.IsAlgebraic.tower_top (K := ℚ) L⟩
+  have hidx : (Base.galOf ℚ L Ω).index = Module.finrank ℚ L := (Base.galEmbTop ℚ L Ω).2.2
+  refine ⟨Base.galOf ℚ L Ω, ⟨by rw [hidx]; exact Module.finrank_pos.ne'⟩, ?_⟩
+  intro A _ _ _ h0 r hr g hg _
+  haveI : IsNoetherianRing A := PrincipalIdealRing.isNoetherianRing
+  let f : ResidueField O →+* A := Ideal.Quotient.lift (maximalIdeal O) (algebraMap O A) h0
+  have hf : ∀ a : O, f (residue O a) = algebraMap O A a := fun a => rfl
+  letI : Algebra (ResidueField O) A := f.toAlgebra
+  haveI : IsScalarTower O (ResidueField O) A := IsScalarTower.of_algebraMap_eq fun a => (hf a).symm
+  obtain ⟨ρ, h1, h2, h3⟩ := exists_nrep3 k hok hl hσ r hr
+  have hpow : ∀ (s : G ℚ Ω) (n : ℤ), algebraMap O A ((Ψ s ^ n : Oˣ) : O) =
+      f ((barChar O Ψ s ^ n : (ResidueField O)ˣ) : ResidueField O) := by
+    intro s n
+    rw [← hf]
+    congr 1
+    exact congrArg Units.val (map_zpow (Units.map (residue O).toMonoidHom) (Ψ s) n)
+  have key := hF A ρ h1 (by
+    intro v i g hg h
+    apply Units.ext
+    rw [h3 v i g hg, UnitaryThreeInertia.psi, hpow]
+    rw [k.j_loc, k.psi] at h
+    rw [h]; simp)
+  obtain ⟨s, rfl⟩ : ∃ s, Base.galEmb ℚ L Ω s = g := (Base.range_galEmb ℚ L Ω).ge hg
+  rw [← h2, key]
+  have : ((r0 η Ψ (Base.galEmb ℚ L Ω s)).mat).map (algebraMap O A) = Matrix.diagonal fun i =>
+      algebraMap O A ((Ψ (Base.galEmb ℚ L Ω s) ^ wt1 i : Oˣ) : O) := by
+    rw [GG.mat, unitaryThreeReflection_left, tor_val, Matrix.diagonal_map (map_zero _)]
+  rw [this, Matrix.charpoly_diagonal]
+  refine Finset.prod_congr rfl fun i _ => ?_
+  rw [hpow]
+  have h5 : Φ.Ψ (k.p0 s) = barChar O Ψ (Base.galEmb ℚ L Ω s) := k.psi _
+  have h6 : Fr.w 3 i = wt1 i := by fin_cases i <;> rfl
+  rw [h5, h6]
+  rfl
+end
+end
+
+section
+@[expose] public section
+
+
+
+
+section
+open NumberField IsLocalRing Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Aut UpperTheory.V.Pr UpperTheory.V UpperTheory.V.Z.Win
+theorem UpperTheory.V.Z.Win.Dn.autEnd3_alt :
+    _root_.UpperTheory.V.Z.Win.Dn.DownCsdKAlt → ∀ {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] {l : ℕ} [Fact l.Prime] {c : Coef l} {η : G ℚ Ω →* ℤˣ} {Ψ : G ℚ Ω →* c.Oˣ} {σ g₁ : G ℚ Ω} {B : ValuationSubring Ω} {M : ℕ}
+      {L : Type} [Field L] [NumberField L] [IsCMField L] [Algebra L Ω] {Φ : Fr.Frame l (ResidueField c.O)} (k : GalLink η Ψ σ g₁ B M L Φ) [CharP (ResidueField c.O) l] {C₀ : ℕ}, Φ.Ok C₀ → l ∣ M → Sd.IsCC σ → ∀ (ι : Qbar l ≃+* ℂ),
+    ∀ (K : Type) [Field K] [NumberField K] [IsCMField K], (∀ [Algebra K Ω], Base.galOf ℚ K Ω = η.ker) →
+    (∀ (A : Subalgebra c.O (PadicAlgCl l)) [IsDiscreteValuationRing A] [Module.Finite c.O A] (r : G ℚ Ω →* GG (m := 3) (R := A)), OrdPt l η Ψ σ g₁ B r →
+      (∀ U : Subgroup (G ℚ Ω), IsOpen (U : Set (G ℚ Ω)) → U ≤ η.ker → MatIrr U (mats (UnitaryThreeInertia.push A.val r))) →
+      ∀ [Algebra K Ω] [Algebra K L] [IsScalarTower K L Ω] (ρ : G K Ω →* GL (Fin 3) (Qbar l)),
+        (∀ s, (ρ s).val = (UnitaryThreeInertia.push A.val r (Base.galEmb ℚ K Ω s)).mat) → IneAb ρ ∧ Flagged ρ ∧ Keeps ρ L) → _root_.UpperTheory.V.Pr.AutPtAlt k 3 ι (cycBar L Ω l)⁻¹ → _root_.UpperTheory.V.Pr.AutEnd3Alt c η Ψ σ g₁ B K ι := by
+  intro hD Ω _ _ _ l _ c η Ψ σ g₁ B M L _ _ _ _ Φ k _ C₀ hok hl hcc ι K _ _ _ hK hS hA A dvrA _ r hr hirr _ ρ hρ
+  haveI : Module.IsTorsionFree L Ω := DivisionSemiring.to_moduleIsTorsionFree
+  haveI : IsAlgClosure L Ω := ⟨IsAlgClosure.isAlgClosed ℚ, Algebra.IsAlgebraic.tower_top (K := ℚ) L⟩
+  haveI : Module.IsTorsionFree K Ω := DivisionSemiring.to_moduleIsTorsionFree
+  haveI : IsAlgClosure K Ω := ⟨IsAlgClosure.isAlgClosed ℚ, Algebra.IsAlgebraic.tower_top (K := ℚ) K⟩
+  haveI : IsGalois L Ω := {}
+  have hσ : σ * σ = 1 := by
+    obtain ⟨j, hj⟩ := hcc
+    exact AlgEquiv.ext fun x => j.injective (by simp [AlgEquiv.mul_apply, hj])
+  have hησ : η σ = -1 := by
+    obtain ⟨hc, ec⟩ := k.c
+    have h := k.del ⟨σ, hc⟩
+    rw [ec, hok.del_c] at h
+    exact h.symm
+  have hLη : Base.galOf ℚ L Ω ≤ η.ker := k.gal ▸ inf_le_right
+  have hKL : ∀ x : K, ∃ y : L, algebraMap L Ω y = algebraMap K Ω x := fun x =>
+    (InfiniteGalois.mem_range_algebraMap_iff_fixed _).2 fun f =>
+      (hK.ge (hLη (Base.galEmb_mem ℚ L Ω f))) x
+  choose f hf using hKL
+  have hinj := (algebraMap L Ω).injective
+  let φ : K →+* L :=
+    { toFun := f
+      map_one' := hinj (by rw [hf, map_one, map_one])
+      map_mul' := fun x y => hinj (by rw [hf, map_mul, map_mul, hf, hf])
+      map_zero' := hinj (by rw [hf, map_zero, map_zero])
+      map_add' := fun x y => hinj (by rw [hf, map_add (f := _), map_add (f := _), hf, hf]) }
+  letI : Algebra K L := φ.toAlgebra
+  haveI : IsScalarTower K L Ω := IsScalarTower.of_algebraMap_eq fun x => (hf x).symm
+  haveI := k.ab
+  haveI : IsAbelianGalois K L := IsAbelianGalois.tower_top ℚ K L
+  haveI : Group.IsSolvable (L ≃ₐ[K] L) := Group.isSolvable_of_comm fun a b => mul_comm' a b
+  have : IsLocalRing A := dvrA.toIsLocalRing
+  obtain ⟨_, hloc, hcont⟩ := UpperTheory.V.Th.End3.sub_facts c A
+  have : IsLocalHom (algebraMap c.O A) := hloc
+  haveI : IsNoetherianRing A := PrincipalIdealRing.isNoetherianRing
+  obtain ⟨ρ', h1, h2, h3⟩ := exists_nrep3 k hok hl hσ r hr
+  have hU := hirr (Base.galOf ℚ L Ω) (Base.galEmbTop ℚ L Ω).2.1 hLη
+  have hcomp : ∀ s : G L Ω, Base.galEmb ℚ K Ω (Base.galEmb K L Ω s) = Base.galEmb ℚ L Ω s := fun s => rfl
+  have hρL (s : G L Ω) : (ρ (Base.galEmb K L Ω s)).val =
+      (UnitaryThreeInertia.push A.val r (Base.galEmb ℚ L Ω s)).mat := by
+    rw [hρ, hcomp]
+  have irreducible {Γ : Type} [Group Γ] (τ : Γ →* GL (Fin 3) (Qbar l))
+      (hτ : ∀ g ∈ Base.galOf ℚ L Ω, ∃ s, ∃ t : Qbar l,
+        (UnitaryThreeInertia.push A.val r g).mat = t • (τ s).val) : Af.IsIrr τ := by
+    refine ⟨top_ne_bot, fun _ _ _ => Submodule.mem_top, fun W _ hi => hU W fun g hg v hv => ?_⟩
+    obtain ⟨s, t, e⟩ := hτ g hg
+    change (UnitaryThreeInertia.push A.val r g).mat.mulVec v ∈ W
+    rw [e, Matrix.smul_mulVec]
+    exact W.smul_mem t (hi s v hv)
+  have haut := hA A ρ' h1 (by
+    intro v i g hg
+    rw [h3 v i g hg, UnitaryThreeInertia.psi]
+    have h6 : Fr.w 3 i = wt1 i := by fin_cases i <;> rfl
+    rw [h6]) (ρ.comp (Base.galEmb K L Ω)) (by
+    intro s
+    rw [h2]
+    exact hρL s) (irreducible _ (by
+    intro g hg
+    obtain ⟨s, rfl⟩ : ∃ s, Base.galEmb ℚ L Ω s = g := (Base.range_galEmb ℚ L Ω).ge hg
+    refine ⟨s, 1, ?_⟩
+    change _ = (1 : Qbar l) • (ρ (Base.galEmb K L Ω s)).val
+    rw [one_smul]
+    exact (hρL s).symm))
+  have hEntry : Continuous fun g : G ℚ Ω => (r g).mat.map (A.val : A →+* PadicAlgCl l) := by
+    refine continuous_matrix fun a b => hcont _ (fun g => (r g).mat a b) fun n => ?_
+    exact (hr.cont n).comp fun X => X a b
+  have hχ : Continuous fun s : G K Ω => (cycBar K Ω l s)⁻¹ :=
+    (UpperTheory.V.Th.End3.cyc_cont K Ω l).inv
+  obtain ⟨s1, s2, s3⟩ := hS A r hr hirr ρ hρ
+  have f1 := (flagLaws K Ω l 3 ρ).2.1 (cycBar K Ω l)⁻¹
+  have f2 := (flagLaws L Ω l 3 (ρ.comp (Base.galEmb K L Ω))).2.1 (cycBar L Ω l)⁻¹
+  refine hD K L Ω l ι 3 (by norm_num) (Af.tw ρ (cycBar K Ω l)⁻¹) σ hcc ?_
+    ⟨Jgl (R := Qbar l) 3, fun s s' hs => ?_⟩ ?_ (f1.1 hχ s1) (f1.2.1 s2)
+    (fun w hw hu => (f2.2.2 w).1.1 (s3 w hw ((f1.2.2 _).1.2 hu))) haut
+  · refine _root_.UpperTheory.Reformulated.B.ContinuousHomomorphism.cont_hom _ ?_
+    simp only [Af.tw_val, hρ]
+    exact (Units.continuous_val.comp hχ).smul
+      (hEntry.comp (Base.galEmbTop ℚ K Ω).1.continuous)
+  · have pairing {x y j : GG (m := 3) (R := PadicAlgCl l)} (hj : j.mat = 1) (hj' : j.right = -1)
+        (h : y * j = j * x) : x.mat.transpose * Jmat _ 3 * y.mat = Jmat _ 3 := by
+      have h1 : j.left = 1 := Units.ext hj
+      have h2 := congrArg SemidirectProduct.left h
+      simp only [SemidirectProduct.mul_left, h1, hj', map_one, mul_one, one_mul, sgnAct_neg_one] at h2
+      rw [GG.mat, GG.mat, h2, theta_val, ← Matrix.mul_assoc, ← Matrix.mul_assoc,
+        Matrix.mul_assoc _ (Jmat _ 3) (Jmat _ 3), Jmat_mul_Jmat, Matrix.mul_one,
+        ← Matrix.transpose_mul, ← Units.val_mul, inv_mul_cancel]
+      simp
+    have hp := pairing (x := UnitaryThreeInertia.push A.val r (Base.galEmb ℚ K Ω s)) (y := UnitaryThreeInertia.push A.val r (Base.galEmb ℚ K Ω s'))
+      (j := UnitaryThreeInertia.push A.val r σ)
+      (by
+        show (r σ).mat.map _ = 1
+        rw [hr.norm.atc]; simp)
+      ((hr.red.mult σ).trans hησ)
+      (by rw [← map_mul, ← map_mul, hs, inv_mul_cancel_right])
+    have he : cycBar K Ω l s' = cycBar K Ω l s := by
+      show cycBar ℚ Ω l (Base.galEmb ℚ K Ω s') = cycBar ℚ Ω l (Base.galEmb ℚ K Ω s)
+      rw [hs, map_mul, map_mul, map_inv, mul_inv_cancel_comm]
+    rw [Af.tw_val, Af.tw_val, hρ, hρ, Matrix.transpose_smul, Matrix.smul_mul, Matrix.smul_mul, Matrix.mul_smul, smul_smul]
+    show _ • (_ * Jmat _ 3 * _) = _ • Jmat _ 3
+    rw [hp, MonoidHom.inv_apply, MonoidHom.inv_apply, he, MonoidHom.zpow_apply, ← Units.val_mul]
+    congr 2
+    rw [show (1 - ((3 : ℕ) : ℤ)) = -1 + -1 by norm_num, zpow_add, zpow_neg_one]
+  · refine irreducible _ fun g hg => ?_
+    obtain ⟨s, rfl⟩ : ∃ s, Base.galEmb ℚ L Ω s = g := (Base.range_galEmb ℚ L Ω).ge hg
+    refine ⟨s, (cycBar K Ω l (Base.galEmb K L Ω s) : Qbar l), ?_⟩
+    change _ = (cycBar K Ω l (Base.galEmb K L Ω s) : Qbar l) •
+      (Af.tw ρ (cycBar K Ω l)⁻¹ (Base.galEmb K L Ω s)).val
+    rw [Af.tw_val, smul_smul, MonoidHom.inv_apply, Units.mul_inv, one_smul]
+    exact (hρL s).symm
+end
+end
+end
+
 @[expose] public section
 
 

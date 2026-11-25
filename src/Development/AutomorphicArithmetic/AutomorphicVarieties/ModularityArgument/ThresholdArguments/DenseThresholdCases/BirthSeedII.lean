@@ -9,17 +9,13 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CompactGroupRepDefinedOverFiniteExtension
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.IntegralityOfNormCoefficients
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.AutomorphyLifting.PrimeIndexConstruction.RankFourAutomorphyOfTensor
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.ContinuousMixFamily
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.ExistsQuadraticCharacterOfSubgroupIndexTwo
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.ExistsRibetLattice
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.ExistsSquareRootOfCharacterNearOne
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.GaloisCharacterResidualDecomposition
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.GaloisRepPropertiesInvariantUnderConjugation
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.InducedIrreducible
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.SymmetricSquareMixedExists
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.HolomorphicIrreducibility.ShapeFacts
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.QuadraticSplitting.Imports
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.AutomorphyLifting.PrimeIndexConstruction.ConjEquivApply
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.IrrIff
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AdmissibleResidues.IndLoc0
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.RatTorsionFree
@@ -71,6 +67,11 @@ import Mathlib.FieldTheory.Galois.Profinite
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Algebra.Order.Star.Int
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.AutomorphyLifting.PrimeIndexConstruction.LocTrans
+public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.GalEmbTop
+public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.HolomorphicIrreducibility.RibetLat
+public import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.LevelIso
+public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.AutomorphyLifting.PrimeIndexConstruction.MixSeedPAlt
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.InducedRepresentationConstituentVanishing, Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.MixMatrixResidueProperties, Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.QuadraticSplitting.IndGlobOfKill, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.FinalS, Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.AutomorphicFormsDescentToSmallerLevel, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.InducedFinalStatement, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.BirthSeedII
@@ -78,6 +79,267 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument
 -- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.InducedRepresentationConstituentVanishing =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.InducedRepresentationConstituentVanishing", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.QuadraticSplitting.QuadSplit\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.CharacterLevelBounds.ClsFacts\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.RatTorsionFree\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.FrobeniusSmoothVectors.ScNorm\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.QuadraticExtensions.IneConj\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.GroupTheory.IndexNormal\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ConstSmall\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+noncomputable section
+
+open UpperTheory.V.Sd.S2 ReciprocityTheory.Gal
+
+namespace UpperTheory
+
+private theorem mix_cont {k X : Type} [Field k] [TopologicalSpace k] [IsTopologicalRing k] [TopologicalSpace X] (γ : kˣ)
+    {A B : X → Matrix (Fin 2) (Fin 2) k} (hA : Continuous A) (hB : Continuous B) :
+    Continuous fun x => mix γ (A x) (B x) := by
+  have a : ∀ i j, Continuous fun x => A x i j := fun i j => hA.matrix_elem i j
+  have b : ∀ i j, Continuous fun x => B x i j := fun i j => hB.matrix_elem i j
+  refine continuous_matrix fun i j => ?_
+  fin_cases i <;> fin_cases j <;> simp [mix, div_eq_mul_inv] <;> fun_prop
+
+theorem continuous_mix_family : UpperTheory.V.Sd.S2.MixCont := by
+  intro l _ Γ₀ Γ _ _ _ _ _ j t α β ρ R hM hj hρ
+  haveI hN : j.range.Normal := Subgroup.normal_of_index_eq_two hM.index
+  have hc : ∀ h : Γ₀, ∃ h', j h' = t⁻¹ * j h * t := fun h => by
+    have := hN.conj_mem (j h) ⟨h, rfl⟩ t⁻¹
+    simpa using this
+  choose c hc using hc
+  have cc : Continuous c := by
+    rw [hj.isInducing.continuous_iff]
+    have : (j ∘ c) = fun h => t⁻¹ * j h * t := funext hc
+    rw [this]
+    have := hj.continuous
+    fun_prop
+  have ci : Continuous fun h : Γ₀ => h⁻¹ := by
+    rw [hj.isInducing.continuous_iff]
+    have : (j ∘ fun h : Γ₀ => h⁻¹) = fun h => (j h)⁻¹ := funext fun h => by simp
+    rw [this]
+    exact hj.continuous.inv
+  have hv : Continuous fun h => (ρ h).val := Units.continuous_val.comp hρ
+  have h1 : Continuous fun h => (R (j h)).val := by
+    have : (fun h => (R (j h)).val) = fun h => mix (β / α) (ρ h) (ρ (c h)) :=
+      funext fun h => hM.on h (c h) (hc h)
+    rw [this]
+    exact mix_cont _ hv (hv.comp cc)
+  have h2 : Continuous (R ∘ j) := by
+    rw [Units.continuous_iff]
+    refine ⟨h1, ?_⟩
+    have := h1.comp ci
+    refine this.congr fun h => ?_
+    simp only [Function.comp, map_inv]
+  refine continuous_of_continuousAt_one R ?_
+  have := (hj.continuousAt_iff (g := R) (x := 1)).1 h2.continuousAt
+  rwa [map_one] at this
+
+end UpperTheory
+end
+end
+end
+
+section
+@[expose] public section
+
+open NumberField Formalism.ConjugateSelfDual ReciprocityTheory.Gal UpperTheory.V UpperTheory.V.Af UpperTheory.V.Base UpperTheory.V.Ws UpperTheory.V.Sd UpperTheory.V.Sd.S2
+
+theorem UpperTheory.exists_ribet_lattice :
+    UpperTheory.V.Sd.S2.RibOf := by
+  intro Ω _ _ _ l _ c D T k₀ _ _ φ ι k t r hyp hch hd u hu
+  haveI : IsAlgClosure k₀ Ω := ⟨IsAlgClosure.isAlgClosed ℚ, inferInstance⟩
+  haveI : IsGalois k₀ Ω := {}
+  have hc : Continuous (resQ k₀ : G k₀ Ω →* G ℚ Ω) := by
+    have h := (galEmbTop ℚ k₀ Ω).1.continuous
+    have e : (resQ k₀ : G k₀ Ω →* G ℚ Ω) = galEmb ℚ k₀ Ω := by
+      ext σ x
+      rw [galEmb_apply]; rfl
+    rw [e]; exact h
+  let H : Subgroup (G k₀ Ω) := T.F.fixingSubgroup.comap (resQ k₀)
+  have hHo : IsOpen (H : Set (G k₀ Ω)) := T.F.fixingSubgroup_isOpen.preimage hc
+  haveI : CompactSpace H := isCompact_iff_compactSpace.1 (H.isClosed_of_isOpen hHo).isCompact
+  have hg : resQ T.F T.g0 ∈ T.F.fixingSubgroup := by
+    rw [IntermediateField.mem_fixingSubgroup_iff]
+    intro x hx
+    exact T.g0.commutes ⟨x, hx⟩
+  have huH : u ∈ H := by
+    show resQ k₀ u ∈ T.F.fixingSubgroup
+    rw [hu]; exact mul_mem hg hg
+  obtain ⟨ρ', ⟨g, hρ⟩, q1, q2, q3, s, q4⟩ := ribetLat l H (r.comp H.subtype) 1 (((up D.ξ).comp (resQ k₀)).comp H.subtype)
+    (hd.cont.comp continuous_subtype_val) (hd.irr H hHo) (fun s => ⟨by simp, hch.unit _ _⟩)
+    (fun s i => by
+      have := hd.res s i
+      simpa only [Fin.prod_univ_two, Matrix.cons_val_zero, Matrix.cons_val_one, MonoidHom.comp_apply, MonoidHom.one_apply,
+        Subgroup.coe_subtype] using this) ⟨u, huH⟩ (by
+      have := hch.sq
+      rw [← hu] at this
+      exact this)
+  have e : ∀ s : H, ((MulAut.conj g).toMonoidHom.comp r) s = ρ' s := fun s => (hρ s).symm
+  refine ⟨(MulAut.conj g).toMonoidHom.comp r, ⟨g, fun _ => rfl⟩, ?_, ?_, fun h hh => ?_, s, s.2, ?_⟩
+  · rw [e ⟨u, huH⟩]; exact q1
+  · rw [e ⟨u, huH⟩]; exact q2
+  · rw [e ⟨h, hh⟩]; exact q3 ⟨h, hh⟩
+  · rw [e s]; exact q4
+end
+end
+
+section
+@[expose] public section
+
+open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N Polynomial
+open GlobalTheory.CuspRep GlobalTheory.GalOfCusp UpperTheory.V.Af UpperTheory.V.Sd UpperTheory.V.Sd.S2
+
+private theorem isIrr_iso {Γ k : Type} [Group Γ] [Field k] {n : ℕ} {r r' : Γ →* GL (Fin n) k} (h : RepIso r r')
+    (hr : IsIrr r) : IsIrr r' := by
+  obtain ⟨g, hg⟩ := h
+  obtain ⟨h1, -, h3⟩ := hr
+  refine ⟨h1, fun _ _ _ => Submodule.mem_top, fun W _ hi => ?_⟩
+  have key := h3 (W.comap (Matrix.mulVecLin (g : Matrix (Fin n) (Fin n) k))) le_top (fun s v hv => by
+    have h4 := hi s _ hv
+    rw [hg s] at h4
+    simpa [Matrix.mulVec_mulVec, Matrix.mul_assoc] using h4)
+  have hs : Function.Surjective (Matrix.mulVecLin (g : Matrix (Fin n) (Fin n) k)) := fun v =>
+    ⟨((g⁻¹ : GL (Fin n) k) : Matrix (Fin n) (Fin n) k).mulVec v, by
+      rw [Matrix.mulVecLin_apply, Matrix.mulVec_mulVec, Units.mul_inv, Matrix.one_mulVec]⟩
+  have e := Submodule.map_comap_eq_of_surjective hs W
+  rcases key with key | key
+  · left
+    rw [← e, key, Submodule.map_bot]
+  · right
+    rw [← e, key, Submodule.map_top, LinearMap.range_eq_top.mpr hs]
+
+private theorem ss_of_irrOpen {Γ k : Type} [Group Γ] [TopologicalSpace Γ] [Field k] {n : ℕ} {r : Γ →* GL (Fin n) k}
+    (h : IrrOpen r) : IsSSRep r := by
+  intro W hW
+  obtain ⟨-, -, h3⟩ := h ⊤ (by simp)
+  rcases h3 W le_top (fun s v hv => hW s v hv) with e | e
+  · exact ⟨⊤, fun _ _ _ => Submodule.mem_top, e ▸ isCompl_bot_top⟩
+  · refine ⟨⊥, fun s v hv => ?_, e ▸ isCompl_top_bot⟩
+    rw [Submodule.mem_bot] at hv ⊢
+    rw [hv, Matrix.mulVec_zero]
+
+private theorem ordAt_iso {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] {l : ℕ} [Fact l.Prime] {n : ℕ}
+    {r r' : G F Ω →* GL (Fin n) (Qbar l)} {m : Fin n → ℤ} {ψ : Fin n → G F Ω →* (Qbar l)ˣ} {A : ValuationSubring Ω}
+    (h : RepIso r r') (H : OrdAt r m ψ A) : OrdAt r' m ψ A := by
+  obtain ⟨κ, h1, h2⟩ := H
+  exact ⟨κ, h1.of_iso h, h2⟩
+
+private theorem irrOpen_iso {Γ k : Type} [Group Γ] [TopologicalSpace Γ] [Field k] {n : ℕ} {r r' : Γ →* GL (Fin n) k}
+    (h : RepIso r r') (H : IrrOpen r) : IrrOpen r' := fun U hU => by
+  obtain ⟨g, hg⟩ := h
+  have e : RepIso (r.comp U.subtype) (r'.comp U.subtype) := ⟨g, fun s => hg s⟩
+  exact isIrr_iso e (H U hU)
+
+private theorem det_iso {Γ k : Type} [Group Γ] [Field k] {n : ℕ} {r r' : Γ →* GL (Fin n) k} (h : RepIso r r') :
+    Matrix.GeneralLinearGroup.det.comp r' = Matrix.GeneralLinearGroup.det.comp r := by
+  obtain ⟨g, hg⟩ := h
+  refine MonoidHom.ext fun s => ?_
+  rw [MonoidHom.comp_apply, MonoidHom.comp_apply, hg, map_mul, map_mul, map_inv,
+    mul_comm _ (Matrix.GeneralLinearGroup.det (r s)), mul_inv_cancel_right]
+
+private theorem resSum_iso {Γ : Type} [Group Γ] {l : ℕ} [Fact l.Prime] {n : ℕ} {r r' : Γ →* GL (Fin n) (Qbar l)}
+    {χ : Fin n → Γ →* (Qbar l)ˣ} (h : RepIso r r') (H : ResSum r χ) : ResSum r' χ := by
+  obtain ⟨g, hg⟩ := h
+  intro s i
+  rw [hg, Units.val_mul, Units.val_mul, Matrix.coe_units_inv, Matrix.charpoly_units_conj]
+  exact H s i
+
+private theorem attR_iso {F Ω : Type} [Field F] [NumberField F] [IsTotallyReal F] [Field Ω] [Algebra F Ω] {l : ℕ} [Fact l.Prime]
+    {n : ℕ} {r r' : G F Ω →* GL (Fin n) (Qbar l)} {ι : Qbar l ≃+* ℂ} {π} (h : RepIso r r')
+    (hs : IsSSRep r') (H : AttR ι r π) : AttR ι r' π := by
+  refine ⟨hs, H.2.mono fun w hw => ?_⟩
+  obtain ⟨B, b1, b2⟩ := hw
+  exact ⟨B, b1, b2.of_iso h⟩
+
+private theorem away_iso {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] {l : ℕ} [Fact l.Prime] {n : ℕ}
+    {r r' : G F Ω →* GL (Fin n) (Qbar l)} {τ : Fin n → G F Ω →* (Qbar l)ˣ}
+    (h : RepIso r r') (H : TypeAway r τ) : TypeAway r' τ := fun A hA => (H A hA).of_iso h
+
+theorem UpperTheory.galoisRep_properties_invariant_under_conjugation :
+    UpperTheory.V.Sd.S2.MixConj := by
+  intro Ω _ _ _ l _ k₀ _ _ ι x k t r r' H h
+  have hirr : IrrOpen r' := irrOpen_iso h H.irr
+  obtain ⟨π, h2, h3⟩ := H.att
+  refine ⟨H.hk, H.ht, H.dvd, continuous_of_iso H.cont h, hirr, ⟨π, attR_iso h (ss_of_irrOpen hirr) h2, h3⟩,
+    (det_iso h).trans H.det, resSum_iso h H.res, away_iso h H.away, ?_⟩
+  intro A A' hA g hg hy
+  rcases H.above A A' hA g hg hy with a | a
+  · exact Or.inl ⟨ordAt_iso h a.1, ordAt_iso h a.2⟩
+  · exact Or.inr ⟨ordAt_iso h a.1, ordAt_iso h a.2⟩
+end
+end
+
+section
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Polynomial Formalism.MainNotions.N
+open UpperTheory.V.Af
+
+namespace UpperTheory.V.Z.Win.Birth
+
+section Conj
+
+variable {Γ k : Type} [Group Γ] [Field k] {n : ℕ}
+
+private def conjEquiv (g : GL (Fin n) k) : (Fin n → k) ≃ₗ[k] (Fin n → k) :=
+  LinearEquiv.ofLinear (Matrix.mulVecLin (g : Matrix (Fin n) (Fin n) k))
+    (Matrix.mulVecLin ((g⁻¹ : GL (Fin n) k) : Matrix (Fin n) (Fin n) k))
+    (by rw [← Matrix.mulVecLin_mul, ← Units.val_mul, mul_inv_cancel]; simp)
+    (by rw [← Matrix.mulVecLin_mul, ← Units.val_mul, inv_mul_cancel]; simp)
+
+private theorem conjEquiv_apply (g : GL (Fin n) k) (v : Fin n → k) :
+    conjEquiv g v = (g : Matrix (Fin n) (Fin n) k).mulVec v := rfl
+
+private theorem intertwine {r r' : Γ →* GL (Fin n) k} {g : GL (Fin n) k}
+    (hg : ∀ s, r' s = g * r s * g⁻¹) (s : Γ) (v : Fin n → k) :
+    (r' s : Matrix (Fin n) (Fin n) k).mulVec (conjEquiv g v) =
+      conjEquiv g ((r s : Matrix (Fin n) (Fin n) k).mulVec v) := by
+  have h : (r' s : Matrix (Fin n) (Fin n) k) * (g : Matrix (Fin n) (Fin n) k) =
+      (g : Matrix (Fin n) (Fin n) k) * (r s : Matrix (Fin n) (Fin n) k) := by
+    rw [← Units.val_mul, ← Units.val_mul, hg s, inv_mul_cancel_right]
+  simp only [conjEquiv_apply, Matrix.mulVec_mulVec, h]
+
+private theorem ss_of_conj {r r' : Γ →* GL (Fin n) k} (h : RepIso r r') (H : IsSSRep r) : IsSSRep r' := by
+  obtain ⟨g, hg⟩ := h
+  intro W hW
+  have h0 : IsInv r (W.comap (conjEquiv g).toLinearMap) := by
+    intro s v hv
+    have hv' : conjEquiv g v ∈ W := hv
+    show conjEquiv g _ ∈ W
+    rw [← intertwine hg]
+    exact hW s _ hv'
+  obtain ⟨W', hW', hc⟩ := H _ h0
+  refine ⟨W'.map (conjEquiv g).toLinearMap, ?_, ?_⟩
+  · rintro s _ ⟨v, hv, rfl⟩
+    exact ⟨(r s : Matrix (Fin n) (Fin n) k).mulVec v, hW' s v hv, (intertwine hg s v).symm⟩
+  · have hm := (Submodule.orderIsoMapComap (conjEquiv g)).isCompl hc
+    have hW2 : (Submodule.orderIsoMapComap (conjEquiv g)) (W.comap (conjEquiv g).toLinearMap) = W := by
+      ext x
+      simp [Submodule.orderIsoMapComap_apply]
+    rw [hW2] at hm
+    exact hm
+
+end Conj
+
+private theorem frob_of_conj {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] {l : ℕ} [Fact l.Prime] {n : ℕ}
+    {ι : Qbar l ≃+* ℂ} {r r' : G F Ω →* GL (Fin n) (Qbar l)} (h : RepIso r r')
+    {w : HeightOneSpectrum (𝓞 F)} {B : Multiset ℂ} (H : FrobEig ι r w B) : FrobEig ι r' w B := by
+  obtain ⟨g, hg⟩ := h
+  intro A hA
+  obtain ⟨h1, h2⟩ := H A hA
+  refine ⟨fun s hs => ?_, fun σ hσ => ?_⟩
+  · rw [hg s, h1 s hs, mul_one, mul_inv_cancel]
+  · rw [hg σ⁻¹, Units.val_mul, Units.val_mul, Matrix.coe_units_inv, Matrix.charpoly_units_conj]
+    exact h2 σ hσ
+
+theorem prIso : PrIso := by
+  intro F Ω _ _ _ _ _ _ l _ ι n r r' h
+  rintro ⟨π, h1, h2, h3⟩
+  exact ⟨π, h1, ⟨ss_of_conj h h2.1, h2.2.mono fun _ ⟨B, hB, hB'⟩ => ⟨B, hB, frob_of_conj h hB'⟩⟩, h3⟩
+
+end UpperTheory.V.Z.Win.Birth
+end
+end
+end
+
 @[expose] public section
 
 open NumberField Formalism.ConjugateSelfDual ReciprocityTheory.Gal IsLocalRing GlobalTheory.GalOfCusp
