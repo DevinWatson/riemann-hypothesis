@@ -1,26 +1,25 @@
 module
 
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.Development
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RelIdxNeZeroOfLeLeft
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.LinearAlgebra.Eigenspace.Minpoly
 public import Mathlib.LinearAlgebra.Eigenspace.Basic
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.KeyDef
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.CommOfBounded
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.ExistsGoodForm
 public import Formalism.PeriodIntegrals.UnimodLocStd
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.IsKTheta
 public import Mathlib.Data.Nat.Prime.Int
 public import Mathlib.FieldTheory.Finite.Basic
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RamDef
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepRamDef
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.HNsmulNsmul
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepSingleSat
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepKeyRam
 public import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.QuadraticSemicharactersFactAltForm
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.SelfDualStd
+public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.SelfDualStd
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepBasic
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepHSelfInt
+public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepHSelfInt
+public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepArith
+import Mathlib.Tactic.Lemma
+import Mathlib.Tactic.TypeStar
+import Mathlib.Algebra.Order.Star.Int
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.Imports, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.SatStdOfAll, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.QequivApply, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.StdHSingleZero, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.ExistsIsometryMemLocalizedAtSingle, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.DescentStep, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepRamAsm, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.UnitVecRam, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.UnimodLocStd, Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.QuadraticSemicharacterIdentityReformulated
@@ -28,6 +27,57 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard
 -- ===== clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.Imports =====
 -- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.Imports", "h": "module\n\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.Development\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RelIdxNeZeroOfLeLeft\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Int\nimport Mathlib.Analysis.CStarAlgebra.Classes\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\npublic import Mathlib.LinearAlgebra.Eigenspace.Minpoly\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Coalgebra.IsFrobenius\nimport Mathlib.RingTheory.Etale.Weakly\nimport Mathlib.RingTheory.Finiteness.ModuleFinitePresentation\nimport Mathlib.RingTheory.HopfAlgebra.Basic\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.TotallySplit\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.LinearAlgebra.Eigenspace.Basic\n\n"}
 section -- clump:auto
+
+section
+@[expose] public section
+
+noncomputable section
+open scoped ComplexConjugate
+
+namespace PI.UnitaryGroupMassFormula.UnimodLocStd
+open PI.ULS
+
+def StepB : Prop :=
+  ∀ (a : ℕ) (b c : ℤ) (d : ℕ) (ha : 0 < a) (hd : 0 < d) (lam : ℂ) (hlam : lam ≠ 0), CmOK a b c d →
+    ∀ (m : Type) [Fintype m] [DecidableEq m] (Λa : AddSubgroup (m → ℂ)),
+      IsSelfDual (stdH (cmL a b d ha hd lam hlam) m) Λa →
+      (∀ x ∈ Λa, cmTheta b d • x ∈ Λa) →
+      relIdx (stdLat (cmL a b d ha hd lam hlam) m) Λa ≠ 0 →
+      relIdx Λa (stdLat (cmL a b d ha hd lam hlam) m) ≠ 0 →
+      ∀ l : ℕ, l.Prime → ∃ g : (m → ℂ) ≃ₗ[ℂ] (m → ℂ),
+        IsIsom (stdH (cmL a b d ha hd lam hlam) m) (stdH (cmL a b d ha hd lam hlam) m)
+          (g : (m → ℂ) →ₗ[ℂ] (m → ℂ)) ∧
+        relIdx (stdLat (cmL a b d ha hd lam hlam) m) (imgLat (g : (m → ℂ) →ₗ[ℂ] (m → ℂ)) Λa) ≠ 0 ∧
+        ¬ l ∣ relIdx (stdLat (cmL a b d ha hd lam hlam) m) (imgLat (g : (m → ℂ) →ₗ[ℂ] (m → ℂ)) Λa) ∧
+        relIdx (imgLat (g : (m → ℂ) →ₗ[ℂ] (m → ℂ)) Λa) (stdLat (cmL a b d ha hd lam hlam) m) ≠ 0
+
+def StepC : Prop :=
+  ∀ (a : ℕ) (b c : ℤ) (d : ℕ) (ha : 0 < a) (hd : 0 < d) (lam : ℂ) (hlam : lam ≠ 0), CmOK a b c d →
+    ∀ (m : Type) [Fintype m] [DecidableEq m] (Λa : AddSubgroup (m → ℂ)) (g : (m → ℂ) ≃ₗ[ℂ] (m → ℂ)),
+      (∀ x ∈ Λa, cmTheta b d • x ∈ Λa) →
+      ∀ l : ℕ, l.Prime →
+      IsIsom (stdH (cmL a b d ha hd lam hlam) m) (stdH (cmL a b d ha hd lam hlam) m)
+          (g : (m → ℂ) →ₗ[ℂ] (m → ℂ)) →
+        relIdx (stdLat (cmL a b d ha hd lam hlam) m) (imgLat (g : (m → ℂ) →ₗ[ℂ] (m → ℂ)) Λa) ≠ 0 →
+        ¬ l ∣ relIdx (stdLat (cmL a b d ha hd lam hlam) m) (imgLat (g : (m → ℂ) →ₗ[ℂ] (m → ℂ)) Λa) →
+        relIdx (imgLat (g : (m → ℂ) →ₗ[ℂ] (m → ℂ)) Λa) (stdLat (cmL a b d ha hd lam hlam) m) ≠ 0 →
+      ∃ δ : (m → ℂ) ≃ₗ[ℂ] (m → ℂ),
+        IsIsom (stdH (cmL a b d ha hd lam hlam) m) (stdH (cmL a b d ha hd lam hlam) m)
+          (δ : (m → ℂ) →ₗ[ℂ] (m → ℂ)) ∧ (∀ x, δ x = x → x = 0) ∧
+        relIdx (stdLat (cmL a b d ha hd lam hlam) m) (imgLat (δ : (m → ℂ) →ₗ[ℂ] (m → ℂ)) Λa) ≠ 0 ∧
+        ¬ l ∣ relIdx (stdLat (cmL a b d ha hd lam hlam) m) (imgLat (δ : (m → ℂ) →ₗ[ℂ] (m → ℂ)) Λa) ∧
+        relIdx (imgLat (δ : (m → ℂ) →ₗ[ℂ] (m → ℂ)) Λa) (stdLat (cmL a b d ha hd lam hlam) m) ≠ 0
+
+theorem target_of (hB : StepB) (hC : StepC) : PI.UnimodLocStd := by
+  intro a b c d ha hd lam hlam hok m _ _ Λa hsd hθ h1 h2 l hl
+  obtain ⟨g, hg, g1, g2, g3⟩ := hB a b c d ha hd lam hlam hok m Λa hsd hθ h1 h2 l hl
+  exact hC a b c d ha hd lam hlam hok m Λa g hθ l hl hg g1 g2 g3
+
+end PI.UnitaryGroupMassFormula.UnimodLocStd
+end
+end
+end
+
 @[expose] public section
 
 noncomputable section
@@ -209,6 +259,327 @@ end -- clump:auto
 -- ===== clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.SatStdOfAll =====
 -- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.SatStdOfAll", "h": "module\n\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.KeyDef\npublic import Mathlib.Analysis.CStarAlgebra.Classes\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.CommOfBounded\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.ExistsGoodForm\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RelIdxNeZeroOfLeLeft\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.SelfDualStd\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Lemma\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
+
+section
+@[expose] public section
+
+noncomputable section
+open scoped ComplexConjugate
+
+namespace PI.UnitaryGroupMassFormula.UnimodLocStd
+open PI.ULS
+
+variable {a : ℕ} {b c : ℤ} {d : ℕ} {ha : 0 < a} {hd : 0 < d} {lam : ℂ} {hlam : lam ≠ 0}
+variable {m : Type*} [Fintype m] [DecidableEq m]
+
+def IsKv (b : ℤ) (d : ℕ) (lam : ℂ) (v : m → ℂ) : Prop := ∀ i, IsK b d (v i / lam)
+
+lemma cmL_omega1 : (cmL a b d ha hd lam hlam).ω₁ = lam * a := rfl
+lemma cmL_omega2 : (cmL a b d ha hd lam hlam).ω₂ = lam * cmTheta b d := rfl
+
+lemma mem_stdLat_iff (L : PeriodPair) (v : m → ℂ) : v ∈ stdLat L m ↔ ∀ i, v i ∈ L.lattice := by
+  simp only [PI.ULS.stdLat, AddSubgroup.mem_pi, Set.mem_univ, forall_const,
+    Submodule.mem_toAddSubgroup]
+
+private theorem mem_cmL_lattice_iff (z : ℂ) :
+    z ∈ (PI.ULS.cmL a b d ha hd lam hlam).lattice ↔
+      ∃ p q : ℤ, z = lam * ((p : ℂ) * a + q * PI.ULS.cmTheta b d) := by
+  rw [lattice_iff]
+  simp only [cmL_omega1, cmL_omega2, Complex.real_smul, Complex.ofReal_intCast]
+  constructor
+  · rintro ⟨p, q, h⟩
+    exact ⟨p, q, by rw [h]; ring⟩
+  · rintro ⟨p, q, h⟩
+    exact ⟨p, q, by rw [h]; ring⟩
+
+lemma isKv_of_mem {s : m → ℂ} (hs : s ∈ stdLat (cmL a b d ha hd lam hlam) m) : IsKv b d lam s := by
+  intro i
+  obtain ⟨p, q, hpq⟩ := (mem_cmL_lattice_iff _).1 ((mem_stdLat_iff _ s).1 hs i)
+  refine ⟨p * (a : ℤ), q, 1, one_ne_zero, ?_⟩
+  rw [hpq, mul_div_cancel_left₀ _ hlam]
+  push_cast
+  ring
+
+private theorem natCast_smul_eq_nsmul (N : ℕ) (y : m → ℂ) : (N : ℂ) • y = N • y := by
+  exact Nat.cast_smul_eq_nsmul ℂ N y
+
+private theorem nsmul_apply_eq_natCast_mul (N : ℕ) (v : m → ℂ) (i : m) : (N • v) i = (N : ℂ) * v i := by
+  rw [← natCast_smul_eq_nsmul, Pi.smul_apply, smul_eq_mul]
+
+lemma exists_nsmul_mem {v : m → ℂ} (h : IsKv b d lam v) :
+    ∃ N : ℕ, N ≠ 0 ∧ N • v ∈ stdLat (cmL a b d ha hd lam hlam) m := by
+  choose p q r hr hpq using h
+  have hself : ∀ z : ℤ, z ∣ (z.natAbs : ℤ) := fun _ => Int.dvd_natAbs.mpr dvd_rfl
+  obtain ⟨M, hM0, hMdvd⟩ : ∃ M : ℕ, M ≠ 0 ∧ ∀ i, r i ∣ (M : ℤ) := by
+    refine ⟨∏ j, (r j).natAbs, Finset.prod_ne_zero_iff.mpr fun j _ => Int.natAbs_ne_zero.mpr (hr j),
+      fun i => (hself (r i)).trans ?_⟩
+    have hi : (r i).natAbs ∣ ∏ j, (r j).natAbs :=
+      Finset.dvd_prod_of_mem (fun j => (r j).natAbs) (Finset.mem_univ i)
+    exact Int.natCast_dvd_natCast.mpr hi
+  refine ⟨a * M, mul_ne_zero ha.ne' hM0, ?_⟩
+  rw [mem_stdLat_iff]
+  intro i
+  obtain ⟨k, hk⟩ := hMdvd i
+  have hk' : (M : ℂ) = (r i : ℂ) * k := by exact_mod_cast hk
+  have e : v i = v i / lam * lam := (div_eq_iff hlam).mp rfl
+  have hv : (r i : ℂ) * v i = lam * (p i + q i * PI.ULS.cmTheta b d) := by
+    calc (r i : ℂ) * v i = (r i * (v i / lam)) * lam := by rw [mul_assoc, ← e]
+      _ = (p i + q i * PI.ULS.cmTheta b d) * lam := by rw [hpq i]
+      _ = lam * (p i + q i * PI.ULS.cmTheta b d) := mul_comm _ _
+  rw [mem_cmL_lattice_iff]
+  refine ⟨k * p i, a * k * q i, ?_⟩
+  rw [nsmul_apply_eq_natCast_mul, Nat.cast_mul, hk']
+  push_cast
+  linear_combination ((a : ℂ) * k) * hv
+
+lemma isKv_of_nsmul {v : m → ℂ} {N : ℕ} (hN : N ≠ 0) (h : IsKv b d lam (N • v)) : IsKv b d lam v := by
+  intro i
+  obtain ⟨p, q, r, hr, h'⟩ := h i
+  refine ⟨p, q, r * N, mul_ne_zero hr (by exact_mod_cast hN), ?_⟩
+  rw [← h', nsmul_apply_eq_natCast_mul]
+  push_cast
+  ring
+
+lemma isKv_sub {v w : m → ℂ} (hv : IsKv b d lam v) (hw : IsKv b d lam w) : IsKv b d lam (v - w) := by
+  intro i
+  rw [Pi.sub_apply, sub_div]
+  exact isK_sub (hv i) (hw i)
+
+lemma isKv_smul {e : ℤ} (hn : cmTheta b d * (b - cmTheta b d) = (e : ℂ)) {t : ℂ} {v : m → ℂ}
+    (ht : IsK b d t) (hv : IsKv b d lam v) : IsKv b d lam (t • v) := by
+  intro i
+  rw [Pi.smul_apply, smul_eq_mul, mul_div_assoc]
+  exact isK_mul hn ht (hv i)
+
+lemma isKv_single {w : ℂ} (hw : IsK b d (w / lam)) (i : m) : IsKv b d lam (Pi.single i w) := by
+  intro j
+  rw [Pi.single_apply]
+  split_ifs
+  · exact hw
+  · rw [zero_div]
+    exact ⟨0, 0, 1, one_ne_zero, by simp⟩
+
+def kappa (L : PeriodPair) (lam : ℂ) : ℂ := lam * conj lam * ((area L : ℝ) : ℂ)⁻¹
+
+lemma kappa_conj (L : PeriodPair) (lam : ℂ) : conj (kappa L lam) = kappa L lam := by
+  simp only [kappa]
+  rw [map_mul, map_mul, map_inv₀, Complex.conj_conj, Complex.conj_ofReal]
+  ring
+
+lemma kappa_ne (L : PeriodPair) (hlam : lam ≠ 0) : kappa L lam ≠ 0 := by
+  have harea : ((area L : ℝ) : ℂ) ≠ 0 := by
+    rw [area_eq]
+    exact Complex.ofReal_ne_zero.mpr (abs_ne_zero.mpr (detD_ne L))
+  have hc : conj lam ≠ 0 := by rwa [Ne, map_eq_zero]
+  simp only [kappa]
+  exact mul_ne_zero (mul_ne_zero hlam hc) (inv_ne_zero harea)
+
+lemma stdH_kappa (L : PeriodPair) (hlam : lam ≠ 0) (x y : m → ℂ) :
+    stdH L m x y = kappa L lam * ∑ i, (x i / lam) * conj (y i / lam) := by
+  have hc : conj lam ≠ 0 := by rwa [Ne, map_eq_zero]
+  have h1 : lam * lam⁻¹ = 1 := mul_inv_cancel₀ hlam
+  have h2 : conj lam * (conj lam)⁻¹ = 1 := mul_inv_cancel₀ hc
+  rw [stdH_apply]
+  simp only [kappa]
+  rw [Finset.mul_sum, Finset.sum_mul]
+  refine Finset.sum_congr rfl fun i _ => ?_
+  rw [map_div₀]
+  linear_combination (-(x i * conj (y i) * ((area L : ℝ) : ℂ)⁻¹) * (conj lam * (conj lam)⁻¹)) * h1 +
+    (-(x i * conj (y i) * ((area L : ℝ) : ℂ)⁻¹)) * h2
+
+lemma isK_H {e : ℤ} (hn : cmTheta b d * (b - cmTheta b d) = (e : ℂ)) (L : PeriodPair) (hlam : lam ≠ 0)
+    {x y : m → ℂ} (hx : IsKv b d lam x) (hy : IsKv b d lam y) :
+    ∃ t, IsK b d t ∧ stdH L m x y = kappa L lam * t :=
+  ⟨∑ i, (x i / lam) * conj (y i / lam),
+    isK_sum hn _ _ fun i _ => isK_mul hn (hx i) (isK_conj (hy i)),
+    stdH_kappa L hlam x y⟩
+
+private theorem intCast_smul_eq_zsmul (p : ℤ) (y : m → ℂ) : (p : ℂ) • y = p • y := by
+  exact Int.cast_smul_eq_zsmul ℂ p y
+
+private theorem nsmul_intCast_smul_comm (N : ℕ) (p : ℤ) (y : m → ℂ) : N • ((p : ℂ) • y) = p • (N • y) := by
+  rw [← natCast_smul_eq_nsmul N ((p : ℂ) • y), ← natCast_smul_eq_nsmul N y, smul_comm (N : ℂ) (p : ℂ) y,
+    intCast_smul_eq_zsmul p ((N : ℂ) • y)]
+
+private theorem nsmul_mem_of_dvd_of_nsmul_mem {S : AddSubgroup (m → ℂ)} {x : m → ℂ} {n N : ℕ} (hnN : n ∣ N)
+    (hx : n • x ∈ S) : N • x ∈ S := by
+  obtain ⟨k, rfl⟩ := hnN
+  rw [mul_nsmul]
+  exact nsmul_mem hx k
+
+lemma bounded_map (φ : (m → ℂ) →ₗ[ℂ] (m → ℂ))
+    (h1 : ∀ i, IsKv b d lam (φ (Pi.single i (cmL a b d ha hd lam hlam).ω₁)))
+    (h2 : ∀ i, IsKv b d lam (φ (Pi.single i (cmL a b d ha hd lam hlam).ω₂))) :
+    ∃ N : ℕ, N ≠ 0 ∧ ∀ s ∈ stdLat (cmL a b d ha hd lam hlam) m,
+      N • φ s ∈ stdLat (cmL a b d ha hd lam hlam) m := by
+  choose N1 hN1 hm1 using fun i =>
+    exists_nsmul_mem (ha := ha) (hd := hd) (hlam := hlam) (h1 i)
+  choose N2 hN2 hm2 using fun i =>
+    exists_nsmul_mem (ha := ha) (hd := hd) (hlam := hlam) (h2 i)
+  refine ⟨∏ j, N1 j * N2 j, Finset.prod_ne_zero_iff.mpr fun j _ => mul_ne_zero (hN1 j) (hN2 j), ?_⟩
+  have hdvd : ∀ i, N1 i * N2 i ∣ ∏ j, N1 j * N2 j := fun i =>
+    Finset.dvd_prod_of_mem (fun j => N1 j * N2 j) (Finset.mem_univ i)
+  have k1 : ∀ i, (∏ j, N1 j * N2 j) • φ (Pi.single i (PI.ULS.cmL a b d ha hd lam hlam).ω₁) ∈
+      PI.ULS.stdLat (PI.ULS.cmL a b d ha hd lam hlam) m := fun i =>
+    nsmul_mem_of_dvd_of_nsmul_mem ((dvd_mul_right (N1 i) (N2 i)).trans (hdvd i)) (hm1 i)
+  have k2 : ∀ i, (∏ j, N1 j * N2 j) • φ (Pi.single i (PI.ULS.cmL a b d ha hd lam hlam).ω₂) ∈
+      PI.ULS.stdLat (PI.ULS.cmL a b d ha hd lam hlam) m := fun i =>
+    nsmul_mem_of_dvd_of_nsmul_mem ((dvd_mul_left (N2 i) (N1 i)).trans (hdvd i)) (hm2 i)
+  intro s hs
+  have hs' := (mem_stdLat_iff _ s).1 hs
+  choose p q hpq using fun i => (lattice_iff _ _).1 (hs' i)
+  have hs_sum : s = ∑ i, Pi.single i (s i) := by
+    exact (Finset.univ_sum_single s).symm
+
+  rw [hs_sum, map_sum, Finset.smul_sum]
+  refine sum_mem fun i _ => ?_
+  have e : Pi.single i (s i) = ((p i : ℤ) : ℂ) • Pi.single i (PI.ULS.cmL a b d ha hd lam hlam).ω₁ +
+      ((q i : ℤ) : ℂ) • Pi.single i (PI.ULS.cmL a b d ha hd lam hlam).ω₂ := by
+    rw [hpq i]
+    funext j
+    by_cases h : j = i
+    · subst h
+      simp [Complex.real_smul]
+    · simp [h]
+  rw [e, map_add (f := _), map_smul, map_smul, smul_add, nsmul_intCast_smul_comm, nsmul_intCast_smul_comm]
+  exact add_mem (zsmul_mem (k1 i) _) (zsmul_mem (k2 i) _)
+
+lemma comm_of_bounded (σ : (m → ℂ) ≃ₗ[ℂ] (m → ℂ)) {N N' : ℕ} (hN : N ≠ 0) (hN' : N' ≠ 0)
+    (h1 : ∀ s ∈ stdLat (cmL a b d ha hd lam hlam) m, N • σ s ∈ stdLat (cmL a b d ha hd lam hlam) m)
+    (h2 : ∀ s ∈ stdLat (cmL a b d ha hd lam hlam) m, N' • σ.symm s ∈ stdLat (cmL a b d ha hd lam hlam) m) :
+    relIdx (stdLat (cmL a b d ha hd lam hlam) m)
+        (imgLat (σ : (m → ℂ) →ₗ[ℂ] (m → ℂ)) (stdLat (cmL a b d ha hd lam hlam) m)) ≠ 0 ∧
+      relIdx (imgLat (σ : (m → ℂ) →ₗ[ℂ] (m → ℂ)) (stdLat (cmL a b d ha hd lam hlam) m))
+        (stdLat (cmL a b d ha hd lam hlam) m) ≠ 0 := by
+  unfold PI.ULS.relIdx PI.ULS.imgLat
+  refine ⟨?_, ?_⟩
+  · rw [← AddSubgroup.relIndex_comap]
+    refine relIdx_ne_zero_of_le_left ?_ (stdLat_smul_idx _ m hN)
+    intro x hx
+    obtain ⟨s, hs, rfl⟩ := AddSubgroup.mem_map.mp hx
+    rw [AddSubgroup.mem_comap]
+    show σ ((N : ℂ) • s) ∈ _
+    rw [map_smul, natCast_smul_eq_nsmul]
+    exact h1 s hs
+  · refine relIdx_ne_zero_of_le_left ?_ (stdLat_smul_idx _ m hN')
+    intro x hx
+    obtain ⟨s, hs, rfl⟩ := AddSubgroup.mem_map.mp hx
+    refine AddSubgroup.mem_map.mpr ⟨N' • σ.symm s, h2 s hs, ?_⟩
+    show σ (N' • σ.symm s) = (N' : ℂ) • s
+    rw [map_nsmul, LinearEquiv.apply_symm_apply, natCast_smul_eq_nsmul]
+
+end PI.UnitaryGroupMassFormula.UnimodLocStd
+end
+end
+end
+
+section
+@[expose] public section
+
+noncomputable section
+open scoped ComplexConjugate
+
+namespace PI.UnitaryGroupMassFormula.UnimodLocStd
+open PI.ULS
+
+section Transport
+variable {V : Type*} [AddCommGroup V] [Module ℂ V]
+
+lemma mem_dualLat_iff (H : Sesq V) (Λ : AddSubgroup V) (x : V) :
+    x ∈ dualLat H Λ ↔ ∀ y ∈ Λ, ∃ k : ℤ, altE H x y = k := by
+  exact Iff.rfl
+
+lemma mem_imgLat_iff (g : V ≃ₗ[ℂ] V) (Λ : AddSubgroup V) (x : V) :
+    x ∈ imgLat (g : V →ₗ[ℂ] V) Λ ↔ ∃ y ∈ Λ, g y = x := by
+  simp [imgLat, AddSubgroup.mem_map]
+
+lemma selfDual_img (H : Sesq V) (g : V ≃ₗ[ℂ] V) (hg : IsIsom H H (g : V →ₗ[ℂ] V)) {Λ : AddSubgroup V}
+    (hΛ : IsSelfDual H Λ) : IsSelfDual H (imgLat (g : V →ₗ[ℂ] V) Λ) := by
+  have hg' : ∀ a b, H (g a) (g b) = H a b := fun a b => by simpa using hg a b
+  unfold IsSelfDual at hΛ ⊢
+  ext x
+  rw [mem_dualLat_iff, mem_imgLat_iff]
+  obtain ⟨x₀, rfl⟩ := g.surjective x
+  have key : (∀ y ∈ imgLat (g : V →ₗ[ℂ] V) Λ, ∃ k : ℤ, altE H (g x₀) y = k) ↔ x₀ ∈ dualLat H Λ := by
+    rw [mem_dualLat_iff]
+    constructor
+    · intro h y hy
+      obtain ⟨k, hk⟩ := h (g y) ((mem_imgLat_iff g Λ _).mpr ⟨y, hy, rfl⟩)
+      exact ⟨k, by rw [← hk]; simp only [altE]; rw [hg']⟩
+    · intro h y' hy'
+      obtain ⟨y, hy, rfl⟩ := (mem_imgLat_iff g Λ y').mp hy'
+      obtain ⟨k, hk⟩ := h y hy
+      exact ⟨k, by simp only [altE]; rw [hg']; exact hk⟩
+  rw [key, hΛ]
+  constructor
+  · intro h
+    exact ⟨x₀, h, rfl⟩
+  · rintro ⟨y, hy, hxy⟩
+    rwa [g.injective hxy] at hy
+
+lemma comm_img (g : V ≃ₗ[ℂ] V) {S Λ : AddSubgroup V}
+    (hg1 : relIdx S (imgLat (g : V →ₗ[ℂ] V) S) ≠ 0) (hg2 : relIdx (imgLat (g : V →ₗ[ℂ] V) S) S ≠ 0)
+    (h1 : relIdx S Λ ≠ 0) (h2 : relIdx Λ S ≠ 0) :
+    relIdx S (imgLat (g : V →ₗ[ℂ] V) Λ) ≠ 0 ∧ relIdx (imgLat (g : V →ₗ[ℂ] V) Λ) S ≠ 0 := by
+  have hinj : Function.Injective (g : V →ₗ[ℂ] V).toAddMonoidHom := g.injective
+  have hm : ∀ A B : AddSubgroup V, relIdx (imgLat (g : V →ₗ[ℂ] V) A) (imgLat (g : V →ₗ[ℂ] V) B) = relIdx A B :=
+    fun A B => AddSubgroup.relIndex_map_map_of_injective A B hinj
+  refine ⟨?_, ?_⟩
+  · exact AddSubgroup.relIndex_ne_zero_trans hg1 (by rw [← hm S Λ] at h1; exact h1)
+  · exact AddSubgroup.relIndex_ne_zero_trans (by rw [← hm Λ S] at h2; exact h2) hg2
+
+lemma imgLat_trans (g σ : V ≃ₗ[ℂ] V) (Λ : AddSubgroup V) :
+    imgLat ((g.trans σ : V ≃ₗ[ℂ] V) : V →ₗ[ℂ] V) Λ = imgLat (σ : V →ₗ[ℂ] V) (imgLat (g : V →ₗ[ℂ] V) Λ) := by
+  ext x
+  simp only [mem_imgLat_iff]
+  constructor
+  · rintro ⟨y, hy, rfl⟩
+    exact ⟨g y, ⟨y, hy, rfl⟩, rfl⟩
+  · rintro ⟨z, ⟨y, hy, rfl⟩, rfl⟩
+    exact ⟨y, hy, rfl⟩
+
+lemma isom_trans (H : Sesq V) (g σ : V ≃ₗ[ℂ] V) (hg : IsIsom H H (g : V →ₗ[ℂ] V)) (hσ : IsIsom H H (σ : V →ₗ[ℂ] V)) :
+    IsIsom H H ((g.trans σ : V ≃ₗ[ℂ] V) : V →ₗ[ℂ] V) := by
+  intro x y
+  have h1 := hσ (g x) (g y)
+  have h2 := hg x y
+  simp only [LinearEquiv.coe_coe] at h1 h2 ⊢
+  rw [LinearEquiv.trans_apply, LinearEquiv.trans_apply, h1, h2]
+
+end Transport
+
+lemma exists_good_form {a : ℕ} {b c : ℤ} {d : ℕ} (hok : CmOK a b c d) {l : ℕ} (hl : l.Prime) :
+    ∃ x y : ℤ, ¬ (l : ℤ) ∣ a * x ^ 2 + b * x * y + c * y ^ 2 := by
+  obtain ⟨hE, _, _, hd⟩ := hok
+  by_contra hcon
+  simp only [not_exists, not_not] at hcon
+  have h1 := hcon 1 0
+  have h2 := hcon 0 1
+  have h3 := hcon 1 1
+  norm_num at h1 h2 h3
+  have hb : (l : ℤ) ∣ b := by
+    have h4 := dvd_sub (dvd_sub h3 h1) h2
+    have e : (a : ℤ) + b + c - a - c = b := by ring
+    rwa [e] at h4
+  have hl2 : (l : ℤ) ^ 2 ∣ (d : ℤ) := by
+    have e : (d : ℤ) = 4 * a * c - b ^ 2 := by linarith
+    rw [e]
+    refine dvd_sub ?_ (pow_dvd_pow_of_dvd hb 2)
+    rw [pow_two]
+    exact mul_dvd_mul (dvd_mul_of_dvd_right h1 4) h2
+  have hl2' : l ^ 2 ∣ d := by exact_mod_cast hl2
+  have hld : l ∣ d := (dvd_pow_self l two_ne_zero).trans hl2'
+  have hleq : l = d := (Nat.prime_dvd_prime_iff_eq hl hd).mp hld
+  subst hleq
+  have h5 := Nat.le_of_dvd hd.pos hl2'
+  have h6 := hd.two_le
+  nlinarith
+
+end PI.UnitaryGroupMassFormula.UnimodLocStd
+end
+end
+end
+
 @[expose] public section
 
 noncomputable section
@@ -862,6 +1233,138 @@ end -- clump:auto
 -- ===== clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepRamAsm =====
 -- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepRamAsm", "h": "module\n\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RamDef\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepRamDef\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.DescentStep\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.HNsmulNsmul\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepBasic\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularLocalStandard.RepSingleSat\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.CStarAlgebra.Classes\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
 section -- clump:auto
+
+section
+@[expose] public section
+
+noncomputable section
+open scoped ComplexConjugate
+
+namespace PI.UnitaryGroupMassFormula.UnimodLocStd
+open PI.ULS
+
+variable (a : ℕ) (b c : ℤ) (d : ℕ) (ha : 0 < a) (hd : 0 < d) (lam : ℂ) (hlam : lam ≠ 0)
+  (m : Type) [Fintype m] [DecidableEq m]
+
+lemma kappa_real : conj (repKappa a b d ha hd lam hlam) = repKappa a b d ha hd lam hlam := by
+  unfold repKappa
+  simp only [map_mul, map_inv₀, Complex.conj_ofReal, map_natCast]
+
+lemma not_dvd_mul' {l : ℕ} (hl : l.Prime) {u v : ℤ} (hu : ¬ (l : ℤ) ∣ u) (hv : ¬ (l : ℤ) ∣ v) :
+    ¬ (l : ℤ) ∣ u * v := by
+  intro h
+  rcases (Nat.prime_iff_prime_int.mp hl).dvd_or_dvd h with h1 | h1
+  · exact hu h1
+  · exact hv h1
+
+lemma H_nsmul_nsmul (L : PeriodPair) (s t : ℕ) (v w : m → ℂ) :
+    stdH L m (s • v) (t • w) = (s : ℂ) * t * stdH L m v w := by
+  simp only [stdH, matH, LinearMap.mk₂'ₛₗ_apply, nsmul_eq_mul, Finset.mul_sum]
+  exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by
+    simp only [Pi.mul_apply, Pi.natCast_apply, map_mul, map_natCast]
+    ring
+
+lemma H_self_ne (L : PeriodPair) {v : m → ℂ} (hv : v ≠ 0) : stdH L m v v ≠ 0 := by
+  rw [stdH_apply]
+  have hA : area L ≠ 0 := by rw [area_eq]; exact abs_ne_zero.mpr (detD_ne L)
+  refine mul_ne_zero ?_ (inv_ne_zero (by exact_mod_cast hA))
+  obtain ⟨i, hi⟩ : ∃ i, v i ≠ 0 := by by_contra h; push Not at h; exact hv (funext h)
+  have hsum : (∑ j, v j * conj (v j)) = ((∑ j, Complex.normSq (v j) : ℝ) : ℂ) := by
+    push_cast; exact Finset.sum_congr rfl fun j _ => Complex.mul_conj (v j)
+  rw [hsum]
+  have : 0 < ∑ j, Complex.normSq (v j) :=
+    Finset.sum_pos' (fun j _ => Complex.normSq_nonneg _) ⟨i, Finset.mem_univ _, Complex.normSq_pos.mpr hi⟩
+  exact_mod_cast this.ne'
+
+variable {a b c d ha hd lam hlam m}
+
+lemma sat_norm (hOK : CmOK a b c d) {Λ : AddSubgroup (m → ℂ)}
+    (hΛ : IsSelfDual (stdH (cmL a b d ha hd lam hlam) m) Λ) (hθ : ∀ z ∈ Λ, cmTheta b d • z ∈ Λ)
+    {l : ℕ} (hl : l.Prime) {v : m → ℂ} (hv : SatMem l Λ v) :
+    ∃ p q : ℤ, ¬ (l : ℤ) ∣ q ∧ stdH (cmL a b d ha hd lam hlam) m v v = repKappa a b d ha hd lam hlam * p / q := by
+  obtain ⟨s, hs, hsv⟩ := hv
+  obtain ⟨n, hn⟩ := rep_H_self_int a b c d ha hd lam hlam m hOK Λ hΛ hθ hsv
+  have hs' : ¬ (l : ℤ) ∣ (s : ℤ) := fun h => hs (by exact_mod_cast h)
+  refine ⟨n, (s : ℤ) * s, not_dvd_mul' hl hs' hs', ?_⟩
+  have hs0 : (s : ℂ) ≠ 0 := by
+    intro h; apply hs; rw [show s = 0 by exact_mod_cast h]; exact dvd_zero _
+  rw [H_nsmul_nsmul] at hn
+  push_cast
+  field_simp
+  linear_combination hn
+
+lemma sat_pair (hOK : CmOK a b c d) {Λ : AddSubgroup (m → ℂ)}
+    (hΛ : IsSelfDual (stdH (cmL a b d ha hd lam hlam) m) Λ) (hθ : ∀ z ∈ Λ, cmTheta b d • z ∈ Λ)
+    {l : ℕ} (hl : l.Prime) {v w : m → ℂ} (hv : SatMem l Λ v) (hw : SatMem l Λ w) :
+    ∃ n c₂ s : ℤ, ¬ (l : ℤ) ∣ s ∧ stdH (cmL a b d ha hd lam hlam) m v w =
+      repKappa a b d ha hd lam hlam * ((n : ℂ) - c₂ * conj (cmTheta b d)) / s := by
+  obtain ⟨s, hs, hsv⟩ := hv
+  obtain ⟨t, ht, htw⟩ := hw
+  obtain ⟨n, c₂, hn, -⟩ := rep_H_int a b c d ha hd lam hlam m hOK Λ hΛ hθ hsv htw
+  have hs' : ¬ (l : ℤ) ∣ (s : ℤ) := fun h => hs (by exact_mod_cast h)
+  have ht' : ¬ (l : ℤ) ∣ (t : ℤ) := fun h => ht (by exact_mod_cast h)
+  refine ⟨n, c₂, (s : ℤ) * t, not_dvd_mul' hl hs' ht', ?_⟩
+  have hs0 : (s : ℂ) ≠ 0 := by
+    intro h; apply hs; rw [show s = 0 by exact_mod_cast h]; exact dvd_zero _
+  have ht0 : (t : ℂ) ≠ 0 := by
+    intro h; apply ht; rw [show t = 0 by exact_mod_cast h]; exact dvd_zero _
+  rw [H_nsmul_nsmul] at hn
+  push_cast
+  field_simp
+  linear_combination hn
+
+lemma im_pi_inv (n c₂ : ℤ) :
+    ((2 * cmTheta b d - b)⁻¹ * (repKappa a b d ha hd lam hlam * ((n : ℂ) - c₂ * conj (cmTheta b d)))).im =
+      -((2 * n - c₂ * b : ℤ) : ℝ) / d := by
+  rw [rep_kappa_eq]
+  have hd' : (0 : ℝ) < d := by exact_mod_cast hd
+  have hs : Real.sqrt d ≠ 0 := (Real.sqrt_pos.2 hd').ne'
+  have hsq : Real.sqrt d * Real.sqrt d = d := Real.mul_self_sqrt hd'.le
+  have hpi : 2 * cmTheta b d - b = Complex.I * ((Real.sqrt d : ℝ) : ℂ) := by
+    unfold cmTheta
+    ring
+  have hconj : conj (cmTheta b d) = ((b : ℂ) - Complex.I * ((Real.sqrt d : ℝ) : ℂ)) / 2 := by
+    unfold cmTheta
+    simp [map_div₀, Complex.conj_ofReal, map_ofNat]
+    ring
+  rw [hpi, hconj]
+  simp [Complex.mul_im, Complex.mul_re, Complex.inv_re, Complex.inv_im, Complex.normSq, Complex.div_re,
+    Complex.div_im]
+  field_simp
+  rw [show (Real.sqrt d) ^ 2 = d by rw [sq]; exact hsq] at *
+  ring
+
+end PI.UnitaryGroupMassFormula.UnimodLocStd
+end
+end
+end
+
+section
+@[expose] public section
+
+noncomputable section
+open scoped ComplexConjugate
+
+namespace PI.UnitaryGroupMassFormula.UnimodLocStd
+open PI.ULS
+
+def UnitVecRam : Prop :=
+  ∀ (a : ℕ) (b c : ℤ) (d : ℕ) (ha : 0 < a) (hd : 0 < d) (lam : ℂ) (hlam : lam ≠ 0) (m : Type) [Fintype m]
+    [DecidableEq m] (Λ : AddSubgroup (m → ℂ)) (x0 y0 : ℤ) (T : Finset m) (i₀ : m),
+    KeyHyps a b c d ha hd lam hlam m Λ d x0 y0 T i₀ →
+    ∀ x : m → ℂ, SatMem d Λ x → (∀ j ∈ T, x j = 0) →
+      (x = 0 ∨ ∃ p q : ℤ, ¬ (d : ℤ) ∣ p ∧ ¬ (d : ℤ) ∣ q ∧
+        stdH (cmL a b d ha hd lam hlam) m x x = repKappa a b d ha hd lam hlam * p / q) →
+    ∀ z₀ : m → ℂ, SatMem d Λ z₀ → (∀ j ∈ T, z₀ j = 0) → stdH (cmL a b d ha hd lam hlam) m z₀ x = 0 → z₀ ≠ 0 →
+    ∃ y : m → ℂ, SatMem d Λ y ∧ (∀ j ∈ T, y j = 0) ∧ stdH (cmL a b d ha hd lam hlam) m y x = 0 ∧
+      ∃ p q : ℤ, ¬ (d : ℤ) ∣ p ∧ ¬ (d : ℤ) ∣ q ∧
+        stdH (cmL a b d ha hd lam hlam) m y y = repKappa a b d ha hd lam hlam * p / q
+
+end PI.UnitaryGroupMassFormula.UnimodLocStd
+end
+end
+end
+
 @[expose] public section
 
 noncomputable section
