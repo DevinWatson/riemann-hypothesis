@@ -1,10 +1,14 @@
 module
 
-public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.PolyDerivDeterminantPolyTensor
-public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.L2NormSqNonnegGaussianTorus
 public import Mathlib.Analysis.SpecialFunctions.Log.Basic
 public import Mathlib.Analysis.Complex.ExponentialBounds
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.HfEqInner
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.HfEqInner
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.L2NormFundamentalDomain
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.PolyDerivMonomialOne
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.SplitSt
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.GaussianTailBound
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.OwnerNoneIff, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.IteratedDerivListBound, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.CardChoiceLe, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.OneAddPowSubOneLe, ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.HfNormLeTwo
@@ -12,6 +16,467 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.
 -- ===== clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.OwnerNoneIff =====
 -- clump-header: {"m": "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.OwnerNoneIff", "h": "module\n\npublic import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.PolyDerivDeterminantPolyTensor\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+namespace ReciprocityTheory.ChartRestriction.G.I2
+
+open MvPolynomial
+
+noncomputable section
+
+variable {E : Type} [Field E] [NumberField E] {n nb : ℕ} {dim : (E →+* ℂ) → ℕ}
+
+section Expand
+variable (bs : Fin nb → Block E n dim)
+
+abbrev Choice := ∀ j : Fin nb, Fin (bs j).c → Equiv.Perm (Fin (bs j).i)
+
+abbrev Slot := Σ j : Fin nb, Fin (bs j).c × Fin (bs j).i
+
+def sgnT (T : Choice bs) : ℂ := ∏ j, ∏ r, ((Equiv.Perm.sign (T j r) : ℤ) : ℂ)
+
+def letter (T : Choice bs) (t : Slot bs) : Letter n dim :=
+  ((bs t.1).col t.2.2, ⟨(bs t.1).τ, Fin.castLE (bs t.1).hi (T t.1 t.2.1 t.2.2)⟩)
+
+theorem block_poly_expand (B : Block E n dim) :
+    B.poly = ∑ p : Fin B.c → Equiv.Perm (Fin B.i),
+      (∏ r, ((Equiv.Perm.sign (p r) : ℤ) : MvPolynomial (Letter n dim) ℂ)) *
+        ∏ r, ∏ b, X (B.col b, ⟨B.τ, Fin.castLE B.hi (p r b)⟩) := by
+  rw [Block.poly, Matrix.det_apply', ← Fin.prod_const, Finset.prod_univ_sum, Fintype.piFinset_univ]
+  refine Finset.sum_congr rfl fun p _ => ?_
+  rw [← Finset.prod_mul_distrib]
+  rfl
+
+theorem determinantPoly_expand :
+    P1 bs = ∑ T : Choice bs, sgnT bs T • ∏ t : Slot bs, X (letter bs T t) := by
+  rw [P1]
+  simp only [block_poly_expand]
+  rw [Finset.prod_univ_sum, Fintype.piFinset_univ]
+  refine Finset.sum_congr rfl fun T _ => ?_
+  rw [Finset.prod_mul_distrib, MvPolynomial.smul_eq_C_mul]
+  congr 1
+  · simp only [sgnT, map_prod, map_intCast]
+  · rw [Fintype.prod_sigma]
+    refine Finset.prod_congr rfl fun j _ => ?_
+    rw [Fintype.prod_prod_type]
+    rfl
+
+end Expand
+
+section PD
+variable (X : PT E) (bs : Fin nb → Block E n X.dim)
+
+
+open Classical in
+def lst (T : Choice bs) : List (Fin n × Vsp X.dim) :=
+  by
+    classical
+    exact (Multiset.map (letter bs T) Finset.univ.val).toList.map
+      (fun l => (l.1, EuclideanSpace.single l.2 (1 : ℂ)))
+
+theorem prod_X_letter (T : Choice bs) :
+    (∏ t : Slot bs, MvPolynomial.X (letter bs T t) : MvPolynomial (Letter n X.dim) ℂ) =
+      monomial (∑ t : Slot bs, Finsupp.single (letter bs T t) 1) 1 := by
+  rw [MvPolynomial.monomial_sum_one]
+  rfl
+
+theorem toMultiset_letters (T : Choice bs) :
+    Finsupp.toMultiset (∑ t : Slot bs, Finsupp.single (letter bs T t) 1) =
+      Multiset.map (letter bs T) Finset.univ.val := by
+
+  rw [map_sum]
+  simp only [Finsupp.toMultiset_single, one_nsmul]
+  rw [Finset.sum_eq_multiset_sum]
+  have h : ∀ (s : Multiset (Slot bs)),
+      (s.map fun t => ({letter bs T t} : Multiset (Letter n X.dim))).sum = s.map (letter bs T) := by
+    intro s
+    induction s using Multiset.induction_on with
+    | empty => simp
+    | cons a s ih => simp [ih]
+  exact h _
+
+theorem polyDeriv_determinantPoly_tensor (s : Fin n → (Fin 1 → Vsp X.dim) → ℂ)
+    (hs : ∀ k, ContDiff ℂ (⊤ : ℕ∞) (s k)) :
+    polyDeriv (P1 bs) dir (tens X s) 0 =
+      ∑ T : Choice bs, sgnT bs T * ∏ k, d1 (s k) (colL (lst X bs T) k).length
+        (fun j => (colL (lst X bs T) k).get j) := by
+  rw [determinantPoly_expand, jof_polyDeriv_sum]
+  refine Finset.sum_congr rfl fun T _ => ?_
+  rw [polyDeriv_smul, prod_X_letter, polyDeriv_monomial_one, pdTerm_eq_itD, toMultiset_letters]
+  congr 1
+  have hl : (Multiset.map (letter bs T) Finset.univ.val).toList.map dir =
+      (lst X bs T).map (fun p => Pi.single p.1 p.2) := by
+    rw [lst, List.map_map]
+    rfl
+  rw [hl]
+  have hg : ∀ k, ContDiff ℂ (⊤ : ℕ∞) (fun z : Vsp X.dim => s k (fun _ => z)) := fun k =>
+    (hs k).comp (contDiff_pi.2 fun _ => contDiff_id)
+  have h1 := itD_prod hg (lst X bs T) 0
+  rw [show tens X s = fun v : Fin n → Vsp X.dim => ∏ k, s k (fun _ => v k) from rfl, h1]
+  refine Finset.prod_congr rfl fun k _ => ?_
+  rw [Pi.zero_apply, itD_col (hs k)]
+  rfl
+
+
+end PD
+
+end
+
+end ReciprocityTheory.ChartRestriction.G.I2
+end
+end
+
+section
+@[expose] public section
+
+namespace ReciprocityTheory.ChartRestriction.G.I2
+
+open NumberField Complex
+
+noncomputable section
+
+theorem jof_Hf_smul_right {ι : Type} [Fintype ι] (x u : EuclideanSpace ℂ ι) (c : ℂ) :
+    Hf x (c • u) = (starRingEnd ℂ) c * Hf x u := by
+  simp only [Hf, PiLp.smul_apply, smul_eq_mul, map_mul, Finset.mul_sum]
+  exact Finset.sum_congr rfl fun i _ => by ring
+
+theorem jof_Hf_conj {ι : Type} [Fintype ι] (v w : EuclideanSpace ℂ ι) : star (Hf v w) = Hf w v := by
+  simp only [Hf, star_sum]
+  refine Finset.sum_congr rfl fun i _ => ?_
+  simp [mul_comm]
+
+theorem Hf_single {ι : Type} [Fintype ι] [DecidableEq ι] (j j' : ι) :
+    Hf (EuclideanSpace.single j (1 : ℂ)) (EuclideanSpace.single j' 1) = if j = j' then 1 else 0 := by
+  simp only [Hf, PiLp.single_apply]
+  by_cases h : j = j'
+  · subst h
+    simp [Finset.sum_ite_eq']
+  · rw [ite_eq_right h]
+    refine Finset.sum_eq_zero fun i _ => ?_
+    by_cases h1 : i = j
+    · subst h1
+      simp [h]
+    · simp [h1]
+
+theorem sum_fin_le {M : Type*} [AddCommMonoid M] {ρ N : ℕ} (h : ρ ≤ N) (f : Fin ρ → M) :
+    ∑ k : Fin N, (if h' : k.val < ρ then f ⟨k, h'⟩ else 0) = ∑ s, f s := by
+  have key : ∀ M, ∑ k : Fin M, (if h' : k.val < ρ then f ⟨k, h'⟩ else 0) =
+      ∑ k ∈ Finset.range M, (if h' : k < ρ then f ⟨k, h'⟩ else 0) :=
+    fun M => Fin.sum_univ_eq_sum_range (fun k => if h' : k < ρ then f ⟨k, h'⟩ else 0) M
+  rw [key N]
+  have hρ : ∑ s, f s = ∑ k ∈ Finset.range ρ, (if h' : k < ρ then f ⟨k, h'⟩ else 0) := by
+    rw [← key ρ]
+    exact Finset.sum_congr rfl fun s _ => by simp [s.isLt]
+  rw [hρ]
+  symm
+  apply Finset.sum_subset (Finset.range_mono h)
+  intro k _ hk'
+  simp only [Finset.mem_range] at hk'
+  simp [hk']
+
+variable {E : Type} [Field E] [NumberField E]
+
+theorem l2NormSq_nonneg_gaussianTorus (X : PT E) (q : ℕ) {n : ℕ} (F : (Fin n → Vsp X.dim) → ℂ) : 0 ≤ X.l2 q F := by
+  unfold PT.l2
+  rw [MeasureTheory.setAverage_eq]
+  exact smul_nonneg (inv_nonneg.mpr ENNReal.toReal_nonneg)
+    (MeasureTheory.integral_nonneg fun v => by unfold PT.ptN2; positivity)
+
+theorem rd_nonneg : 0 ≤ PT.rd E := by
+  unfold PT.rd
+  positivity
+
+theorem ph_nonneg {X : PT E} {DF : ℕ} (P : Par X DF) : 0 ≤ P.ph := by
+  unfold Par.ph PT.ph
+  have := rd_nonneg (E := E)
+  split_ifs
+  · positivity
+  · exact le_rfl
+
+theorem Cchi_nonneg (m : ℕ) : 0 ≤ Cchi (E := E) m := by
+  unfold Cchi RR
+  have := rd_nonneg (E := E)
+  positivity
+
+theorem inv_constant_nonneg {X : PT E} {DF : ℕ} (P : Par X DF) : 0 ≤ P.K6⁻¹ := by
+  unfold Par.K6
+  positivity
+
+open Classical in
+theorem block_data (hx : Ext.All) (hc : CharStatement) (ht : ColTorusStatement)
+    (ha : ColAbelStatement) [IsCMField E] (X : PT E) {DF : ℕ} (P : Par X DF)
+    (I : Submodule ℤ (Vsp X.dim)) (hI : IsSplit P I) (σ : E →+* ℂ) (i : ℕ) (hi : i ≤ X.dim σ)
+    (c : ℕ) (hcD : c ≤ DF) :
+    ∃ (y : Fin i → Vsp X.dim) (s : Fin i → (Fin 1 → Vsp X.dim) → ℂ) (μ : Fin i → ℂ),
+      (∀ b, s b ∈ X.Sec P.q 1) ∧
+      (∀ b (xs : Fin c → Vsp X.dim), (∀ k, InPart σ (xs k) ∧ ‖xs k‖ = 1) →
+        ‖d1 (s b) c xs - μ b * ∏ k, Hf (xs k) (y b)‖ ≤ P.eps1 * ‖μ b‖) ∧
+      (∀ b, P.K6⁻¹ * Real.exp (-(2 * Real.pi * Cchi (E := E) P.m * P.ph / P.q)) * X.l2 P.q (s b) ≤
+        ‖μ b‖ ^ 2) ∧
+      (∀ b, ‖y b‖ ≤ 2) ∧
+      (2 : ℝ) ^ (-(X.r : ℝ) / 2) / 2 ≤
+        ‖(Matrix.of fun a b => Hf (EuclideanSpace.single (⟨σ, Fin.castLE hi a⟩ : Idx X.dim) (1 : ℂ))
+          (y b)).det‖ ∧
+      (∀ b, μ b ≠ 0) := by
+  classical
+  obtain ⟨ρ, hρ⟩ : ∃ ρ, Module.finrank ℂ
+      (Submodule.span ℂ (I : Set (Vsp X.dim)) ⊓ VP σ : Submodule ℂ (Vsp X.dim)) = ρ := ⟨_, rfl⟩
+  obtain ⟨w, xx, u, R, ε, hw, hon, hxu, -, hεb, hc4, hc5, hc6, hc7⟩ := hc E X DF P I hI σ ρ hρ
+  obtain ⟨N, bb, hNr, hρN, hbw, hin, hperp, hpars⟩ := onb_data X I σ ρ hρ hI.stable w hw hon
+  set e : Fin i → Vsp X.dim := fun a => EuclideanSpace.single (⟨σ, Fin.castLE hi a⟩ : Idx X.dim) (1 : ℂ)
+    with he
+  have he_in : ∀ a, InPart σ (e a) := by
+    intro a j hj
+    simp only [he, PiLp.single_apply]
+    rw [ite_eq_right]
+    rintro rfl
+    exact hj rfl
+  have hee : ∀ a a', Hf (e a) (e a') = if a = a' then 1 else 0 := by
+    intro a a'
+    simp only [he]
+    rw [Hf_single]
+    by_cases h : a = a'
+    · simp [h]
+    · rw [ite_eq_right, ite_eq_right h]
+      intro h2
+      rw [Sigma.mk.inj_iff] at h2
+      exact h (Fin.castLE_injective hi (eq_of_heq h2.2))
+  let M : Matrix (Fin i) (Fin N) ℂ := Matrix.of fun a k => Hf (e a) (bb k)
+  have hMM : M * M.conjTranspose = 1 := by
+    ext a a'
+    simp only [M, Matrix.mul_apply, Matrix.conjTranspose_apply, Matrix.of_apply, Matrix.one_apply, jof_Hf_conj]
+    rw [hpars (e a) (e a') (he_in a) (he_in a'), hee]
+  obtain ⟨s1, -, hs1⟩ := hx.2.2.2.2.2.1 i N X.r M hMM hNr
+  haveI : Nonempty (Fin i → Fin N) := ⟨s1⟩
+  obtain ⟨s0, hs0⟩ := Finite.exists_max (fun s : Fin i → Fin N => ‖(M.submatrix id s).det‖)
+  set Δ := ‖(M.submatrix id s0).det‖ with hΔ
+  have hΔr : (2 : ℝ) ^ (-(X.r : ℝ) / 2) ≤ Δ := hs1.trans (hs0 s1)
+  have hΔpos : 0 < Δ := lt_of_lt_of_le (by positivity) hΔr
+  have hinj : Function.Injective s0 := by
+    intro j j' h
+    by_contra hne
+    have h0 : (M.submatrix id s0).det = 0 := Matrix.det_zero_of_column_eq hne (by intro a; simp [h])
+    rw [hΔ, h0, norm_zero] at hΔpos
+    exact lt_irrefl 0 hΔpos
+  have hRpos : ∀ t, 0 < R t := by
+    intro t
+    have h1 := (hc5 t).2
+    have hp := Real.pi_pos
+    by_contra h
+    push Not at h
+    nlinarith
+  have hT : ∀ t : Fin ρ, ∃ s' ∈ X.Sec P.q 1, ∃ ζ : ℂ, ‖ζ‖ = 1 ∧
+      (∀ xs : Fin c → Vsp X.dim, (∀ k, InPart σ (xs k) ∧ ‖xs k‖ = 1) →
+        ‖d1 s' c xs - ζ * (2 * Real.pi) ^ c * ∏ k, Hf (xs k) (u t)‖ ≤ P.eps1 * (2 * Real.pi * R t) ^ c) ∧
+      P.K6⁻¹ * Real.exp (-(2 * Real.pi * ‖u t‖ ^ 2 / P.q)) * X.l2 P.q s' ≤ (2 * Real.pi * R t) ^ (2 * c) :=
+    fun t => ht E X DF P I hI c hcD σ (xx t) (u t) (hxu t).1 (hxu t).2 (2 * Real.pi * R t) (hc5 t).2
+      (by have h1 := (hc5 t).1; have hp := Real.pi_pos; nlinarith) (hc6 t)
+  choose sT hsT ζ hζ hζb hζl using hT
+  have hA : ∀ k : Fin N, ρ ≤ k.val → ∃ s' ∈ X.Sec P.q 1,
+      (∀ xs : Fin c → Vsp X.dim, (∀ k, InPart σ (xs k) ∧ ‖xs k‖ = 1) →
+        ‖d1 s' c xs - (c.factorial : ℂ) * ∏ k', Hf (xs k') (bb k)‖ ≤ P.eps1 * c.factorial) ∧
+      P.K6⁻¹ * X.l2 P.q s' ≤ (c.factorial : ℝ) ^ 2 :=
+    fun k hk => ha E X DF P I hI c hcD σ (bb k) (hin k) (hperp k hk).1 (hperp k hk).2
+  choose sA hsA hAb hAl using hA
+  have hK6 := inv_constant_nonneg P
+  have hexp1 : Real.exp (-(2 * Real.pi * Cchi (E := E) P.m * P.ph / P.q)) ≤ 1 := by
+    rw [Real.exp_le_one_iff, neg_nonpos]
+    have := Cchi_nonneg (E := E) P.m
+    have := ph_nonneg P
+    have := Real.pi_pos
+    positivity
+  have hexp : ∀ t, Real.exp (-(2 * Real.pi * Cchi (E := E) P.m * P.ph / P.q)) ≤
+      Real.exp (-(2 * Real.pi * ‖u t‖ ^ 2 / P.q)) := by
+    intro t
+    rw [Real.exp_le_exp, neg_le_neg_iff]
+    apply div_le_div_of_nonneg_right _ (Nat.cast_nonneg _)
+    have := hc7 t
+    have := Real.pi_pos
+    nlinarith
+  let y : Fin i → Vsp X.dim := fun j =>
+    if h : (s0 j).val < ρ then ((R ⟨_, h⟩ : ℂ))⁻¹ • u ⟨_, h⟩ else bb (s0 j)
+  let s : Fin i → (Fin 1 → Vsp X.dim) → ℂ := fun j =>
+    if h : (s0 j).val < ρ then sT ⟨_, h⟩ else sA (s0 j) (not_lt.1 h)
+  let μ : Fin i → ℂ := fun j =>
+    if h : (s0 j).val < ρ then ζ ⟨_, h⟩ * (((2 * Real.pi * R ⟨_, h⟩ : ℝ)) : ℂ) ^ c
+    else (c.factorial : ℂ)
+  have hnμ : ∀ t, ‖ζ t * (((2 * Real.pi * R t : ℝ)) : ℂ) ^ c‖ = (2 * Real.pi * R t) ^ c := by
+    intro t
+    have := hRpos t
+    rw [norm_mul, hζ t, one_mul, norm_pow, Complex.norm_real, Real.norm_eq_abs,
+      abs_of_pos (by positivity)]
+  refine ⟨y, s, μ, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · intro j
+    by_cases h : (s0 j).val < ρ
+    · simp only [s, dite_eq_left h]; exact hsT _
+    · simp only [s, dite_eq_right h]; exact hsA _ _
+  · intro j xs hxs
+    by_cases h : (s0 j).val < ρ
+    · simp only [s, μ, y, dite_eq_left h]
+      have hR := hRpos ⟨_, h⟩
+      have e1 : ζ ⟨_, h⟩ * (((2 * Real.pi * R ⟨_, h⟩ : ℝ)) : ℂ) ^ c *
+          ∏ k, Hf (xs k) (((R ⟨_, h⟩ : ℂ))⁻¹ • u ⟨_, h⟩) =
+          ζ ⟨_, h⟩ * (2 * Real.pi) ^ c * ∏ k, Hf (xs k) (u ⟨_, h⟩) := by
+        simp only [jof_Hf_smul_right, Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ,
+          Fintype.card_fin, map_inv₀, Complex.conj_ofReal]
+        have hR' : (R ⟨_, h⟩ : ℂ) ≠ 0 := by exact_mod_cast hR.ne'
+        push_cast
+        have key : (2 * (Real.pi : ℂ) * (R ⟨_, h⟩ : ℂ)) ^ c * (1 / (R ⟨_, h⟩ : ℂ)) ^ c =
+            (2 * Real.pi) ^ c := by
+          rw [← mul_pow]; congr 1; field_simp
+        linear_combination (ζ ⟨_, h⟩ * ∏ x, Hf (xs x) (u ⟨_, h⟩)) * key
+      rw [e1, hnμ]
+      exact hζb _ xs hxs
+    · simp only [s, μ, y, dite_eq_right h]
+      rw [Complex.norm_natCast]
+      exact hAb _ _ xs hxs
+  · intro j
+    by_cases h : (s0 j).val < ρ
+    · simp only [s, μ, dite_eq_left h]
+      rw [hnμ]
+      have hl := l2NormSq_nonneg_gaussianTorus X P.q (sT ⟨_, h⟩)
+      calc P.K6⁻¹ * Real.exp (-(2 * Real.pi * Cchi (E := E) P.m * P.ph / P.q)) * X.l2 P.q (sT ⟨_, h⟩)
+          ≤ P.K6⁻¹ * Real.exp (-(2 * Real.pi * ‖u ⟨_, h⟩‖ ^ 2 / P.q)) * X.l2 P.q (sT ⟨_, h⟩) :=
+            mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left (hexp _) hK6) hl
+        _ ≤ (2 * Real.pi * R ⟨_, h⟩) ^ (2 * c) := hζl _
+        _ = ((2 * Real.pi * R ⟨_, h⟩) ^ c) ^ 2 := by ring
+    · simp only [s, μ, dite_eq_right h]
+      rw [Complex.norm_natCast]
+      have hl := l2NormSq_nonneg_gaussianTorus X P.q (sA (s0 j) (not_lt.1 h))
+      calc P.K6⁻¹ * Real.exp (-(2 * Real.pi * Cchi (E := E) P.m * P.ph / P.q)) *
+            X.l2 P.q (sA (s0 j) (not_lt.1 h))
+          ≤ P.K6⁻¹ * X.l2 P.q (sA (s0 j) (not_lt.1 h)) :=
+            mul_le_mul_of_nonneg_right (mul_le_of_le_one_right hK6 hexp1) hl
+        _ ≤ (c.factorial : ℝ) ^ 2 := hAl _ _
+  · intro j
+    by_cases h : (s0 j).val < ρ
+    · simp only [y, dite_eq_left h]
+      have hR := hRpos ⟨_, h⟩
+      rw [norm_smul, norm_inv, Complex.norm_real, Real.norm_eq_abs, abs_of_pos hR, inv_mul_le_iff₀ hR]
+      have := (hc5 ⟨_, h⟩).1
+      linarith
+    · simp only [y, dite_eq_right h]
+      rw [(hperp _ (not_lt.1 h)).1]
+      norm_num
+  ·
+    have hDP := hx.2.2.2.2.2.2.1
+    have hDN := hx.2.2.2.2.2.2.2.1
+    let wv : Fin N → Fin i → ℂ := fun k a => Hf (e a) (bb k)
+    let εc : Fin i → Fin N → ℂ := fun j k =>
+      if h : (s0 j).val < ρ then (if hk : k.val < ρ then ε ⟨_, h⟩ ⟨_, hk⟩ else 0) else 0
+    have hentry : ∀ a j, Hf (e a) (y j) = wv (s0 j) a + ∑ k, εc j k * wv k a := by
+      intro a j
+      by_cases h : (s0 j).val < ρ
+      · simp only [y, dite_eq_left h, jof_Hf_smul_right, map_inv₀, Complex.conj_ofReal]
+        have hR := hRpos ⟨_, h⟩
+        have hR' : (R ⟨_, h⟩ : ℂ) ≠ 0 := by exact_mod_cast hR.ne'
+        have h4 := hc4 ⟨_, h⟩ (e a) (he_in a)
+        have hws : w ⟨_, h⟩ = bb (s0 j) := (hbw (s0 j) h).symm
+        have hsum : ∑ s', ε ⟨_, h⟩ s' * Hf (e a) (w s') = ∑ k, εc j k * wv k a := by
+          rw [← sum_fin_le hρN (fun s' => ε ⟨_, h⟩ s' * Hf (e a) (w s'))]
+          refine Finset.sum_congr rfl fun k _ => ?_
+          by_cases hk : k.val < ρ
+          · simp only [εc, wv, dite_eq_left h, dite_eq_left hk]
+            rw [hbw k hk]
+          · simp only [εc, dite_eq_left h, dite_eq_right hk, zero_mul]
+        rw [← hsum]
+        simp only [wv]
+        rw [← hws, ← h4, div_eq_inv_mul]
+      · simp only [y, dite_eq_right h, εc, wv, zero_mul, Finset.sum_const_zero, add_zero]
+    have hmat : (Matrix.of fun a b => Hf (EuclideanSpace.single (⟨σ, Fin.castLE hi a⟩ : Idx X.dim) (1 : ℂ))
+        (y b)) = Matrix.of fun a j => (wv (s0 j) + ∑ k, εc j k • wv k) a := by
+      ext a j
+      simp only [Matrix.of_apply, Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
+      exact hentry a j
+    have hold : (Matrix.of fun a j => wv (s0 j) a).det = (M.submatrix id s0).det := rfl
+    have hmax : ∀ σ' : Fin i → Fin N, ‖(Matrix.of fun a j => wv (σ' j) a).det‖ ≤ Δ :=
+      fun σ' => hs0 σ'
+    have hpert := hDP ℂ i (Fin N) wv s0 εc Δ hmax
+
+    set B : ℝ := Real.sqrt ρ / (30 * ρ ^ 2) with hB
+    have hB0 : 0 ≤ B := by positivity
+    have hrow : ∀ j, ∑ k, ‖εc j k‖ ≤ if (s0 j).val < ρ then B else 0 := by
+      intro j
+      by_cases h : (s0 j).val < ρ
+      · rw [ite_eq_left h]
+        have := (hεb ⟨_, h⟩).2
+        rw [← sum_fin_le hρN (fun s' => ‖ε ⟨_, h⟩ s'‖)] at this
+        refine le_of_eq_of_le ?_ this
+        refine Finset.sum_congr rfl fun k _ => ?_
+        by_cases hk : k.val < ρ
+        · simp [εc, dite_eq_left h, dite_eq_left hk]
+        · simp [εc, dite_eq_left h, dite_eq_right hk]
+      · rw [ite_eq_right h]
+        simp [εc, dite_eq_right h]
+    have hprod : ∏ j, (1 + ∑ k, ‖εc j k‖) ≤ (1 + B) ^ ρ := by
+      calc ∏ j, (1 + ∑ k, ‖εc j k‖)
+          ≤ ∏ j, (if (s0 j).val < ρ then 1 + B else 1) := by
+            refine Finset.prod_le_prod₀ (fun j _ => by positivity) fun j _ => ?_
+            have := hrow j
+            by_cases h : (s0 j).val < ρ
+            · simp only [h, ite_true] at this ⊢; linarith
+            · simp only [h, ite_false] at this ⊢; linarith
+        _ = (1 + B) ^ (Finset.univ.filter fun j => (s0 j).val < ρ).card := by
+            rw [Finset.prod_ite, Finset.prod_const_one, mul_one, Finset.prod_const]
+        _ ≤ (1 + B) ^ ρ := by
+            apply pow_le_pow_right₀ (by linarith)
+            have : (Finset.univ.filter fun j => (s0 j).val < ρ).card ≤ (Finset.range ρ).card := by
+              apply Finset.card_le_card_of_injOn (fun j => (s0 j).val)
+              · intro j hj
+                simp only [Finset.coe_filter, Finset.mem_univ, true_and, Set.mem_setOf_eq] at hj
+                simpa using hj
+              · intro j _ j' _ hjj
+                exact hinj (Fin.ext hjj)
+            simpa using this
+    have hhalf : (1 + B) ^ ρ - 1 ≤ 1 / 2 := by
+      rcases Nat.eq_zero_or_pos ρ with h0 | hpos
+      · subst h0; norm_num
+      · have hρ1 : (1 : ℝ) ≤ ρ := by exact_mod_cast hpos
+        have hnum := hDN ρ hpos
+        have hBle : B ≤ (ρ : ℝ) ^ (-(3 : ℝ) / 2) / 10 := by
+          have hsq : Real.sqrt ρ * Real.sqrt ρ = ρ := Real.mul_self_sqrt (by positivity)
+          have hsp : 0 < Real.sqrt ρ := Real.sqrt_pos.2 (by linarith)
+          have hr : (ρ : ℝ) ^ (-(3 : ℝ) / 2) = 1 / (ρ * Real.sqrt ρ) := by
+            rw [show (-(3 : ℝ) / 2) = -((1 : ℝ) + 1 / 2) by norm_num, Real.rpow_neg (by positivity),
+              Real.rpow_add (by linarith), Real.rpow_one, ← Real.sqrt_eq_rpow, one_div]
+          have hBeq : B = (ρ : ℝ) ^ (-(3 : ℝ) / 2) / 30 := by
+            rw [hr, hB, div_div, div_eq_div_iff (by positivity) (by positivity)]
+            linear_combination (30 * (ρ : ℝ)) * hsq
+          have h0 : 0 ≤ (ρ : ℝ) ^ (-(3 : ℝ) / 2) := by positivity
+          rw [hBeq]
+          linarith
+        have : (1 + B) ^ ρ ≤ (1 + (ρ : ℝ) ^ (-(3 : ℝ) / 2) / 10) ^ ρ :=
+          pow_le_pow_left₀ (by linarith) (by linarith) ρ
+        linarith
+    have hfac : ((∏ j, (1 + ∑ k, ‖εc j k‖)) - 1) * Δ ≤ Δ / 2 := by
+      have := hΔpos.le
+      nlinarith [hprod, hhalf]
+    rw [hmat]
+    have h2 : ‖(Matrix.of fun a j => wv (s0 j) a).det‖ = Δ := by rw [hold]
+    have h4 : Δ - ‖(Matrix.of fun a j => (wv (s0 j) + ∑ k, εc j k • wv k) a).det -
+        (Matrix.of fun a j => wv (s0 j) a).det‖ ≤
+        ‖(Matrix.of fun a j => (wv (s0 j) + ∑ k, εc j k • wv k) a).det‖ := by
+      have := norm_sub_norm_le (Matrix.of fun a j => wv (s0 j) a).det
+        (Matrix.of fun a j => (wv (s0 j) + ∑ k, εc j k • wv k) a).det
+      rw [h2, norm_sub_rev] at this
+      linarith
+    linarith [hpert, hfac, h4, hΔr]
+  · intro j
+    by_cases h : (s0 j).val < ρ
+    · simp only [μ, dite_eq_left h]
+      rw [← norm_ne_zero_iff, hnμ]
+      have := hRpos ⟨_, h⟩
+      positivity
+    · simp only [μ, dite_eq_right h]
+      exact_mod_cast Nat.factorial_ne_zero c
+
+end
+
+end ReciprocityTheory.ChartRestriction.G.I2
+end
+end
+
 @[expose] public section
 
 namespace ReciprocityTheory.ChartRestriction.G.I2
