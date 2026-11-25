@@ -1,6 +1,5 @@
 module
 
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalOrderProjection.LocOProjOf
 public import Mathlib.RingTheory.DedekindDomain.PID
 public import Mathlib.RingTheory.DedekindDomain.Basic
 public import Mathlib.RingTheory.DedekindDomain.Ideal.Lemmas
@@ -9,7 +8,7 @@ public import Formalism.PeriodIntegrals.LocHerm
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalGluing.LocGlueOfPair
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalGluing.ExistsIntegralMultiple
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalGluing.MemOfProjEqZero
-import Formalism.PeriodIntegrals.AlgebraMapMemO
+public import Formalism.PeriodIntegrals.AlgebraMapMemO
 import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
@@ -25,6 +24,46 @@ import Mathlib.Tactic.TypeStar
 -- ===== clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalOrderProjection.IsFieldOfNonsq =====
 -- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalOrderProjection.IsFieldOfNonsq", "h": "module\n\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalOrderProjection.LocOProjOf\nimport Formalism.PeriodIntegrals.AlgebraMapMemO\nimport Mathlib.Algebra.Module.StablyFree.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\npublic import Mathlib.RingTheory.DedekindDomain.PID\nimport Mathlib.RingTheory.Henselian\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.RingTheory.DedekindDomain.Basic\npublic import Mathlib.RingTheory.DedekindDomain.Ideal.Lemmas\npublic import Mathlib.RingTheory.DedekindDomain.IntegralClosure\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+noncomputable section
+
+open ValuativeRel
+open Formalism.MainNotions.S.Loc
+
+namespace PI.LocHerm.OProj
+
+def Concl {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
+    {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E]
+    (M : Model F E) : Prop :=
+  ∀ (W : Type) [AddCommGroup W] [Module E W] (P : Submodule M.L.O W), P.FG →
+    Module.Projective M.L.O P
+
+def SqCase : Prop :=
+  AllLoc fun {F} _ _ _ {E} _ _ _ _ M =>
+  ∀ θ ∈ M.L.O, M.L.cj θ = -θ → ∀ D : 𝒪[F], (D : F) ≠ 0 → θ * θ = algebraMap F E D →
+    (∃ s : F, s * s = D) → Concl M
+
+def NonSqCase : Prop :=
+  AllLoc fun {F} _ _ _ {E} _ _ _ _ M =>
+  ∀ θ ∈ M.L.O, M.L.cj θ = -θ → ∀ D : 𝒪[F], (D : F) ≠ 0 → θ * θ = algebraMap F E D →
+    (¬ ∃ s : F, s * s = D) → Concl M
+
+theorem locOProj_of (hS : SqCase) (hN : NonSqCase) : PI.LocHerm.LocOProj := by
+  intro F _ _ _ E _ _ _ _ M hM
+  haveI := hM.loc
+  haveI := hM.char0
+  obtain ⟨θ, hθ, hc, D, hD0, hD⟩ := PI.LocHerm.SlopeTestRemainingChoices.exists_theta (L := M.L)
+  by_cases hs : ∃ s : F, s * s = D
+  · exact hS F E M hM θ hθ hc D hD0 hD hs
+  · exact hN F E M hM θ hθ hc D hD0 hD hs
+
+end PI.LocHerm.OProj
+end
+end
+end
+
 @[expose] public section
 
 noncomputable section
