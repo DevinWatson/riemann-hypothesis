@@ -2,7 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Jets.DepthNumbersThresholdEq
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CharacterBlocksAttainBound
-public import Formalism.LocalToGlobal.CharacterGerms.ContentLargeFromSupplies
 public import Formalism.LocalToGlobal.CharacterGerms.ContentZeroAt
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.MonomialBlockSupplyBothTypings
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.OddLevelBlockBoundAttained
@@ -434,7 +433,7 @@ theorem of_supplies (hB : RF.BiSupply) (hC : RF.CHSupply) (hM : RF.MONSupply) : 
   have r1 : 0 ≤ C1 * (L * A + Cth + L * D) := mul_nonneg hC1 (by linarith)
   nlinarith
 
-theorem phiCBd : PhiCBd := of_supplies _root_.GlobalTheory.oddBlock_supply.2 GlobalTheory.CharBlock.chSupply.2 _root_.GlobalTheory.MonBlock.monSupply.2
+theorem phiCBd : PhiCBd := of_supplies _root_.GlobalTheory.oddBlock_supply GlobalTheory.CharBlock.chSupply _root_.GlobalTheory.MonBlock.monSupply
 
 end GlobalTheory.GoodDepth.ConjPkg
 end -- clump:auto
@@ -648,8 +647,8 @@ theorem zero_of_pkgC (hM : RF.MONSupply) (P : RF.Par) (l : ℕ) (Pk : RF.PkgZero
 end GlobalTheory.GoodDepth.Zero
 
 theorem GlobalTheory.GoodDepth.zeroBd : GlobalTheory.GoodDepth.ZeroBd :=
-  ⟨fun P l Pk => GlobalTheory.GoodDepth.Zero.zero_of_pkg _root_.GlobalTheory.MonBlock.monSupply.2 P l Pk,
-    fun P l Pk => GlobalTheory.GoodDepth.Zero.zero_of_pkgC _root_.GlobalTheory.MonBlock.monSupply.2 P l Pk⟩
+  ⟨fun P l Pk => GlobalTheory.GoodDepth.Zero.zero_of_pkg _root_.GlobalTheory.MonBlock.monSupply P l Pk,
+    fun P l Pk => GlobalTheory.GoodDepth.Zero.zero_of_pkgC _root_.GlobalTheory.MonBlock.monSupply P l Pk⟩
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.LargePrimePackagesDepthNonpos =====
@@ -914,7 +913,7 @@ theorem splitBd_of_supplies (hC : RF.CHSupply) (hM : RF.MONSupply) : SplitBd := 
 end GlobalTheory.SplitPackageBound
 
 theorem GlobalTheory.GoodDepth.splitBd : SplitBd :=
-  GlobalTheory.SplitPackageBound.splitBd_of_supplies GlobalTheory.CharBlock.chSupply.2 _root_.GlobalTheory.MonBlock.monSupply.2
+  GlobalTheory.SplitPackageBound.splitBd_of_supplies GlobalTheory.CharBlock.chSupply _root_.GlobalTheory.MonBlock.monSupply
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.SplitPrimeDepthContentBoundProof =====
@@ -1079,7 +1078,7 @@ theorem nuGood : NuGoodSt := by
   obtain ⟨CI, hCI, HI⟩ := _root_.GlobalTheory.InertContent.main C1 hC1
   obtain ⟨CP, hCP, HP⟩ := _root_.GlobalTheory.GoodDepth.ConjPkg.phiCBd C1 hC1
   obtain ⟨CS, hCS, HS⟩ := _root_.GlobalTheory.GoodDepth.splitBd C1 hC1
-  obtain ⟨CC, hCC, HC⟩ := UpperTheory.rowBound_le_Fnum_sum_add_error _root_.GlobalTheory.oddBlock_supply.2 _root_.GlobalTheory.CharBlock.chSupply.2 _root_.GlobalTheory.MonBlock.monSupply.2 C1 hC1
+  obtain ⟨CC, hCC, HC⟩ := UpperTheory.rowBound_le_Fnum_sum_add_error _root_.GlobalTheory.oddBlock_supply _root_.GlobalTheory.CharBlock.chSupply _root_.GlobalTheory.MonBlock.monSupply C1 hC1
   obtain ⟨HZ, -⟩ := _root_.GlobalTheory.GoodDepth.zeroBd
   refine ⟨2 * CI + 2 * CP + 2 * CC + CS + 2, by positivity, ?_⟩
   intro E _ _ _ H Dw lv Xo c _ hstar hIC hPk N j pl a nW T b L w hj1 hjm hpl hp hq hdom hG hw hb la h2 hq' hd hg0 hg1 hM
@@ -1124,7 +1123,7 @@ theorem nuGood : NuGoodSt := by
     intro s hs hrow V io e ho y hy C ν hν
     by_cases hc : ConjIn N l
     · obtain ⟨Pk, rfl⟩ := PZC' V io e ho y hy C nW ν hν hc.1 (odd_ordP_of_conjIn hc) hwpos s hs hrow
-      exact UpperTheory.pkgZeroCs_nu_nonpos_of_monSupply _root_.GlobalTheory.MonBlock.monSupply.2 _ _ Pk
+      exact UpperTheory.pkgZeroCs_nu_nonpos_of_monSupply _root_.GlobalTheory.MonBlock.monSupply _ _ Pk
     · obtain ⟨d, _, pos, Pk, rfl⟩ := PZ' V io e ho y hy C nW ν hν hc hwpos s hs
         (le_trans (Nat.mul_le_mul_right _ (Nat.mul_le_mul_right _ (Nat.mul_le_mul_right _ (by norm_num)))) hrow)
       exact HZ _ _ Pk

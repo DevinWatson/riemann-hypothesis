@@ -7,7 +7,6 @@ public import Formalism.IncomingBounds.IncomingBound
 public import Formalism.LocalRingCardinality.DataParams₂
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.MulFlowValLe
 public import Development.AbelianVarietyTheory.Definitions.Jets.DepthNumbersThresholdEq
-public import Formalism.LocalToGlobal.CharacterGerms.ContentLargeFromSupplies
 public import Formalism.LocalToGlobal.CharacterGerms.ContentZeroAt
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CharacterBlocksAttainBound
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.MonomialBlockSupplyBothTypings
@@ -550,9 +549,9 @@ theorem val_le_plan : ∀ (P : RF.Par) (l : ℕ) (C1 : ℝ), ParOK P → 5 ≤ l
   · intro z hz q hq
     simp only [blocks, List.mem_cons, List.mem_append, List.mem_map, Finset.mem_toList] at hq
     rcases hq with rfl | rfl | ⟨a, -, rfl⟩ | ⟨x, hx, rfl⟩
-    · exact (GlobalTheory.MonBlock.monSupply.2 C V _ _ _ (X z) (F z) 0 _ _).1
-    · exact (GlobalTheory.MonBlock.monSupply.2 C V _ _ _ (X z) (F z) 1 _ _).1
-    · exact (_root_.GlobalTheory.CharBlock.chSupply.2 C V _ _ _ (X z) (F z) _ a (big_bg _ (alt z hz) a) _).1 (alt z hz)
+    · exact (GlobalTheory.MonBlock.monSupply C V _ _ _ (X z) (F z) 0 _ _).1
+    · exact (GlobalTheory.MonBlock.monSupply C V _ _ _ (X z) (F z) 1 _ _).1
+    · exact (_root_.GlobalTheory.CharBlock.chSupply C V _ _ _ (X z) (F z) _ a (big_bg _ (alt z hz) a) _).1 (alt z hz)
     · rw [(hn z).1, (hn z).2]
       exact hatt z hz _ _ (Finset.mem_filter.1 hx).2
   · refine le_trans ?_ what₂
@@ -792,7 +791,7 @@ theorem main : InertBd := by
           · exact (halt.2 a).2 h
           · have := ((Pk.R.X z).big_compl 0 a).2 (fun hb => h ((halt.2 a).1 hb))
             simpa using this
-        have hW := _root_.GlobalTheory.oddBlock_supply.2 Pk.R.C Pk.R.V P.d (Pk.R.I z) (Pk.R.J z) (Pk.R.X z) (Pk.R.F z) halt
+        have hW := _root_.GlobalTheory.oddBlock_supply Pk.R.C Pk.R.V P.d (Pk.R.I z) (Pk.R.J z) (Pk.R.X z) (Pk.R.F z) halt
           (by rw [Pk.R.hVl]; exact hl) (by rw [(Pk.R.hn z).1]; omega) (RF.bg a) a hbig i hi2 (Finset.mem_range.1 hi1)
         rw [Pk.R.hVl, (Pk.R.hn z).1, (Pk.R.hn z).2] at hW
         refine ⟨hW.1, fun Y0 => ?_⟩

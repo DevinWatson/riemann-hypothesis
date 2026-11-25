@@ -1,6 +1,5 @@
 module
 
-public import Formalism.LocalToGlobal.CharacterGerms.ContentLargeFromSupplies
 public import Formalism.LocalToGlobal.CharacterGerms.ContentZeroAt
 public import Formalism.FormalGroupLog.FormalGroupLogProofs.ChainRule
 public import Formalism.LocalToGlobal.CharacterGerms.CoeffIterateZero
@@ -264,17 +263,11 @@ theorem core (X : RowData C V d I J) (g : Fin 2) (a : ZMod d) (ha : X.big g a) {
   · rw [val_eq X.hL g hn en y u]
     simpa [RowData.m] using key _ (h2 h)
 
-theorem chSupply : CHSupply ∧ RF.CHSupply := by
-  constructor
-  · intro C _ V d _ I J _ _ X F g a ha u
-    have hn : X.n ≤ X.rk g a := by
-      unfold RowData.rk; rw [X.rk_big g a ha]; omega
-    obtain ⟨S, t, ht, gr, hgr, h1, h2⟩ := core X g a ha hn (F.en g a) (F.en_inj g a) (F.en_ty g a) u
-    exact ⟨fun h => ⟨S, t, ht, gr, hgr, h1 h⟩, fun h => ⟨S, t, ht, gr, hgr, h2 h⟩⟩
-  · intro C _ V d _ I J _ _ X F g a ha u
-    have hn : X.n ≤ X.rkF g a := by
-      unfold RowData.rkF; rw [X.rk_big g a ha]; omega
-    obtain ⟨S, t, ht, gr, hgr, h1, h2⟩ := core X g a ha hn (F.en g a) (F.en_inj g a) (F.en_ty g a) u
-    exact ⟨fun h => ⟨S, t, ht, gr, hgr, h1 h⟩, fun h => ⟨S, t, ht, gr, hgr, h2 h⟩⟩
+theorem chSupply : RF.CHSupply := by
+  intro C _ V d _ I J _ _ X F g a ha u
+  have hn : X.n ≤ X.rkF g a := by
+    unfold RowData.rkF; rw [X.rk_big g a ha]; lia
+  obtain ⟨S, t, ht, gr, hgr, h1, h2⟩ := core X g a ha hn (F.en g a) (F.en_inj g a) (F.en_ty g a) u
+  exact ⟨fun h => ⟨S, t, ht, gr, hgr, h1 h⟩, fun h => ⟨S, t, ht, gr, hgr, h2 h⟩⟩
 
 end GlobalTheory.CharBlock

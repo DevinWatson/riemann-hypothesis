@@ -5,7 +5,7 @@ public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ConstantCo
 public import Formalism.LocalToGlobal.CharacterGerms.CartesianBoundOnCurves
 public import Formalism.LocalToGlobal.CharacterGerms.CoeffIterateZero
 public import Mathlib.RingTheory.MvPowerSeries.Rename
-public import Formalism.LocalToGlobal.CharacterGerms.ContentLargeFromSupplies
+public import Formalism.LocalToGlobal.CharacterGerms.ValuationChoiceHypothesis
 public import Formalism.LocalToGlobal.CharacterGerms.ContentZeroAt
 public import Formalism.LocalToGlobal.CharacterGerms.BiadditiveInSingleVariables
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.BlockValueOnRowsEq
@@ -853,28 +853,17 @@ namespace GlobalTheory
 
 open MinorShiftJet
 
-theorem oddBlock_supply : BiSupply ∧ RF.BiSupply := by
-  constructor
-  · intro K _ V d _ I J _ _ X F hA hl hn g a ha i hi hid
-    have h1 : X.n ≤ X.rk g a := (Nat.le_add_right _ _).trans (X.rk_big g a ha).ge
-    have h2 : X.n ≤ X.rk (1 - g) (a + (i : ZMod d)) :=
-      (Nat.le_add_right _ _).trans (X.rk_big _ _ (big_shift X hA ha hi)).ge
-    have key := window_letterDet X hA hl hn g a ha i hi hid (fun c => F.en g a (Fin.castLE h1 c))
-      (fun c => F.en (1 - g) (a + (i : ZMod d)) (Fin.castLE h2 c))
-      ((F.en_inj _ _).comp (Fin.castLE_injective h1)) ((F.en_inj _ _).comp (Fin.castLE_injective h2))
-      (fun c => F.en_ty _ _ _) (fun c => F.en_ty _ _ _)
-    rw [← rename_minor h1 g (F.en g a), ← rename_minor h2 (1 - g) (F.en (1 - g) (a + (i : ZMod d)))] at key
-    exact key
-  · intro K _ V d _ I J _ _ X F hA hl hn g a ha i hi hid
-    have h1 : X.n ≤ X.rkF g a := (Nat.le_add_right _ _).trans (X.rk_big g a ha).ge
-    have h2 : X.n ≤ X.rkF (1 - g) (a + (i : ZMod d)) :=
-      (Nat.le_add_right _ _).trans (X.rk_big _ _ (big_shift X hA ha hi)).ge
-    have key := window_letterDet X hA hl hn g a ha i hi hid (fun c => F.en g a (Fin.castLE h1 c))
-      (fun c => F.en (1 - g) (a + (i : ZMod d)) (Fin.castLE h2 c))
-      ((F.en_inj _ _).comp (Fin.castLE_injective h1)) ((F.en_inj _ _).comp (Fin.castLE_injective h2))
-      (fun c => F.en_ty _ _ _) (fun c => F.en_ty _ _ _)
-    rw [← rename_minor h1 g (F.en g a), ← rename_minor h2 (1 - g) (F.en (1 - g) (a + (i : ZMod d)))] at key
-    exact key
+theorem oddBlock_supply : RF.BiSupply := by
+  intro K _ V d _ I J _ _ X F hA hl hn g a ha i hi hid
+  have h1 : X.n ≤ X.rkF g a := (Nat.le_add_right _ _).trans (X.rk_big g a ha).ge
+  have h2 : X.n ≤ X.rkF (1 - g) (a + (i : ZMod d)) :=
+    (Nat.le_add_right _ _).trans (X.rk_big _ _ (big_shift X hA ha hi)).ge
+  have key := window_letterDet X hA hl hn g a ha i hi hid (fun c => F.en g a (Fin.castLE h1 c))
+    (fun c => F.en (1 - g) (a + (i : ZMod d)) (Fin.castLE h2 c))
+    ((F.en_inj _ _).comp (Fin.castLE_injective h1)) ((F.en_inj _ _).comp (Fin.castLE_injective h2))
+    (fun c => F.en_ty _ _ _) (fun c => F.en_ty _ _ _)
+  rw [← rename_minor h1 g (F.en g a), ← rename_minor h2 (1 - g) (F.en (1 - g) (a + (i : ZMod d)))] at key
+  exact key
 
 end GlobalTheory
 end -- clump:auto

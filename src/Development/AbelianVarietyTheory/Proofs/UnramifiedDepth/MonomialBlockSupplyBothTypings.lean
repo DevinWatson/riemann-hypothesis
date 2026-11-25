@@ -692,16 +692,11 @@ theorem core (X : RowData C V d I J) (g : Fin 2) (r : ZMod d → ℕ) (en : ∀ 
     · rw [Finset.sum_eq_zero fun a _ => dg_apply_of_notMem _ _ _ fun y' h' => hx' ⟨a, y', h'⟩]
       exact V.l_prime.pos
 
-theorem monSupply : MONSupply ∧ RF.MONSupply := by
-  constructor
-  · intro C _ V d _ I J _ _ X F g e N
-    obtain ⟨S, t, ht, gr, hgr, h1, h2⟩ :=
-      core X g (X.rk g) (F.en g) (F.en_inj g) (F.en_ty g) e N
-    exact ⟨⟨S, t, ht, gr, hgr, h1⟩, fun h => ⟨S, t, ht, gr, hgr, h2 h⟩⟩
-  · intro C _ V d _ I J _ _ X F g e N
-    obtain ⟨S, t, ht, gr, hgr, h1, h2⟩ :=
-      core X g (X.rkF g) (F.en g) (F.en_inj g) (F.en_ty g) e N
-    exact ⟨⟨S, t, ht, gr, hgr, h1⟩, fun h => ⟨S, t, ht, gr, hgr, h2 h⟩⟩
+theorem monSupply : RF.MONSupply := by
+  intro C _ V d _ I J _ _ X F g e N
+  obtain ⟨S, t, ht, gr, hgr, h1, h2⟩ :=
+    core X g (X.rkF g) (F.en g) (F.en_inj g) (F.en_ty g) e N
+  exact ⟨⟨S, t, ht, gr, hgr, h1⟩, fun h => ⟨S, t, ht, gr, hgr, h2 h⟩⟩
 
 end GlobalTheory.MonBlock
 end -- clump:auto
