@@ -28,17 +28,17 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsDiscret
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsSystemOfParametersInsert
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoMvps
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsIntegrallyClosedPowerSeries
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.RingKrullDimMvPowerSeriesFinField
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IsInertiaInfiniteCyclotomic
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoQuot
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.RingTheory.AdicCompletion.Noetherian
-import Mathlib.RingTheory.KrullDimension.NonZeroDivisors
+public import Mathlib.RingTheory.KrullDimension.NonZeroDivisors
 import Mathlib.RingTheory.IntegralClosure.GoingDown
-import Mathlib.RingTheory.MvPowerSeries.Equiv
+public import Mathlib.RingTheory.MvPowerSeries.Equiv
 import Mathlib.RingTheory.AdicCompletion.Completeness
+public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.PiSpanVariable
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.EqZeroOfHomogeneousAevalMemMaximalIdealPowSucc, Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.ExistsDerivationsDualToCotangentParameters, Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.ExistsHomogeneousLiftModKerPowSuccSup, Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.ExistsNotMemMulMemIdealOfForallPrimePowSup, Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.HeightKerSectionLeOfCotangentGenerators, Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.PowerSeriesApproximationModMaximal, Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.ExistsFiniteInjectiveMvPowerSeriesCompatibleSect, Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.RingKrullDimEqHeightKerSectionAddOne, Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.SmoothComplA, Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.SmoothCompl
@@ -46,6 +46,93 @@ import Mathlib.RingTheory.AdicCompletion.Completeness
 -- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.EqZeroOfHomogeneousAevalMemMaximalIdealPowSucc =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.EqZeroOfHomogeneousAevalMemMaximalIdealPowSucc", "h": "module\n\npublic import Mathlib.RingTheory.Henselian\npublic import Mathlib.RingTheory.MvPolynomial.Homogeneous\npublic import Mathlib.RingTheory.MvPowerSeries.Inverse\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.Order.CompletePartialOrder\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+open IsLocalRing UpperTheory.V.Alg
+
+private theorem dim_ge (E : Type) [Field E] (n : ℕ) :
+    ((n : ℕ∞) : WithBot ℕ∞) ≤ ringKrullDim (MvPowerSeries (Fin n) E) := by
+  induction n with
+  | zero => simpa using (ringKrullDim_nonneg_of_nontrivial (R := MvPowerSeries (Fin 0) E))
+  | succ n ih =>
+    rw [ringKrullDim_eq_of_ringEquiv (MvPowerSeries.finSuccEquiv E n).toRingEquiv]
+    refine le_trans ?_ ringKrullDim_succ_le_ringKrullDim_powerseries
+    push_cast at ih ⊢
+    gcongr
+
+private theorem mem_max_iff (E : Type) [Field E] (σ : Type) (g : MvPowerSeries σ E) :
+    g ∈ maximalIdeal (MvPowerSeries σ E) ↔ MvPowerSeries.constantCoeff g = 0 := by
+  rw [mem_maximalIdeal, mem_nonunits_iff, MvPowerSeries.isUnit_iff_constantCoeff]
+  simp
+
+private theorem max_eq_span (E : Type) [Field E] (σ : Type) [Finite σ] :
+    maximalIdeal (MvPowerSeries σ E) ≤
+      Ideal.span (Set.range (MvPowerSeries.X : σ → MvPowerSeries σ E)) := by
+  intro g hg
+  rw [mem_max_iff] at hg
+  cases nonempty_fintype σ
+  refine _root_.UpperTheory.Reformulated.B.PowerSeriesMemSpanAllVariables.pi_span_X Finset.univ g fun n hn => ?_
+  have : n = 0 := by ext i; exact hn i (Finset.mem_univ i)
+  subst this
+  simpa using hg
+
+theorem UpperTheory.ringKrullDim_mvPowerSeries_fin_field :
+    ∀ (O E : Type) [CommRing O] [IsDomain O] [Field E] [Algebra O E] [IsFractionRing O E] (S : Type) [CommRing S] [Algebra O S] [IsNoetherianRing S] (x : S →ₐ[O] O) (n : ℕ) (φ : S →ₐ[O] MvPowerSeries (Fin n) E) (t : Fin n → S) (c : O), c ≠ 0 → (∀ a, MvPowerSeries.constantCoeff (φ a) = algebraMap O E (x a)) → (∀ i, φ (t i) - c • MvPowerSeries.X i ∈ maximalIdeal (MvPowerSeries (Fin n) E) ^ 2) → (n : ℕ∞) ≤ (RingHom.ker x).height := by
+  intro O E _ _ _ _ _ S _ _ _ x n φ t c hc hx ht
+  have hinj := IsFractionRing.injective O E
+  letI : Algebra S (MvPowerSeries (Fin n) E) := φ.toRingHom.toAlgebra
+  have halg : ∀ a, algebraMap S (MvPowerSeries (Fin n) E) a = φ a := fun _ => rfl
+  set m := maximalIdeal (MvPowerSeries (Fin n) E) with hm
+  have hker : ∀ a, a ∈ RingHom.ker x ↔ φ a ∈ m := fun a => by
+    rw [hm, mem_max_iff, hx, RingHom.mem_ker, map_eq_zero_iff _ hinj]
+  haveI : (RingHom.ker x).IsPrime := RingHom.ker_isPrime _
+  haveI : m.LiesOver (RingHom.ker x) := ⟨by
+    ext a
+    rw [hker, Ideal.under_def, Ideal.mem_comap, halg]⟩
+  have hX : ∀ i, (MvPowerSeries.X i : MvPowerSeries (Fin n) E) ∈ m := fun i => by
+    rw [hm, mem_max_iff]; simp
+  have hsm : ∀ g : MvPowerSeries (Fin n) E, c • g = MvPowerSeries.C (algebraMap O E c) * g := by
+    intro g
+    rw [Algebra.smul_def, MvPowerSeries.algebraMap_apply]
+  have hc' : algebraMap O E c ≠ 0 := (map_ne_zero_iff _ hinj).2 hc
+  have htm : ∀ i, t i ∈ RingHom.ker x := fun i => by
+    rw [hker]
+    have h1 : φ (t i) - c • MvPowerSeries.X i ∈ m := Ideal.pow_le_self two_ne_zero (ht i)
+    have h2 : c • (MvPowerSeries.X i : MvPowerSeries (Fin n) E) ∈ m := by
+      rw [hsm]; exact m.mul_mem_left _ (hX i)
+    simpa using m.add_mem h1 h2
+  set J := (RingHom.ker x).map (algebraMap S (MvPowerSeries (Fin n) E)) with hJ
+  have hle : m ≤ J := by
+    refine Submodule.le_of_le_smul_of_le_jacobson_bot (I := m) (IsNoetherian.noetherian _) ?_ ?_
+    · rw [hm, IsLocalRing.jacobson_eq_maximalIdeal _ bot_ne_top]
+    · refine (max_eq_span E (Fin n)).trans ?_
+      rw [Ideal.span_le]
+      rintro _ ⟨i, rfl⟩
+      have h1 : φ (t i) ∈ J ⊔ m • m := Submodule.mem_sup_left (Ideal.mem_map_of_mem _ (htm i))
+      have h2 : φ (t i) - c • MvPowerSeries.X i ∈ J ⊔ m • m := by
+        refine Submodule.mem_sup_right ?_
+        rw [smul_eq_mul, ← pow_two]; exact ht i
+      have h3 := Ideal.mul_mem_left _ (MvPowerSeries.C (algebraMap O E c)⁻¹) (Submodule.sub_mem _ h1 h2)
+      rw [sub_sub_cancel, hsm, ← mul_assoc, ← map_mul, inv_mul_cancel₀ hc', map_one, one_mul] at h3
+      exact h3
+  have h := Ideal.height_le_height_add_of_liesOver (RingHom.ker x) m
+  have h0 : m.map (Ideal.Quotient.mk J) = ⊥ := by
+    rw [Ideal.map_eq_bot_iff_le_ker, Ideal.mk_ker]; exact hle
+  have hJm : J ≤ m := by
+    rw [hJ, Ideal.map_le_iff_le_comap]
+    intro a ha
+    exact (hker a).1 ha
+  haveI : Nontrivial (MvPowerSeries (Fin n) E ⧸ J) :=
+    Ideal.Quotient.nontrivial_iff.2 (ne_top_of_le_ne_top (maximalIdeal.isMaximal _).ne_top hJm)
+  rw [← hJ, h0, Ideal.height_bot, add_zero] at h
+  refine le_trans ?_ h
+  have hd := dim_ge E n
+  rw [← IsLocalRing.maximalIdeal_height_eq_ringKrullDim] at hd
+  exact WithBot.coe_le_coe.1 hd
+end
+end
+
 @[expose] public section
 
 open IsLocalRing UpperTheory.V.Alg
