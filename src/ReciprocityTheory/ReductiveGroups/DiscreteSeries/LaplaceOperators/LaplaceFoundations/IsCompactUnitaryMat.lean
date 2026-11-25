@@ -1,6 +1,7 @@
 module
 
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.UnitaryHaarColumns
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightUniqueness.UnitaryOfBlockWMem
 import Mathlib.Analysis.CStarAlgebra.Matrix
 import Mathlib.Topology.Algebra.Star.Unitary
 
@@ -100,14 +101,14 @@ theorem blk_unitary {s : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ}
   ext q q'
   have hU : sᴴ * Hpk k r * s = Hpk k r := hs.1
   have e := congrFun (congrFun hU (eB k r q)) (eB k r q')
-  rw [H_blrow (bl_eB q), Matrix.mul_apply] at e
-  rw [sumB _ (fun p hp => by rw [row_zero hs hp (bl_eB q'), mul_zero])] at e
-  simp only [Matrix.mul_apply, Matrix.conjTranspose_apply, H_blcol (bl_eB _), mul_ite, mul_one, mul_zero,
+  rw [H_blrow (show bl k r (eB k r q) from PI.HwUniqW.inB_bl q), Matrix.mul_apply] at e
+  rw [sumB _ (fun p hp => by rw [row_zero hs hp (show bl k r (eB k r q') from PI.HwUniqW.inB_bl q'), mul_zero])] at e
+  simp only [Matrix.mul_apply, Matrix.conjTranspose_apply, H_blcol (show bl k r (eB k r _) from PI.HwUniqW.inB_bl _), mul_ite, mul_one, mul_zero,
     Finset.sum_ite_eq', Finset.mem_univ, if_true] at e
   rw [Matrix.mul_apply, Matrix.one_apply]
   simp only [Matrix.star_apply, blk]
   rw [e]
-  simp [eB_inj.eq_iff]
+  simp [show (eB k r q = eB k r q') = (q = q') from propext PI.HwUniqW.blockIndex_injective.eq_iff]
 
 theorem eq_blockW {s : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ}
     (hs : s ∈ UWset k r (z0 k r)) : s = Formalism.MainNotions.S.blockW k r (blk s) := by
@@ -116,7 +117,7 @@ theorem eq_blockW {s : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ}
   · by_cases hi : bl k r i
     · obtain ⟨qi, rfl⟩ := ex_eB hi
       obtain ⟨qj, rfl⟩ := ex_eB hj
-      rw [bw_ee]; rfl
+      exact (PI.HwUniqW.blockW_bl (blk s) qi qj).symm
     · rw [bw_off _ hi hj, row_zero hs hi hj]
   · rw [bw_col _ _ hj, col_std hs hj]
 

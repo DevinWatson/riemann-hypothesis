@@ -1,6 +1,7 @@
 module
 
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.UnitaryHaarColumns
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightUniqueness.UnitaryOfBlockWMem
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.ContinuousTorepK
 import Mathlib.Algebra.Order.Archimedean.Real.Hom
 import Mathlib.RingTheory.PiTensorProduct
@@ -123,7 +124,7 @@ theorem cay_entry (hP : Formalism.MainNotions.S.IsCayley k r ε P) (hW : WCols k
 theorem cay_eps (hP : Formalism.MainNotions.S.IsCayley k r ε P) (hW : WCols k r P) (a : Fin (2 * r + k + 1))
     (ha : a.val < k) : ε a = true := by
   have h := cay_entry hP hW ⟨a.val, ha⟩ (StandardBasisEmbedding.eB k r ⟨a.val, ha⟩)
-  rw [StandardBasisEmbedding.H_blrow (StandardBasisEmbedding.bl_eB _), if_pos rfl, cay_col hW, if_pos rfl, mul_one] at h
+  rw [StandardBasisEmbedding.H_blrow (show StandardBasisEmbedding.bl k r (StandardBasisEmbedding.eB k r _) from PI.HwUniqW.inB_bl _), if_pos rfl, cay_col hW, if_pos rfl, mul_one] at h
   have e : fI k r ⟨a.val, ha⟩ = a := Fin.ext rfl
   rw [e] at h
   by_contra hne
@@ -133,7 +134,7 @@ theorem cay_eps (hP : Formalism.MainNotions.S.IsCayley k r ε P) (hW : WCols k r
 theorem cay_zero (hP : Formalism.MainNotions.S.IsCayley k r ε P) (hW : WCols k r P) (q : Fin k) {j : Fin (2 * r + k + 1)}
     (hj : ¬ StandardBasisEmbedding.bl k r j) : P (fI k r q) j = 0 := by
   have h := cay_entry hP hW q j
-  rw [StandardBasisEmbedding.H_blrow (StandardBasisEmbedding.bl_eB _), if_neg (by rintro rfl; exact hj (StandardBasisEmbedding.bl_eB q))] at h
+  rw [StandardBasisEmbedding.H_blrow (show StandardBasisEmbedding.bl k r (StandardBasisEmbedding.eB k r q) from PI.HwUniqW.inB_bl q), if_neg (by rintro rfl; exact hj (PI.HwUniqW.inB_bl q))] at h
   have hne : (if ε (fI k r q) then (1 : ℂ) else -1) ≠ 0 := by split_ifs <;> norm_num
   exact (mul_eq_zero.1 h.symm).resolve_left hne
 
@@ -144,7 +145,9 @@ theorem cay_mul (hP : Formalism.MainNotions.S.IsCayley k r ε P) (hW : WCols k r
   by_cases hj : StandardBasisEmbedding.bl k r j
   · obtain ⟨q', rfl⟩ := StandardBasisEmbedding.ex_eB hj
     rw [StandardBasisEmbedding.sumB _ (fun p hp => by rw [StandardBasisEmbedding.bw_off h hp hj, mul_zero])]
-    simp only [StandardBasisEmbedding.bw_ee, cay_col hW, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ,
+    simp only [show ∀ q1 q2, Formalism.MainNotions.S.blockW k r h (StandardBasisEmbedding.eB k r q1) (StandardBasisEmbedding.eB k r q2) = h q1 q2 from
+        fun q1 q2 => PI.HwUniqW.blockW_bl h q1 q2,
+      cay_col hW, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ,
       if_true]
     by_cases hi : i.val < k
     · obtain ⟨qi, rfl⟩ := ex_fI hi

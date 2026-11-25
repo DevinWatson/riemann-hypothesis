@@ -1,5 +1,7 @@
 module
 
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightUniqueness.UnitaryOfBlockWMem
+
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.NChart
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.IsHWSmooth
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.UniqueU
@@ -112,7 +114,7 @@ theorem MidM.mul {X Y : Mat k r} (hX : MidM X) (hY : MidM Y) : MidM (X * Y) := b
 
 theorem midM_blockW (h : Matrix (Fin k) (Fin k) ℂ) : MidM (Formalism.MainNotions.S.blockW k r h) := by
   rintro i j (hi | hj)
-  · exact StandardBasisEmbedding.bw_row h j (by unfold Out at hi; unfold StandardBasisEmbedding.bl; omega)
+  · exact PI.HwUniqW.blockW_out h (by unfold Out at hi; unfold PI.HwUniqW.InB; lia)
   · exact StandardBasisEmbedding.bw_col h i (by unfold Out at hj; unfold StandardBasisEmbedding.bl; omega)
 
 theorem herm_bvec (j : Fin (2 * r + k + 1)) (v : Fin (2 * r + k + 1) → ℂ) (hj : Out k r j)

@@ -1,6 +1,7 @@
 module
 
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.UnitaryHaarColumns
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightUniqueness.UnitaryOfBlockWMem
 public import Formalism.HermitianCurvature.StatementB
 public import Formalism.FormalDegreeBessel.FormalDegreeRatio.UnitaryWeylNormalHolds
 public import Mathlib.MeasureTheory.Function.L2Space
@@ -81,9 +82,9 @@ theorem frame_blockW_mem {z : Fin (2 * r + k + 1) → ℂ} {g : Mat k r} (hg : F
     have := (Matrix.mem_unitaryGroup_iff').mp hu
     simpa [Matrix.star_eq_conjTranspose] using this
   have hBU : Formalism.MainNotions.S.blockW k r h ∈ UH (Hpk k r) := by
-    show (Formalism.MainNotions.S.blockW k r h)ᴴ * Hpk k r * Formalism.MainNotions.S.blockW k r h = Hpk k r
-    rw [ReciprocityTheory.ChartRestriction.DS.Lap.Base.StandardBasisEmbedding.blockW_conjTranspose, Matrix.mul_assoc, ReciprocityTheory.ChartRestriction.DS.Lap.Base.StandardBasisEmbedding.H_comm, ← Matrix.mul_assoc,
-      ← ReciprocityTheory.ChartRestriction.DS.Lap.Base.StandardBasisEmbedding.blockW_mul, hu', ReciprocityTheory.ChartRestriction.DS.Lap.Base.StandardBasisEmbedding.blockW_one, Matrix.one_mul]
+    show (PI.UpqRep.blockW k r h)ᴴ * PI.UpqRep.Hpk k r * PI.UpqRep.blockW k r h = PI.UpqRep.Hpk k r
+    rw [PI.HwUniqW.blockW_conjTranspose, Matrix.mul_assoc, PI.HwUniqW.Hpk_blockW_comm, ← Matrix.mul_assoc,
+      PI.HwUniqW.blockW_mul, hu', PI.HwUniqW.blockW_one, Matrix.one_mul]
   have hfix : ∀ i : Fin (2 * r + k + 1), ¬ ReciprocityTheory.ChartRestriction.DS.Lap.Base.StandardBasisEmbedding.bl k r i →
       Formalism.MainNotions.S.blockW k r h *ᵥ bvec i = bvec i := by
     intro i hi

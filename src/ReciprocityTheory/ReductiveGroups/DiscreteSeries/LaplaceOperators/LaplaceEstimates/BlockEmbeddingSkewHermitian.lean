@@ -3,6 +3,7 @@ module
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.BasePointPsiExpFormula
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.CapelliIdentity.CapelliCentralStatement
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.UnitaryHaarColumns
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightUniqueness.UnitaryOfBlockWMem
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.RingTheory.Coalgebra.CoassocSimps
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.FromHC
@@ -152,11 +153,12 @@ theorem block_embedding_skew_hermitian {A : Matrix (Fin k) (Fin k) ℂ} (hA : A�
     (emb0 k r A)ᴴ * Hpk k r + Hpk k r * emb0 k r A = 0 := by
   have h1 : (emb0 k r A)ᴴ = -emb0 k r A := by
     rw [← map_neg, ← hA]
-    show (Formalism.MainNotions.S.blockW k r A - Formalism.MainNotions.S.blockW k r 0)ᴴ = _ - _
-    rw [conjTranspose_sub, StandardBasisEmbedding.blockW_conjTranspose, StandardBasisEmbedding.blockW_conjTranspose, conjTranspose_zero]
+    show (PI.UpqRep.blockW k r A - PI.UpqRep.blockW k r 0)ᴴ = PI.UpqRep.blockW k r Aᴴ - PI.UpqRep.blockW k r 0
+    rw [conjTranspose_sub, PI.HwUniqW.blockW_conjTranspose, PI.HwUniqW.blockW_conjTranspose, conjTranspose_zero]
   have h2 : Hpk k r * emb0 k r A = emb0 k r A * Hpk k r := by
-    show Hpk k r * (_ - _) = (_ - _) * Hpk k r
-    rw [Matrix.mul_sub, Matrix.sub_mul, StandardBasisEmbedding.H_comm, StandardBasisEmbedding.H_comm]
+    show PI.UpqRep.Hpk k r * (PI.UpqRep.blockW k r A - PI.UpqRep.blockW k r 0) =
+      (PI.UpqRep.blockW k r A - PI.UpqRep.blockW k r 0) * PI.UpqRep.Hpk k r
+    rw [Matrix.mul_sub, Matrix.sub_mul, PI.HwUniqW.Hpk_blockW_comm, PI.HwUniqW.Hpk_blockW_comm]
   rw [h1, h2, Matrix.neg_mul, neg_add_cancel]
 
 theorem frame_mem_UW {z : Fin (2 * r + k + 1) → ℂ} {g₀ : Mat k r} (hg : Formalism.MainNotions.S.IsFrameW k r z g₀)
