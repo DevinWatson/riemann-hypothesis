@@ -60,7 +60,6 @@ theorem pairIndep_re {D : D7} (Z : New D) {X : HidaSetting D} {Y : Full X} (h : 
       return Lean.mkApp2 (← localExpr `pair) (← localExpr `r₁) (← localExpr `r₂)
 
 
-set_option maxHeartbeats 16000000 in
 theorem finX_reY : ∀ (D : D7) (Z : New D) (X : HidaSetting D) (Y : Full X), FinX Y → FinX (reY Z Y) := by
   intro D Z X Y h
   refine
