@@ -1,6 +1,7 @@
 module
 
 public import Formalism.LocalToGlobal.ProjectiveLattices.CuspFree
+import Formalism.LocalToGlobal.ProjectiveLattices.L2DefiniteCuspForms
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Algebra.Ring.IsFormallyReal
 
@@ -73,41 +74,8 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheo
 open Classical in
 def goodOf (σ : c.F →+* ℂ) : c.F →+* ℂ := if GoodEmb c σ then σ else (starRingEnd ℂ).comp σ
 
-theorem goodEmb_goodOf (σ : c.F →+* ℂ) : GoodEmb c (goodOf c σ) := by
-  unfold goodOf
-  split_ifs with hσ
-  · exact hσ
-  · have hx : ((IntermediateField.inclusion c.le).toRingHom (baseKA l).ρ) ^ 2 + ((H.d : ℕ) : c.F) = 0 := by
-      apply Subtype.ext
-      have e : (((IntermediateField.inclusion c.le).toRingHom (baseKA l).ρ : c.F) : ℂ) = H.rt0 := rfl
-      push_cast [e]
-      rw [H.sqrt_neg_disc_sq]
-      ring
-    have hy : (σ ((IntermediateField.inclusion c.le).toRingHom (baseKA l).ρ)) ^ 2 = H.rt0 ^ 2 := by
-      have h0 := congrArg σ hx
-      rw [map_add (f := _), map_pow, map_natCast, map_zero] at h0
-      rw [H.sqrt_neg_disc_sq]
-      linear_combination h0
-    have hre : H.rt0.re = 0 := by
-      have h1 := congrArg Complex.re H.sqrt_neg_disc_sq
-      have h2 := congrArg Complex.im H.sqrt_neg_disc_sq
-      simp [sq] at h1 h2
-      have hd : (0 : ℝ) < H.d := Nat.cast_pos.mpr H.d_prime.pos
-      have e2 : H.rt0.re * H.rt0.im = 0 := by linear_combination h2 / 2
-      have e3 : H.rt0.re ^ 4 = -(H.d * H.rt0.re ^ 2) := by
-        linear_combination (H.rt0.re ^ 2) * h1 + (H.rt0.re * H.rt0.im) * e2
-      have h4 : H.rt0.re ^ 4 ≤ 0 := by
-        rw [e3]
-        exact neg_nonpos.mpr (mul_nonneg hd.le (sq_nonneg _))
-      have h5 : H.rt0.re ^ 4 = 0 := le_antisymm h4 (by positivity)
-      exact (pow_eq_zero_iff (by norm_num)).mp h5
-    have hconj : (starRingEnd ℂ) H.rt0 = -H.rt0 := by
-      apply Complex.ext <;> simp [hre]
-    unfold GoodEmb at hσ ⊢
-    simp only [RingHom.comp_apply] at hσ ⊢
-    rcases sq_eq_sq_iff_eq_or_eq_neg.mp hy with h | h
-    · exact absurd h hσ
-    · rw [h, map_neg, hconj, neg_neg]
+theorem goodEmb_goodOf (σ : c.F →+* ℂ) : GoodEmb c (goodOf c σ) :=
+  Formalism.L2.Pj.goodEmb_goodOf (c := c) σ
 
 def lieFac (Dw : Datum H) (x : ℝ) (a : (E →+* ℂ) × ℕ → ℕ) : ℝ :=
   Real.exp (-((∑ τ : E →+* ℂ, ∑ i : Fin (Dw.mult τ), (a (τ, i) : ℝ)) / 2) * Real.log (2 * Real.pi * x))
