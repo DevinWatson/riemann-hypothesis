@@ -2,7 +2,6 @@ module
 
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.ParabolicReductionImage
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.StRedOfSplit
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.ParGMapGlRed
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.SplitTransport
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.GlRedEqOneIff
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.CardNuGZmod
@@ -12,6 +11,10 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.M
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.MemSsubIffSG
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.StRedOfCore
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.GOfPrime
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.ParabolicImageOfResidueFrame, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.MemSGIffMap, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.ParabolicImageOfAdapted, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.ParabolicImageOfBasisAdapted
@@ -19,6 +22,143 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.GOfPrime
 -- ===== clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.ParabolicImageOfResidueFrame =====
 -- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.ParabolicImageOfResidueFrame", "h": "module\n\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.ParabolicReductionImage\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.StRedOfSplit\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.GOfPrime\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.ParGMapGlRed\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.SplitTransport\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.GlRedEqOneIff\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+noncomputable section
+
+namespace MassDataIdxStImB
+
+open Matrix Formalism.FourierDecayAlt.S3 MassDataIdxStIm MassDataIdxRed
+open Formalism.DoubleCosetMeasures (IsUpUni)
+
+section Lift
+
+variable {R S : Type} [CommRing R] [CommRing S] (π : R →+* S) (hπ : Function.Surjective π)
+
+
+open Classical in
+def lift (s : S) : R := if s = 0 then 0 else if s = 1 then 1 else Function.surjInv hπ s
+
+theorem lift_zero : lift π hπ 0 = 0 := by
+  simp [lift]
+
+theorem lift_one [Nontrivial S] : lift π hπ 1 = 1 := by
+  simp [lift]
+
+theorem π_lift (s : S) : π (lift π hπ s) = s := by
+  unfold lift
+  split_ifs with h0 h1
+  · rw [h0, map_zero]
+  · rw [h1, map_one]
+  · exact Function.surjInv_eq hπ s
+
+theorem map_lift {m n : Type} (x : Matrix m n S) : (x.map (lift π hπ)).map π = x := by
+  ext i j
+  simp only [Matrix.map_apply, π_lift]
+
+end Lift
+
+section Par
+
+variable {A B : Type} [CommRing A] [CommRing B] {r k : ℕ}
+
+theorem isUpUni_map (f : A → B) (h0 : f 0 = 0) (h1 : f 1 = 1) {n : ℕ} {h : Matrix (Fin n) (Fin n) A}
+    (hh : IsUpUni h) : IsUpUni (h.map f) := by
+  obtain ⟨hu, hd⟩ := hh
+  refine ⟨?_, fun a => by simp [Matrix.map_apply, hd a, h1]⟩
+  intro i j hij
+  simp [Matrix.map_apply, hu hij, h0]
+
+theorem midEmb_map (f : A → B) (h0 : f 0 = 0) (h1 : f 1 = 1) (h : Matrix (Fin k) (Fin k) A) :
+    (midEmb h).map f = midEmb (h.map f) := by
+  simp only [midEmb, Matrix.fromBlocks_map, Matrix.map_zero f h0, Matrix.map_one f h0 h1]
+
+theorem par_map (f : A → B) (h0 : f 0 = 0) (h1 : f 1 = 1) {P : Matrix (Fin k) (Fin k) A → Prop}
+    {P' : Matrix (Fin k) (Fin k) B → Prop} (hPP : ∀ h, P h → P' (h.map f))
+    {x : Matrix (Idx r k) (Idx r k) A} (hx : Par P x) : Par P' (x.map f) := by
+  obtain ⟨h11, h33, h21, h31, h32, h, hP, h22⟩ := hx
+  refine ⟨isUpUni_map f h0 h1 h11, isUpUni_map f h0 h1 h33, ?_, ?_, ?_, h.map f, hPP h hP, ?_⟩
+  · show (b21 x).map f = 0
+    rw [h21, Matrix.map_zero f h0]
+  · show (b31 x).map f = 0
+    rw [h31, Matrix.map_zero f h0]
+  · show (b32 x).map f = 0
+    rw [h32, Matrix.map_zero f h0]
+  · show (b22 x).map f = midEmb (h.map f)
+    rw [h22, midEmb_map f h0 h1]
+
+variable [Nontrivial B] (π : A →+* B) (hπ : Function.Surjective π)
+
+theorem parG_map_glRed {P : Matrix (Fin k) (Fin k) A → Prop} {P' : Matrix (Fin k) (Fin k) B → Prop}
+    (hP : GP P) (hP' : GP P') (hPP : ∀ h, P h → P' (h.map π))
+    (hlift : ∀ h, P' h → P (h.map (lift π hπ))) :
+    (parG (r := r) hP).map (glRed π) = parG (r := r) hP' := by
+  ext y
+  constructor
+  · rintro ⟨x, hx, rfl⟩
+    change Par P' ((glRed π x : GL (Idx r k) B) : Matrix (Idx r k) (Idx r k) B)
+    rw [glRed_coe]
+    exact par_map π (map_zero π) (map_one π) hPP hx
+  · intro hy
+    have hy' : Par P' (y : Matrix (Idx r k) (Idx r k) B) := hy
+    have hx : Par P ((y : Matrix (Idx r k) (Idx r k) B).map (lift π hπ)) :=
+      par_map _ (lift_zero π hπ) (lift_one π hπ) hlift hy'
+    refine ⟨Matrix.GeneralLinearGroup.mk'' _ (par_det hP hx), hx, ?_⟩
+    apply Units.ext
+    rw [glRed_coe]
+    exact map_lift π hπ _
+
+
+end Par
+
+theorem sG_map_glRed {A B : Type} [CommRing A] [IsLocalRing A] [Field B] {r k : ℕ} (π : A →+* B)
+    (hπ : Function.Surjective π) : (sG A r k).map (glRed π) = sG B r k := by
+  refine parG_map_glRed π hπ _ _ (fun h hh => ?_) (fun h hh => ?_)
+  · rw [← RingHom.mapMatrix_apply, ← RingHom.map_det]; exact hh.map π
+  · refine isUnit_of_map π hπ _ ?_
+    rw [RingHom.map_det, RingHom.mapMatrix_apply, map_lift π hπ]
+    exact hh
+
+section Grp
+
+theorem map_conj {G Q : Type} [Group G] [Group Q] (f : G →* Q) (H : Subgroup G) (c : G) :
+    (H.map (MulAut.conj c).toMonoidHom).map f = (H.map f).map (MulAut.conj (f c)).toMonoidHom := by
+  rw [Subgroup.map_map, Subgroup.map_map]
+  congr 1
+  ext x
+  simp [MulAut.conj_apply, map_mul, map_inv]
+
+variable {K Q : Type} [Group K] [Group Q] (ρ : K →* Q) (S' : Subgroup K)
+
+theorem map_sup_ker : (S' ⊔ ρ.ker).map ρ = S'.map ρ := by
+  rw [Subgroup.map_sup, (Subgroup.map_eq_bot_iff ρ.ker).2 le_rfl, sup_bot_eq]
+
+theorem mem_sup_ker {x : K} : x ∈ S' ⊔ ρ.ker ↔ ∃ s ∈ S', ∃ κ ∈ ρ.ker, s * κ = x := by
+  first
+    | exact Subgroup.mem_sup_of_normal_right
+
+theorem map_eq_conj (ψ : K →* Q) (hψ : Function.Surjective ψ) (S' : Subgroup K) (H : Subgroup Q) (c : Q)
+    (h : ∀ x, x ∈ S' ↔ c⁻¹ * ψ x * c ∈ H) : S'.map ψ = H.map (MulAut.conj c).toMonoidHom := by
+  ext y
+  simp only [Subgroup.mem_map, MulEquiv.coe_toMonoidHom, MulAut.conj_apply]
+  constructor
+  · rintro ⟨x, hx, rfl⟩
+    exact ⟨c⁻¹ * ψ x * c, (h x).1 hx, by group⟩
+  · rintro ⟨h', hh', rfl⟩
+    obtain ⟨x, hx⟩ := hψ (c * h' * c⁻¹)
+    refine ⟨x, (h x).2 ?_, hx⟩
+    have e : c⁻¹ * (c * h' * c⁻¹) * c = h' := by group
+    rw [hx, e]
+    exact hh'
+
+end Grp
+
+end MassDataIdxStImB
+end
+end
+end
+
 @[expose] public section
 
 noncomputable section
