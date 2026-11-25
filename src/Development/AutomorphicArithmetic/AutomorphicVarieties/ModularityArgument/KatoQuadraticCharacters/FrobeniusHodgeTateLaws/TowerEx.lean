@@ -13,7 +13,6 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CmpProps
 public import Mathlib.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita
 public import Mathlib.RingTheory.HahnSeries.Summable
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsCuspExpansionAtInfinityProperties
-public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.JTLevelOne
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.GammaLeOfDvd
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemModularFunctionRingOverIffHasSomeLevelOver
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IntegralOverJInvariantOfHasSomeLevelOver
@@ -41,7 +40,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasQExpansio
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PolynomialRelationPassesToQExpansions
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsCuspExpansionDiscriminantIntegerLeadingOne
 public import Mathlib.Algebra.Order.Ring.Rat
-public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HahnSeriesSubringCoeffMulInvMem
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MdifferentiableOfHasSomeLevelOver
 public import Mathlib.RingTheory.HahnSeries.Multiplication
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsHahnSeriesScaleTwistRingHom
@@ -56,15 +54,12 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CuspExpan
 public import Mathlib.Basic.Complex.Basic
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsComplexRingEquivExtendingSubfieldAut
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.LevelNFunctionGaloisConjQExpansion
-public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsInjectiveCuspExpansionRingHom
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HasSomeLevelOverCompGLTwoPosRat
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.Complex.UpperHalfPlane.Manifold
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.UpperHalfPlaneHolomorphicMulEqZeroIff
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.GaloisExponentRootOfUnityExpTwoPiI
-public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SlTwoDiagConjCongruenceIffDiagOneUnitMatrixEq
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.DiagOneUnitConjLiftsSl2IntReductionMod
-public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ModularFunctionFractionFieldSlRightAction
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ModularFunctionFractionFieldSaturation
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.FrobeniusHodgeTateLaws.ThickFrames
 import Mathlib.Algebra.Order.Floor.Extended
@@ -127,6 +122,311 @@ import Mathlib.RingTheory.PiTensorProduct
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIntegralCuspExpansionJInvariant =====
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIntegralCuspExpansionJInvariant", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Foundations.MemRingOfInR\npublic import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ModularJExpansionAndPolynomialAndIsIntegral\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Rat\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Definitions.Divisors.ZetaActRefl\npublic import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsPolynomialModularJOfHasQExpansion\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+open scoped UpperHalfPlane MatrixGroups ModularForm Manifold BigOperators
+open GlobalTheory.QFam GlobalTheory.WpFam GlobalTheory.KZ GlobalTheory.FN
+open ReciprocityTheory.ChartRestriction.L1 (DD jT IsMF)
+open ModularForm (E₄ E₆)
+
+namespace GlobalTheory.FN
+
+theorem DD_mul_jT_smul (γ : SL(2, ℤ)) (τ : ℍ) : DD τ * jT (γ • τ) = E₄ τ ^ 3 := by
+  rw [_root_.ReciprocityTheory.ChartRestriction.L1.jT_smul, jT, ReciprocityTheory.ChartRestriction.L1.AA, mul_div_cancel₀ _ (ReciprocityTheory.ChartRestriction.L1.DD_ne_zero τ)]
+
+theorem jT_level_one : ∀ E : Subring ℂ, Lv E 1 1 jT ∧ ∀ (γ : SL(2, ℤ)) (τ : ℍ), jT (γ • τ) = jT τ := by
+  intro E
+  refine ⟨⟨fun γ _ τ => _root_.ReciprocityTheory.ChartRestriction.L1.jT_smul γ τ, fun γ => ?_⟩, _root_.ReciprocityTheory.ChartRestriction.L1.jT_smul⟩
+  have hE4 : QAll (· ∈ E) 1 ⇑E₄ := ((eis_q 1 one_pos _ (Or.inl rfl)).2.1) E
+  have h3 : QAll (· ∈ E) 1 fun τ => E₄ τ ^ 3 := (QAllSubring.ring_closed E 1 one_pos).2.2.2.2.1 _ 3 hE4
+  have hfun : (fun τ => DD τ ^ 1 * jT (γ • τ)) = fun τ => E₄ τ ^ 3 := by
+    funext τ; rw [pow_one, DD_mul_jT_smul]
+  rw [hfun]; exact h3
+
+end GlobalTheory.FN
+end
+end
+
+section
+@[expose] public section
+
+open scoped UpperHalfPlane MatrixGroups ModularForm Manifold BigOperators
+open GlobalTheory.QFam GlobalTheory.WpFam GlobalTheory.KZ GlobalTheory.FN
+open ReciprocityTheory.ChartRestriction.L1 (DD jT IsMF)
+open ModularForm (E₄ E₆)
+
+namespace GlobalTheory.HahnSub
+
+theorem coeff_mul_mem {Ω : Type} [Field Ω] (A : Subring Ω) (h h' : HahnSeries ℚ Ω)
+    (hh : ∀ r, h.coeff r ∈ A) (hh' : ∀ r, h'.coeff r ∈ A) (r : ℚ) : (h * h').coeff r ∈ A := by
+  rw [HahnSeries.coeff_mul]
+  exact A.sum_mem fun ij _ => A.mul_mem (hh ij.1) (hh' ij.2)
+
+theorem coeff_inv_mem {Ω : Type} [Field Ω] (A : Subring Ω) (h : HahnSeries ℚ Ω)
+    (hh : ∀ r, h.coeff r ∈ A) (hl : h.leadingCoeff⁻¹ ∈ A) (r : ℚ) : (h⁻¹).coeff r ∈ A := by
+  by_cases h0 : h = 0
+  · subst h0
+    simp
+
+  let g : HahnSeries ℚ A :=
+    { coeff := fun s => ⟨h.coeff s, hh s⟩
+      isPWO_support' := h.isPWO_support.mono fun s hs e => hs (Subtype.ext e) }
+  have hg : ∀ s, (g.coeff s : Ω) = h.coeff s := fun s => rfl
+  have hg0 : g ≠ 0 := by
+    intro e
+    apply h0
+    ext s
+    rw [← hg, e]
+    rfl
+  have hord : g.order = h.order := by
+    apply le_antisymm
+    · apply HahnSeries.order_le_of_coeff_ne_zero
+      intro e
+      apply HahnSeries.leadingCoeff_ne_zero.2 h0
+      rw [HahnSeries.leadingCoeff_eq, ← hg, e]
+      rfl
+    · apply HahnSeries.order_le_of_coeff_ne_zero
+      rw [← hg]
+      intro e
+      apply HahnSeries.leadingCoeff_ne_zero.2 hg0
+      rw [HahnSeries.leadingCoeff_eq]
+      exact Subtype.ext e
+  have hlead : (g.leadingCoeff : Ω) = h.leadingCoeff := by
+    rw [HahnSeries.leadingCoeff_eq, HahnSeries.leadingCoeff_eq, hg, hord]
+  have hunit : IsUnit g.leadingCoeff := by
+    refine IsUnit.of_mul_eq_one (⟨h.leadingCoeff⁻¹, hl⟩ : A) ?_
+    apply Subtype.ext
+    show (g.leadingCoeff : Ω) * h.leadingCoeff⁻¹ = 1
+    rw [hlead]
+    exact mul_inv_cancel₀ (HahnSeries.leadingCoeff_ne_zero.2 h0)
+  obtain ⟨v, hv⟩ := (HahnSeries.isUnit_iff.2 hunit).exists_right_inv
+  let f : A →ₙ+* Ω := A.subtype.toNonUnitalRingHom
+  have hgf : g.map f = h := by
+    ext s
+    rfl
+  have hone : (1 : HahnSeries ℚ A).map f = 1 := by
+    ext s
+    rw [HahnSeries.map_coeff, HahnSeries.coeff_one, HahnSeries.coeff_one]
+    split_ifs <;> rfl
+  have key : h * v.map f = 1 := by
+    rw [← hgf, ← HahnSeries.map_mul, hv, hone]
+  rw [inv_eq_of_mul_eq_one_right key, HahnSeries.map_coeff]
+  exact (v.coeff r).2
+
+theorem coeff_mul_inv_mem : ∀ (Ω : Type) [Field Ω] (A : Subring Ω), (∀ h h' : HahnSeries ℚ Ω, (∀ r, h.coeff r ∈ A) → (∀ r, h'.coeff r ∈ A) → ∀ r, (h * h').coeff r ∈ A) ∧ ∀ h : HahnSeries ℚ Ω, (∀ r, h.coeff r ∈ A) → h.leadingCoeff⁻¹ ∈ A → ∀ r, (h⁻¹).coeff r ∈ A := by
+  intro Ω _ A
+  exact ⟨fun h h' hh hh' r => coeff_mul_mem A h h' hh hh' r,
+    fun h hh hl r => coeff_inv_mem A h hh hl r⟩
+
+end GlobalTheory.HahnSub
+end
+end
+
+section
+section -- clump:auto
+@[expose] public section
+
+open scoped UpperHalfPlane MatrixGroups ModularForm Manifold BigOperators
+open GlobalTheory.QFam GlobalTheory.WpFam GlobalTheory.KZ GlobalTheory.FN
+open ReciprocityTheory.ChartRestriction.L1 (DD jT IsMF)
+open ModularForm (E₄ E₆)
+
+namespace GlobalTheory.FN
+
+theorem exists_isExp : ∀ (Ω : Type) [Field Ω] (ε : Ω →+* ℂ) (f : ℍ → ℂ), InR ε.range f →
+    ∃ h : HahnSeries ℚ Ω, IsExp ε f h := by
+  intro Ω _ ε f hf
+  obtain ⟨N, w, hN, -, hq⟩ := hf
+  obtain ⟨a, ha, hmem⟩ := hq 1
+  choose b hb using fun n => (hmem n : a n ∈ ε.range)
+  have hg : HasQ N (fun τ => DD τ ^ w * f τ) (fun n => ε (b n)) := by
+    intro τ
+    have := ha τ
+    simp only [one_smul] at this
+    simpa only [hb] using this
+  obtain ⟨hg', hexg, -, -⟩ := _root_.GlobalTheory.fn_hahnSeries_of_hasQ Ω ε N _ b hN hg
+  obtain ⟨hD, hexD, hD0, -, -⟩ := _root_.GlobalTheory.FNExpD.expD Ω ε
+  obtain ⟨hring, -, hconst, -, hinv⟩ := _root_.GlobalTheory.FNExp.exp_props Ω ε
+  have hDi := hinv DD hD hD0 hexD
+  have hpow : ∀ k : ℕ, IsExp ε (DD⁻¹ ^ k) (hD⁻¹ ^ k) := by
+    intro k
+    induction k with
+    | zero =>
+      have := hconst 1
+      simp only [map_one] at this
+      rw [pow_zero, pow_zero]
+      exact this
+    | succ k ih =>
+      simpa [pow_succ] using (hring _ _ _ _ ih hDi).2.2
+  have hprod := (hring _ _ _ _ hexg (hpow w)).2.2
+  refine ⟨hg' * hD⁻¹ ^ w, ?_⟩
+  convert hprod using 1
+  funext τ
+  have := ReciprocityTheory.ChartRestriction.L1.DD_ne_zero τ
+  simp only [Pi.mul_apply, Pi.pow_apply, Pi.inv_apply]
+  rw [inv_pow, mul_comm (DD τ ^ w), mul_assoc, mul_inv_cancel₀ (pow_ne_zero _ this), mul_one]
+
+end GlobalTheory.FN
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsCuspExpansionAtInfinityOfSomeLevel =====
+
+section -- clump:auto
+@[expose] public section
+
+open scoped UpperHalfPlane MatrixGroups ModularForm Manifold BigOperators
+open GlobalTheory.QFam GlobalTheory.WpFam GlobalTheory.KZ GlobalTheory.FN
+open ReciprocityTheory.ChartRestriction.L1 (DD jT IsMF)
+open ModularForm (E₄ E₆)
+
+noncomputable section
+
+namespace GlobalTheory.FN
+
+variable {Ω : Type} [Field Ω] (ε : Ω →+* ℂ)
+
+theorem exists_isExp_of_mem_ring (a : ring ε.range) : ∃ h : HahnSeries ℚ Ω, IsExp ε a h :=
+  _root_.GlobalTheory.FN.exists_isExp Ω ε a (((_root_.GlobalTheory.FN.mem_ring_iff_inR ε.range).1 a).1 a.2)
+
+def expan (a : ring ε.range) : HahnSeries ℚ Ω := Classical.choose (exists_isExp_of_mem_ring ε a)
+
+theorem isExp_expan (a : ring ε.range) : IsExp ε a (expan ε a) :=
+  Classical.choose_spec (exists_isExp_of_mem_ring ε a)
+
+theorem expan_eq_of_isExp {a : ring ε.range} {h : HahnSeries ℚ Ω} (ha : IsExp ε a h) : expan ε a = h :=
+  (_root_.GlobalTheory.FNExp.exp_props Ω ε).2.1 _ _ _ (isExp_expan ε a) ha
+
+def expanHom : ring ε.range →+* HahnSeries ℚ Ω where
+  toFun := expan ε
+  map_one' := by
+    apply expan_eq_of_isExp
+    have h := (_root_.GlobalTheory.FNExp.exp_props Ω ε).2.2.1 1
+    have e1 : ((1 : ring ε.range) : ℍ → ℂ) = fun _ => ε 1 := by ext; simp
+    rw [e1]; simpa using h
+  map_mul' a b := by
+    apply expan_eq_of_isExp
+    have h := ((_root_.GlobalTheory.FNExp.exp_props Ω ε).1 _ _ _ _ (isExp_expan ε a) (isExp_expan ε b)).2.2
+    simpa using h
+  map_zero' := by
+    apply expan_eq_of_isExp
+    have h := (_root_.GlobalTheory.FNExp.exp_props Ω ε).2.2.1 0
+    have e0 : ((0 : ring ε.range) : ℍ → ℂ) = fun _ => ε 0 := by ext; simp
+    rw [e0]; simpa using h
+  map_add' a b := by
+    apply expan_eq_of_isExp
+    have h := ((_root_.GlobalTheory.FNExp.exp_props Ω ε).1 _ _ _ _ (isExp_expan ε a) (isExp_expan ε b)).1
+    simpa using h
+
+theorem expanHom_injective : Function.Injective (expanHom ε) := by
+  intro a b hab
+  have hsub := ((_root_.GlobalTheory.FNExp.exp_props Ω ε).1 _ _ _ _ (isExp_expan ε a) (isExp_expan ε b)).2.1
+  have h0 : expan ε a - expan ε b = 0 := sub_eq_zero.mpr hab
+  rw [h0] at hsub
+  have hmem : ((a - b : ring ε.range) : ℍ → ℂ) ∈ ring ε.range := (a - b).2
+  have hin : InR ε.range ((a - b : ring ε.range) : ℍ → ℂ) := ((_root_.GlobalTheory.FN.mem_ring_iff_inR ε.range).1 _).1 hmem
+  have hhol := _root_.GlobalTheory.FN.inR_mdifferentiable ε.range _ hin
+  push_cast at hhol
+  have := (_root_.GlobalTheory.FNExp.exp_props Ω ε).2.2.2.1 _ hhol hsub
+  exact Subtype.ext (sub_eq_zero.mp this)
+
+theorem expansion_injective_ringHom :
+    ∀ (Ω : Type) [Field Ω] (ε : Ω →+* ℂ), ∃ e : GlobalTheory.FN.ring ε.range →+* HahnSeries ℚ Ω,
+      Function.Injective e ∧ ∀ a : GlobalTheory.FN.ring ε.range, IsExp ε a (e a) :=
+  fun _ _ ε => ⟨expanHom ε, expanHom_injective ε, isExp_expan ε⟩
+
+end GlobalTheory.FN
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsInjectiveCuspExpansionRingHom =====
+end
+
+section
+@[expose] public section
+
+open scoped UpperHalfPlane MatrixGroups ModularForm Manifold BigOperators
+open GlobalTheory.QFam GlobalTheory.WpFam GlobalTheory.KZ GlobalTheory.FN
+open ReciprocityTheory.ChartRestriction.L1 (DD jT IsMF)
+open ModularForm (E₄ E₆)
+
+namespace GlobalTheory.FNCong
+
+theorem cong_iff_dg : ∀ (N : ℕ) (d : ℤ) (u : (ZMod N)ˣ), (u : ZMod N) = d → ∀ γ γ' : SL(2, ℤ),
+    Cong N d γ γ' ↔ dg u * redGL N γ' = redGL N γ * dg u := by
+  intro N d u hu γ γ'
+  have key : (dg u * redGL N γ' = redGL N γ * dg u) ↔
+      ((dg u : Matrix (Fin 2) (Fin 2) (ZMod N)) * (redGL N γ' : Matrix (Fin 2) (Fin 2) (ZMod N)) =
+        (redGL N γ : Matrix (Fin 2) (Fin 2) (ZMod N)) * (dg u : Matrix (Fin 2) (Fin 2) (ZMod N))) := by
+    constructor
+    · intro h; rw [← Units.val_mul, h, Units.val_mul]
+    · intro h; ext1; simpa using h
+  rw [key]
+  have hM : ∀ δ : SL(2, ℤ), (redGL N δ : Matrix (Fin 2) (Fin 2) (ZMod N)) =
+      !![(en δ 0 0 : ZMod N), en δ 0 1; en δ 1 0, en δ 1 1] := by
+    intro δ
+    ext i j
+    fin_cases i <;> fin_cases j <;> rfl
+  have hD : (dg u : Matrix (Fin 2) (Fin 2) (ZMod N)) = !![1, 0; 0, (d : ZMod N)] := by
+    show !![1, 0; 0, (u : ZMod N)] = _
+    rw [hu]
+  rw [hM, hM, hD, Matrix.mul_fin_two, Matrix.mul_fin_two]
+  simp only [Cong, ← Matrix.ext_iff, Fin.forall_fin_two, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_zero,
+    Matrix.cons_val_one, Matrix.empty_val', Matrix.cons_val_fin_one, one_mul, zero_mul, add_zero,
+    zero_add, mul_one, mul_zero]
+  have hdu : IsUnit (d : ZMod N) := hu ▸ u.isUnit
+  constructor
+  · rintro ⟨h1, h2, h3, h4⟩
+    refine ⟨⟨h1, ?_⟩, ?_, ?_⟩
+    · rw [h2, mul_comm]
+    · rw [h3]
+    · rw [h4, mul_comm]
+  · rintro ⟨⟨h1, h2⟩, h3, h4⟩
+    refine ⟨h1, ?_, h3, ?_⟩
+    · rw [h2, mul_comm]
+    · rw [mul_comm] at h4
+      exact hdu.mul_right_cancel h4
+
+end GlobalTheory.FNCong
+end
+end
+
+section
+@[expose] public section
+
+open scoped UpperHalfPlane MatrixGroups ModularForm Manifold BigOperators
+open GlobalTheory.QFam GlobalTheory.WpFam GlobalTheory.KZ GlobalTheory.FN
+open ReciprocityTheory.ChartRestriction.L1 (DD jT IsMF)
+open ModularForm (E₄ E₆)
+
+namespace GlobalTheory.FN
+
+theorem frac_sl_right_action : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (T : Frac Ω ε), (∀ f, T.sl 1 f = f) ∧ ∀ g h f, T.sl (g * h) f = T.sl h (T.sl g f) := by
+  intro Ω _ _ _ ε T
+  obtain ⟨hext, hcl, -, -⟩ := _root_.GlobalTheory.FN.frac_ext_clo_inj Ω ε T
+  obtain ⟨c1, cmul, -, -⟩ := _root_.GlobalTheory.FN.cmp_props
+  refine ⟨fun f => ?_, fun g h f => ?_⟩
+  · have e : (T.sl 1 : T.K ≃ₐ[Ω] T.K).toRingEquiv.toRingHom = RingHom.id T.K := by
+      apply hext
+      intro a
+      exact T.sl_io 1 a a (c1 a).symm
+    exact congrArg (fun φ : T.K →+* T.K => φ f) e
+  · have e : (T.sl (g * h) : T.K ≃ₐ[Ω] T.K).toRingEquiv.toRingHom =
+        ((T.sl h : T.K ≃ₐ[Ω] T.K).toRingEquiv.toRingHom).comp ((T.sl g : T.K ≃ₐ[Ω] T.K).toRingEquiv.toRingHom) := by
+      apply hext
+      intro a
+      obtain ⟨a', ha', hga⟩ := hcl g a
+      obtain ⟨a'', ha'', hha⟩ := hcl h a'
+      have : (a'' : ℍ → ℂ) = cmp (g * h) a := by rw [ha'', ha', cmul]
+      simp only [RingHom.comp_apply]
+      show T.sl (g * h) (T.io a) = T.sl h (T.sl g (T.io a))
+      rw [T.sl_io (g * h) a a'' this, hga, hha]
+    exact congrArg (fun φ : T.K →+* T.K => φ f) e
+
+end GlobalTheory.FN
+end
+end
+
 @[expose] public section
 
 open scoped UpperHalfPlane MatrixGroups ModularForm Manifold BigOperators
