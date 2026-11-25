@@ -2,7 +2,6 @@ module
 
 public import PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.ArchInt
 public import GroundTheory.GlobalFields.TateThesis.EulerFactorsArch
-public import PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.HcToIdele
 public import GroundTheory.GlobalFields.TateThesis.RootNumberLocalFinite
 public import PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.LibFresh
 public import GroundTheory.LocalFields.LocalFourier
@@ -23,13 +22,14 @@ import Mathlib.Topology.Algebra.Nonarchimedean.TotallyDisconnected
 import Mathlib.Topology.Compactness.Paracompact
 import Mathlib.Topology.Separation.Connected
 import GroundTheory.LocalFields.LocalFourierMult
-import PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.UnitaryTransvectionZeroSecondMemClosure
+public import PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.UnitaryTransvectionZeroSecondMemClosure
 import Formalism.LocalToGlobal.IndefiniteReal.PHeisFCA
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.AdeleLC
 import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.BrData
 import GroundTheory.GlobalFields.CompletionAtPlace.Integers
 import PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.InvMulVecScalarMul
 import PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.FinalH
+public import GroundTheory.GlobalFields.WeilGroups.QuasiCharacterDecomposition
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.ArchimedeanIntegralHolds, PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.CharacterPositiveHolds, PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.CharacterProductHolds, PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.CoefficientDivisorHolds, PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.SecondCountableTopologyUnits, PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.InverseSubstitutionHolds, PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.LocalIntegralOfSubstitution, PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.LocalExpansionHolds
@@ -37,6 +37,108 @@ import PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusK
 -- ===== clump member: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.ArchimedeanIntegralHolds =====
 -- clump-header: {"m": "PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.ArchimedeanIntegralHolds", "h": "module\n\npublic import PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.ArchInt\nimport Aesop.Main\npublic import GroundTheory.GlobalFields.TateThesis.EulerFactorsArch\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.MeasureTheory.Integral.Pi\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ConstSmall\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial
+open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V.Af UpperTheory.V.Base
+open scoped Matrix
+open MeasureTheory GroundTheory.Global GroundTheory.Global.IdeleGroup UpperTheory.V.Sd UpperTheory.V.Published GroundTheory.LocalField
+
+namespace UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein.L4
+
+variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F]
+
+open GroundTheory.Automorphic.GodementSection
+
+
+open Classical in
+def finK (c : HeightOneSpectrum (𝓞 F) → ℕ) (yf : (Af F)ˣ) (ξ : F) (b : (Af F)ˣ) : ℂ :=
+  if (∀ w, Valued.v (pLoc F w ((b : Af F) * (yf : Af F))) ≤ WithZero.exp (-(c w : ℤ))) ∧
+      (∀ w, Valued.v (pLoc F w (((b⁻¹ : (Af F)ˣ) : Af F) * algebraMap F (Af F) ξ)) ≤
+        WithZero.exp ((c w : ℤ) + dd w))
+  then ((finiteAdelicChar F (((b⁻¹ : (Af F)ˣ) : Af F) * algebraMap F (Af F) ξ) : Circle) : ℂ) else 0
+
+def ωF (ω : HChar F) (b : (Af F)ˣ) : ℂ := ((ω.1 (ofFinite b) : ℂˣ) : ℂ)
+
+def qc (ω : HChar F) : QuasiCharacter F where
+  toMonoidHom := QuotientGroup.lift _ ω.1 (by
+    rintro _ ⟨a, rfl⟩
+    exact ω.2.2 a)
+  continuous_toFun := (QuotientGroup.isQuotientMap_mk _).continuous_iff.2 ω.2.1
+
+theorem norm_qc (ω : HChar F) (h : IsOfFinOrder ω) (c : GroundTheory.Global.IdeleClassGroup F) :
+    ‖((qc ω c : ℂˣ) : ℂ)‖ = 1 := by
+  induction c using QuotientGroup.induction_on with
+  | H x => exact Esk.HyperbolicKernelContinuity.norm_omega h x
+
+def hc (ω : HChar F) (h : IsOfFinOrder ω) : HeckeCharacter F := QuasiCharacter.toUnitary (qc ω) (norm_qc ω h)
+
+theorem hc_toIdele (ω : HChar F) (h : IsOfFinOrder ω) (x : IdeleGroup F) :
+    (((hc ω h).toIdele x : Circle) : ℂ) = ((ω.1 x : ℂˣ) : ℂ) := rfl
+
+def xiF (ξ : Fˣ) : (Af F)ˣ := Units.map (algebraMap F (Af F)).toMonoidHom ξ
+
+def ordAt (b : (Af F)ˣ) (v : HeightOneSpectrum (𝓞 F)) : ℤ := ord (pLoc F v (b : Af F))
+
+
+open Classical in
+def locF (ω : HChar F) (c : HeightOneSpectrum (𝓞 F) → ℕ) (yf : (Af F)ˣ) (ξ : F) (v : HeightOneSpectrum (𝓞 F))
+    (a : (v.adicCompletion F)ˣ) : ℂ :=
+  (if Valued.v ((a : v.adicCompletion F) * pLoc F v (yf : Af F)) ≤ WithZero.exp (-(c v : ℤ)) ∧
+      Valued.v (((a⁻¹ : (v.adicCompletion F)ˣ) : v.adicCompletion F) * algebraMap F (v.adicCompletion F) ξ) ≤
+        WithZero.exp ((c v : ℤ) + dd v)
+    then (localAdelicChar F v (((a⁻¹ : (v.adicCompletion F)ˣ) : v.adicCompletion F) *
+      algebraMap F (v.adicCompletion F) ξ) : ℂ) else 0) * ((ω.loc v a : ℂˣ) : ℂ)⁻¹
+
+def cst (ω : HChar F) (c : HeightOneSpectrum (𝓞 F) → ℕ) (v : HeightOneSpectrum (𝓞 F)) : ℂ :=
+  if c v = 0 then ((ω.val v : ℂˣ) : ℂ) ^ (-dd v) else
+    ∫ x in ordShell (v.adicCompletion F) (-((c v : ℤ) + dd v)), ((ω.loc v x : ℂˣ) : ℂ) *
+      (localAdelicChar F v (x : v.adicCompletion F) : ℂ) ∂multHaar (v.adicCompletion F)
+
+end UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein.L4
+
+namespace UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein
+
+open L4 GroundTheory.Automorphic.GodementSection
+
+def InvSubst : Prop := ∀ (F : Type) [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F))
+  (f : (v.adicCompletion F)ˣ → ℂ) (t : (v.adicCompletion F)ˣ),
+    (Integrable f (multHaar (v.adicCompletion F)) ↔
+      Integrable (fun x => f (t * x⁻¹)) (multHaar (v.adicCompletion F))) ∧
+    ∫ a, f a ∂multHaar (v.adicCompletion F) = ∫ x, f (t * x⁻¹) ∂multHaar (v.adicCompletion F)
+
+def LocInt : Prop := ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (ω : HChar F)
+  (c : HeightOneSpectrum (𝓞 F) → ℕ), Hyp ω c → ∀ (yf : (Af F)ˣ) (ξ : Fˣ) (v : HeightOneSpectrum (𝓞 F)),
+    Integrable (locF ω c yf (ξ : F) v) (multHaar (v.adicCompletion F)) ∧
+    ∫ a, locF ω c yf (ξ : F) v a ∂multHaar (v.adicCompletion F) =
+      ((ω.loc v (Units.map (algebraMap F (v.adicCompletion F)).toMonoidHom ξ) : ℂˣ) : ℂ)⁻¹ *
+        if ordAt (xiF ξ * yf) v + dd v < 0 then 0 else
+          cst ω c v * ∑ j ∈ Finset.range ((ordAt (xiF ξ * yf) v + dd v).toNat + 1), chiW ω c v ^ j
+
+def OmegaProd : Prop := ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (ω : HChar F)
+  (c : HeightOneSpectrum (𝓞 F) → ℕ), Hyp ω c → ∀ (b : (Af F)ˣ) (S : Finset (HeightOneSpectrum (𝓞 F))),
+    (∀ w ∉ S, c w = 0 ∧ IsIntegralUnitAt b w) →
+    ωF ω b = ∏ v ∈ S, ((ω.loc v (finUnitAt v b) : ℂˣ) : ℂ)
+
+def FinSplit : Prop := ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (ω : HChar F)
+  (c : HeightOneSpectrum (𝓞 F) → ℕ), Hyp ω c → ∀ (yf : (Af F)ˣ) (ξ : Fˣ) (S : Finset (HeightOneSpectrum (𝓞 F))),
+    (∀ w ∉ S, c w = 0 ∧ dd w = 0 ∧ IsIntegralUnitAt yf w ∧ IsIntegralUnitAt (xiF ξ) w) →
+    (∀ v, Integrable (locF ω c yf (ξ : F) v) (multHaar (v.adicCompletion F))) →
+    Integrable (fun b => finK c yf (ξ : F) b * (ωF ω b)⁻¹) (finiteIdeleMeasure F) ∧
+      ∫ b, finK c yf (ξ : F) b * (ωF ω b)⁻¹ ∂finiteIdeleMeasure F =
+        ∏ v ∈ S, ∫ a, locF ω c yf (ξ : F) v a ∂multHaar (v.adicCompletion F)
+
+def OmegaPos : Prop := ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (ω : HChar F)
+  (c : HeightOneSpectrum (𝓞 F) → ℕ), Hyp ω c → ∀ ξ : Fˣ, (∀ v, 0 < reAt v (ξ : F)) → ωF ω (xiF ξ) = 1
+
+end UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein
+end
+end
+end
+
 @[expose] public section
 
 noncomputable section
