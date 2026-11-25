@@ -8,8 +8,6 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaEqL
 public import Mathlib.RingTheory.Ideal.Norm.RelNorm
 public import Mathlib.Algebra.Module.FinitePresentation
 public import Mathlib.RingTheory.Flat.EquationalCriterion
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LamIsLattice
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RelativeNormCmAbsNorm
 public import Mathlib.Basic.Real.Basic
 public import Mathlib.NumberTheory.NumberField.Basic
 public import Mathlib.RingTheory.Ideal.Norm.AbsNorm
@@ -18,11 +16,9 @@ public import Mathlib.Analysis.Real.Sqrt
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeQuotientTorsionNonzero
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorsionCardLeAbsNormPow
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorsionNormZetaBound
 public import Mathlib.SetTheory.Cardinal.Finite
 public import Mathlib.Topology.Algebra.InfiniteSum.Defs
 public import Mathlib.Topology.MetricSpace.Pseudo.Defs
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TsumCompBoundedFibresLe
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.ModerateGrowthSchwartz
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
@@ -92,6 +88,12 @@ import Formalism.LocalRingCardinality.DataTheta
 import Formalism.LocalToGlobal.BesselHermitianTheta.NoncompactGapAtLeastRange
 import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
 import Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf
+public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RayLSeriesEulerProduct
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Data.Set.Card
+public import Mathlib.Topology.Algebra.InfiniteSum.Order
+public import Mathlib.Topology.Algebra.InfiniteSum.Real
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaBlockQuotientInjection, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaBlockMatrixMultiplicative, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DenominatorIndexBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DenominatorNormQuadraticExtension, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemLatticeOfDualPairing, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorsionOrthogonalityIntegralSolution, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaBlockLowerBoundTorsion, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdealPrincipalElementNormBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaBlockSeriesZetaBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorsionSumZetaBoundDelta, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SummableDenominatorPowerOfLt, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SummableDenominatorPowerOfLtStatement
@@ -969,6 +971,25 @@ end -- clump:auto
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorsionOrthogonalityIntegralSolution =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorsionOrthogonalityIntegralSolution", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsLatIntVec\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermOf\npublic import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CmConjugationProperties\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LamIsLattice\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemLatticeOfDualPairing\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.CompanionTheory.SiegelND.Integ.Hua GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.HS
+open scoped Matrix
+
+namespace GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.HS
+
+theorem isLat_lam_of_matrix (K : Type) [Field K] [NumberField K] (m : ℕ)
+    (c : Matrix (Fin m) (Fin m) K) : IsLat (lam c) := by
+  have hL : IsLat (intVec K m) := isLat_intVec m
+  refine ⟨Submodule.FG.sup hL.1 (Submodule.FG.map _ hL.1), ?_⟩
+  rw [eq_top_iff, ← hL.2]
+  exact Submodule.span_mono (fun v hv => (le_sup_left : intVec K m ≤ lam c) hv)
+
+end GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.HS
+end
+end
+
 @[expose] public section
 
 open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.CompanionTheory.SiegelND.Integ.Hua GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.HS
@@ -1145,6 +1166,60 @@ end -- clump:auto
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaBlockLowerBoundTorsion =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaBlockLowerBoundTorsion", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsLatIntVec\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermOf\npublic import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CmConjugationProperties\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaBlockMatrixMultiplicative\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DenominatorIndexBound\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DenominatorNormQuadraticExtension\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LamIsLattice\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RelativeNormCmAbsNorm\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorsionOrthogonalityIntegralSolution\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Henselian\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.CompanionTheory.SiegelND.Integ.Hua GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.HS
+open scoped Matrix
+
+namespace GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.NormSig
+
+theorem norm_eq_mul_conj_and_absNorm : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → ∀ t : 𝓞 E, algebraMap F E ((RingOfIntegers.norm F t : 𝓞 F) : F) = (t : E) * σ (t : E) ∧ Ideal.absNorm (Ideal.span {RingOfIntegers.norm F t}) = Ideal.absNorm (Ideal.span {t}) := by
+  intro F E _ _ _ _ _ σ hσ t
+  classical
+  obtain ⟨_, hE, hdeg, hconj⟩ := hσ
+  haveI : FiniteDimensional F E := Module.finite_of_finrank_pos (by rw [hdeg]; norm_num)
+  refine ⟨?_, ?_⟩
+  · set σ' : E ≃ₐ[F] E := AlgEquiv.ofBijective σ (AlgHom.bijective σ) with hσ'
+    have hne : σ' ≠ 1 := by
+      intro h
+      have hx : ∀ x, σ x = x := fun x => by
+        have := congrArg (fun g : E ≃ₐ[F] E => g x) h
+        simpa [hσ'] using this
+      obtain ⟨w⟩ := (inferInstance : Nonempty (InfinitePlace E))
+      have hwc : w.IsComplex := hE.isComplex w
+      rw [InfinitePlace.isComplex_iff] at hwc
+      apply hwc
+      rw [ComplexEmbedding.isReal_iff]
+      ext x
+      rw [ComplexEmbedding.conjugate_coe_eq, starRingEnd_apply, ← hconj, hx]
+    have hcard_le : Fintype.card (E ≃ₐ[F] E) ≤ 2 := by
+      rw [← hdeg]
+      exact (Fintype.card_le_of_injective (fun g : E ≃ₐ[F] E => (g : E →ₐ[F] E))
+        (fun a b h => AlgEquiv.ext fun x => DFunLike.congr_fun h x)).trans AlgHom.card_le
+    have huniv : (Finset.univ : Finset (E ≃ₐ[F] E)) = {1, σ'} := by
+      symm
+      apply Finset.eq_of_subset_of_card_le (Finset.subset_univ _)
+      rw [Finset.card_univ, Finset.card_pair hne.symm]
+      exact hcard_le
+    haveI : IsGalois F E := IsGalois.of_card_aut_eq_finrank F E (by
+      rw [hdeg, Nat.card_eq_fintype_card]
+      apply le_antisymm hcard_le
+      rw [← Finset.card_univ, huniv, Finset.card_pair hne.symm])
+    change algebraMap F E (Algebra.norm F (t : E)) = _
+    rw [Algebra.norm_eq_prod_automorphisms, huniv, Finset.prod_pair hne.symm]
+    simp [hσ']
+  · rw [Ideal.absNorm_span_singleton, Ideal.absNorm_span_singleton]
+    congr 1
+    apply Int.cast_injective (α := ℚ)
+    rw [Algebra.coe_norm_int, Algebra.coe_norm_int]
+    change Algebra.norm ℚ (Algebra.norm F (t : E)) = Algebra.norm ℚ (t : E)
+    rw [Algebra.norm_norm]
+
+end GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.NormSig
+end
+end
+
 @[expose] public section
 
 open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.CompanionTheory.SiegelND.Integ.Hua GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.HS
@@ -1397,6 +1472,134 @@ end -- clump:auto
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaBlockSeriesZetaBound =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaBlockSeriesZetaBound", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsLatIntVec\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermOf\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaBlockLowerBoundTorsion\npublic import Mathlib.Basic.Real.Basic\npublic import Mathlib.NumberTheory.NumberField.Basic\npublic import Mathlib.RingTheory.Ideal.Norm.AbsNorm\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdealPrincipalElementNormBound\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeQuotientTorsionNonzero\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorsionCardLeAbsNormPow\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorsionNormZetaBound\npublic import Mathlib.SetTheory.Cardinal.Finite\npublic import Mathlib.Topology.Algebra.InfiniteSum.Defs\npublic import Mathlib.Topology.MetricSpace.Pseudo.Defs\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TsumCompBoundedFibresLe\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaEqLatticeIndex\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LamIsLattice\nimport Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RelativeNormCmAbsNorm\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.CompanionTheory.SiegelND.Integ.Hua GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.HS
+open scoped Matrix
+
+namespace GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.HS
+
+theorem summable_absNorm_rpow_neg (K : Type) [Field K] [NumberField K] {r : ℝ} (hr : 1 < r) :
+    Summable (fun I : Ideal (𝓞 K) => (Ideal.absNorm I : ℝ) ^ (-r)) := by
+  have h := (GlobalTheory.Mem.summable_norm_absNorm_cpow K (s := (r : ℂ)) (by simpa using hr))
+  refine h.congr fun I => ?_
+  rw [← Complex.ofReal_natCast, ← Complex.ofReal_neg, ← Complex.ofReal_cpow (Nat.cast_nonneg _),
+    Complex.norm_real, Real.norm_of_nonneg (Real.rpow_nonneg (Nat.cast_nonneg _) _)]
+
+theorem sum_torsion_le (K : Type) [Field K] [NumberField K] (m : ℕ)
+    (L : Submodule (𝓞 K) (Fin m → K)) (hL : IsLat L) {r : ℝ} (hr : 1 < r)
+    (S : Finset ((Fin m → K) ⧸ L)) :
+    ∑ x ∈ S, (Ideal.absNorm (Ideal.torsionOf (𝓞 K) ((Fin m → K) ⧸ L) x) : ℝ) ^ (-((m : ℝ) + r))
+      ≤ zetaR K r := by
+  classical
+  set τ : (Fin m → K) ⧸ L → Ideal (𝓞 K) := fun x => Ideal.torsionOf (𝓞 K) ((Fin m → K) ⧸ L) x
+    with hτ
+  have hg := summable_absNorm_rpow_neg K hr
+  have hfib : ∀ 𝔞 ∈ S.image τ,
+      ∑ x ∈ S.filter (fun x => τ x = 𝔞), (Ideal.absNorm (τ x) : ℝ) ^ (-((m : ℝ) + r))
+        ≤ (Ideal.absNorm 𝔞 : ℝ) ^ (-r) := by
+    intro 𝔞 h𝔞
+    obtain ⟨x₀, -, rfl⟩ := Finset.mem_image.mp h𝔞
+    have hne : τ x₀ ≠ ⊥ := _root_.GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.HS.torsionOf_quot_lat_ne_bot K m L hL x₀
+    obtain ⟨hfin, hcard⟩ := _root_.GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.TorCard.tor_card K m L hL (τ x₀) hne
+    have hN : (0 : ℝ) < (Ideal.absNorm (τ x₀) : ℝ) := by
+      have : Ideal.absNorm (τ x₀) ≠ 0 := fun h => hne (Ideal.absNorm_eq_zero_iff.mp h)
+      exact_mod_cast Nat.pos_of_ne_zero this
+    have hc : ((S.filter (fun x => τ x = τ x₀)).card : ℝ) ≤ (Ideal.absNorm (τ x₀) : ℝ) ^ m := by
+      have hinj : (S.filter (fun x => τ x = τ x₀)).card ≤
+          Nat.card {x : (Fin m → K) ⧸ L // ∀ a ∈ τ x₀, a • x = 0} := by
+        haveI := Fintype.ofFinite {x : (Fin m → K) ⧸ L // ∀ a ∈ τ x₀, a • x = 0}
+        rw [Nat.card_eq_fintype_card, ← Fintype.card_coe]
+        refine Fintype.card_le_of_injective (fun x => ⟨x.1, fun a ha => ?_⟩) (fun x y h => ?_)
+        · have hx := (Finset.mem_filter.mp x.2).2
+          rw [← hx] at ha
+          exact (Ideal.mem_torsionOf_iff _ _).mp ha
+        · have h' : (x : (Fin m → K) ⧸ L) = y :=
+            congrArg (fun z : {x : (Fin m → K) ⧸ L // ∀ a ∈ τ x₀, a • x = 0} => z.1) h
+          exact Subtype.ext h'
+      exact_mod_cast hinj.trans hcard
+    have hsum : ∑ x ∈ S.filter (fun x => τ x = τ x₀), (Ideal.absNorm (τ x) : ℝ) ^ (-((m : ℝ) + r))
+        = ((S.filter (fun x => τ x = τ x₀)).card : ℝ) *
+          (Ideal.absNorm (τ x₀) : ℝ) ^ (-((m : ℝ) + r)) := by
+      rw [Finset.sum_congr rfl (g := fun _ => (Ideal.absNorm (τ x₀) : ℝ) ^ (-((m : ℝ) + r)))
+        (fun x hx => by rw [(Finset.mem_filter.mp hx).2])]
+      simp
+    rw [hsum]
+    calc _ ≤ (Ideal.absNorm (τ x₀) : ℝ) ^ m * (Ideal.absNorm (τ x₀) : ℝ) ^ (-((m : ℝ) + r)) :=
+          mul_le_mul_of_nonneg_right hc (Real.rpow_nonneg hN.le _)
+      _ = (Ideal.absNorm (τ x₀) : ℝ) ^ (-r) := by
+          rw [← Real.rpow_natCast, ← Real.rpow_add hN]
+          congr 1
+          ring
+  calc ∑ x ∈ S, (Ideal.absNorm (τ x) : ℝ) ^ (-((m : ℝ) + r))
+      = ∑ 𝔞 ∈ S.image τ, ∑ x ∈ S.filter (fun x => τ x = 𝔞),
+          (Ideal.absNorm (τ x) : ℝ) ^ (-((m : ℝ) + r)) :=
+        (Finset.sum_fiberwise_of_maps_to (fun x hx => Finset.mem_image_of_mem τ hx) _).symm
+    _ ≤ ∑ 𝔞 ∈ S.image τ, (Ideal.absNorm 𝔞 : ℝ) ^ (-r) := Finset.sum_le_sum hfib
+    _ ≤ zetaR K r :=
+        hg.sum_le_tsum _ (fun I _ => Real.rpow_nonneg (Nat.cast_nonneg _) _)
+
+theorem sum_torsion (K : Type) [Field K] [NumberField K] (m : ℕ)
+    (L : Submodule (𝓞 K) (Fin m → K)) (hL : IsLat L) (r : ℝ) (hr : 1 < r) :
+    Summable (fun x : (Fin m → K) ⧸ L =>
+      (Ideal.absNorm (Ideal.torsionOf (𝓞 K) ((Fin m → K) ⧸ L) x) : ℝ) ^ (-((m : ℝ) + r))) ∧
+    ∑' x : (Fin m → K) ⧸ L,
+      (Ideal.absNorm (Ideal.torsionOf (𝓞 K) ((Fin m → K) ⧸ L) x) : ℝ) ^ (-((m : ℝ) + r))
+        ≤ zetaR K r := by
+  have hnn : ∀ x : (Fin m → K) ⧸ L,
+      0 ≤ (Ideal.absNorm (Ideal.torsionOf (𝓞 K) ((Fin m → K) ⧸ L) x) : ℝ) ^ (-((m : ℝ) + r)) :=
+    fun x => Real.rpow_nonneg (Nat.cast_nonneg _) _
+  have hs := summable_of_sum_le hnn (sum_torsion_le K m L hL hr)
+  exact ⟨hs, hs.tsum_le_of_sum_le (sum_torsion_le K m L hL hr)⟩
+
+end GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.HS
+end
+end
+
+section
+@[expose] public section
+
+open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.CompanionTheory.SiegelND.Integ.Hua GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.HS
+open scoped Matrix
+
+namespace GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.SumFibre
+
+theorem summable_comp_of_bounded_fibres :
+    ∀ (A B : Type) (π : A → B) (k : ℕ), (∀ b, Finite {a // π a = b} ∧ Nat.card {a // π a = b} ≤ k) → ∀ (g : B → ℝ), (∀ b, 0 ≤ g b) → Summable g → Summable (fun a => g (π a)) ∧ ∑' a, g (π a) ≤ k * ∑' b, g b := by
+  intro A B π k h g hg hs
+  classical
+  have hcard : ∀ (u : Finset A) (b : B), (u.filter (fun a => π a = b)).card ≤ k := by
+    intro u b
+    have hf : ({a | π a = b} : Set A).Finite := Set.finite_coe_iff.mp (h b).1
+    calc (u.filter (fun a => π a = b)).card
+        = ((u.filter (fun a => π a = b) : Finset A) : Set A).ncard := (Set.ncard_coe_finset _).symm
+      _ ≤ ({a | π a = b} : Set A).ncard := by
+          apply Set.ncard_le_ncard _ hf
+          intro a ha
+          simp only [Finset.coe_filter, Set.mem_setOf_eq] at ha
+          exact ha.2
+      _ = Nat.card {a // π a = b} := (Nat.card_coe_set_eq _).symm
+      _ ≤ k := (h b).2
+  have hbound : ∀ u : Finset A, ∑ a ∈ u, g (π a) ≤ k * ∑' b, g b := by
+    intro u
+    rw [Finset.sum_comp]
+    calc ∑ b ∈ u.image π, (u.filter (fun a => π a = b)).card • g b
+        ≤ ∑ b ∈ u.image π, (k : ℝ) * g b := by
+          apply Finset.sum_le_sum
+          intro b _
+          rw [nsmul_eq_mul]
+          exact mul_le_mul_of_nonneg_right (by exact_mod_cast hcard u b) (hg b)
+      _ = k * ∑ b ∈ u.image π, g b := by rw [Finset.mul_sum]
+      _ ≤ k * ∑' b, g b :=
+          mul_le_mul_of_nonneg_left (hs.sum_le_tsum _ (fun b _ => hg b)) (Nat.cast_nonneg k)
+  have hsum : Summable (fun a => g (π a)) := summable_of_sum_le (fun a => hg (π a)) hbound
+  exact ⟨hsum, hsum.tsum_le_of_sum_le hbound⟩
+
+end GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.SumFibre
+end
+end
+
 @[expose] public section
 
 open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.CompanionTheory.SiegelND.Integ.Hua GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.HS

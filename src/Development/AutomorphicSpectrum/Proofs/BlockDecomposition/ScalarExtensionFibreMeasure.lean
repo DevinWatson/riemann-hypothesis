@@ -7,17 +7,12 @@ public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.StageData
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.GramFiberConsProductMeasurable
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.GramFiberConsProductNormalization
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LinearIndependentExtendByUnitVector
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LinearIndependentUnitaryActionIff
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LinearlyIndependentFramesOpen
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFibreMeasureExtensionByOne
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TrMMemFramesEIff
 public import Mathlib.Probability.Kernel.Defs
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFibreMeasureOrthogonalSum
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.GramFiberMeasureGeneralRankExtension
 public import Formalism.UnipotentAdelicQuotients.SWXSDefs
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.GramFiberConsProductScaling
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactFreeSetProjectsCompact
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.ContinuousHermScal
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.GramFiberConsProductUnfold
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.HermitianMatricesLocallyCompactBorel
@@ -37,7 +32,7 @@ public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.BlockOneRightInjective
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.LocalDensityBlockOneProduct
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalGramFibrationDisintegration
-import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.TensorLocallyCompactRing
+public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.TensorLocallyCompactRing
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.DetAdmA
 import Mathlib.Tactic.Linter.HaveILetI
@@ -50,6 +45,7 @@ import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.GramFib
 import Mathlib.Tactic.Linter.Style
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.RankOneGramMeasurableSection
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasurableEmbeddingOfInjectiveProper
+public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.UnitsOpenEmbeddingLocalTensor
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreMeasureExtensionByOneFormula, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreMeasureExtensionHaar, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreMeasureExtensionCompatible, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreMeasureExtensionMeasurable, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreMeasureExtensionIntegral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreIntegralContinuousInParameter, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreMeasureExtensionSigmaFinite, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreMeasureExtensionByOneIntegral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreMeasureExtensionSymmetric, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreMeasureExtensionUnique, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ScalarExtensionFibreFormula, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ScalarExtensionFibreMeasure
@@ -57,6 +53,290 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasurableEmbed
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreMeasureExtensionByOneFormula =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreMeasureExtensionByOneFormula", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianMeasureData\npublic import CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerProducts.IsEulerProd\npublic import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.AdelicUnitaryGroupLocallyCompact\npublic import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.BlockOneScalarPreservesNondegenerate\npublic import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.StageData\npublic import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.GramFiberConsProductMeasurable\npublic import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.GramFiberConsProductNormalization\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LinearIndependentExtendByUnitVector\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LinearIndependentUnitaryActionIff\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LinearlyIndependentFramesOpen\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFibreMeasureExtensionByOne\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TrMMemFramesEIff\npublic import Mathlib.Probability.Kernel.Defs\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFibreMeasureOrthogonalSum\nimport CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.GramFiberMeasureGeneralRankExtension\nimport Formalism.UnipotentAdelicQuotients.SWXSDefs\nimport CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.TensorLocallyCompactRing\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.DetAdmA\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HypOneZeroZero\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW GlobalTheory.CompanionTheory.SW.PiLocalization₂ GlobalTheory.CompanionTheory.SW.StageF GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.WeilSiegel.Free NumberField IsDedekindDomain MeasureTheory Topology
+open scoped TensorProduct ENNReal NNReal Matrix
+
+namespace GlobalTheory.CompanionTheory.SW.PiLocalization₂.VecFree
+
+variable {K : Type} [CommRing K] {M n : ℕ}
+
+theorem sum_vec_zero (α : K) (c : Fin n → K) (X : Fin n → Fin M → K) (g : Fin (n + 1) → K) :
+    (∑ a, g a • (vec α c X : Fin (n + 1) → Fin (M + 1) → K) a) 0
+      = g 0 * α + ∑ j : Fin n, g j.succ * c j := by
+  rw [Finset.sum_apply, Fin.sum_univ_succ]
+  simp [vec]
+
+theorem sum_vec_succ (α : K) (c : Fin n → K) (X : Fin n → Fin M → K) (g : Fin (n + 1) → K)
+    (i : Fin M) :
+    (∑ a, g a • (vec α c X : Fin (n + 1) → Fin (M + 1) → K) a) i.succ
+      = (∑ j : Fin n, g j.succ • X j) i := by
+  rw [Finset.sum_apply, Fin.sum_univ_succ, Finset.sum_apply]
+  simp [vec]
+
+theorem linearIndependent_vec_iff (K : Type) [CommRing K] (M n : ℕ) (α : K) (hα : IsUnit α)
+    (c : Fin n → K) (X : Fin n → Fin M → K) :
+    LinearIndependent K (vec α c X : Fin (n + 1) → Fin (M + 1) → K) ↔ LinearIndependent K X := by
+  rw [Fintype.linearIndependent_iff, Fintype.linearIndependent_iff]
+  constructor
+  · intro h w hw j
+    obtain ⟨β, hβ⟩ := hα.exists_left_inv
+    have key := h (Fin.cons (-(∑ j : Fin n, w j * c j) * β) w) (by
+      funext i
+      refine Fin.cases ?_ (fun i => ?_) i
+      · rw [sum_vec_zero]
+        simp only [Fin.cons_zero, Fin.cons_succ, Pi.zero_apply]
+        rw [mul_assoc, hβ]
+        ring
+      · rw [sum_vec_succ]
+        simp only [Fin.cons_succ, Pi.zero_apply]
+        rw [hw]
+        rfl) j.succ
+    simpa using key
+  · intro h w hw
+    have hs : ∀ j : Fin n, w j.succ = 0 := by
+      refine h (fun j => w j.succ) ?_
+      funext i
+      have := congrFun hw i.succ
+      rwa [sum_vec_succ] at this
+    have h0 : w 0 = 0 := by
+      have := congrFun hw 0
+      rw [sum_vec_zero] at this
+      simp only [hs, zero_mul, Finset.sum_const_zero, add_zero, Pi.zero_apply] at this
+      exact (hα.mul_left_eq_zero).1 this
+    intro a
+    refine Fin.cases h0 hs a
+
+end GlobalTheory.CompanionTheory.SW.PiLocalization₂.VecFree
+end
+end
+
+section
+@[expose] public section
+
+open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW GlobalTheory.CompanionTheory.SW.PiLocalization₂ GlobalTheory.CompanionTheory.SW.StageF GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.WeilSiegel.Free NumberField IsDedekindDomain MeasureTheory Topology
+open scoped TensorProduct ENNReal NNReal Matrix
+
+namespace GlobalTheory.CompanionTheory.WeilSiegel.Free.ActFree
+
+theorem linearIndependent_gl_mulVec {K : Type} [CommRing K] {M n : ℕ} (g : GL (Fin M) K)
+    (X : Fin n → Fin M → K) (hX : LinearIndependent K X) :
+    LinearIndependent K (fun a => (g : Matrix (Fin M) (Fin M) K).mulVec (X a)) := by
+  have hinj : Function.Injective (Matrix.mulVecLin (g : Matrix (Fin M) (Fin M) K)) :=
+    Matrix.mulVec_injective_of_isUnit g.isUnit
+  exact hX.map' (Matrix.mulVecLin (g : Matrix (Fin M) (Fin M) K)) (LinearMap.ker_eq_bot.2 hinj)
+
+theorem actW_linearIndependent_iff : ∀ (F E : Type) [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) (M n : ℕ) (J : Matrix (Fin M) (Fin M) E) (h : HA R σ J) (X : Fin n → Fin M → R ⊗[F] E), LinearIndependent (R ⊗[F] E) (actW R σ J h X) ↔ LinearIndependent (R ⊗[F] E) X := by
+  intro F E _ _ _ R _ _ σ M n J h X
+  set g := HA.mat R σ J h with hg
+  have hact : actW R σ J h X = fun a => (g : Matrix (Fin M) (Fin M) (R ⊗[F] E)).mulVec (X a) := rfl
+  refine ⟨fun hY => ?_, fun hX => ?_⟩
+  · have h2 := linearIndependent_gl_mulVec g⁻¹ _ hY
+    have h3 : (fun a => ((g⁻¹ : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) (R ⊗[F] E)).mulVec
+        (actW R σ J h X a)) = X := by
+      funext a
+      rw [hact]
+      simp only [Matrix.mulVec_mulVec, Units.inv_mul, Matrix.one_mulVec]
+    rwa [h3] at h2
+  · rw [hact]
+    exact linearIndependent_gl_mulVec g X hX
+
+end GlobalTheory.CompanionTheory.WeilSiegel.Free.ActFree
+end
+end
+
+section
+@[expose] public section
+
+open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW GlobalTheory.CompanionTheory.SW.PiLocalization₂ GlobalTheory.CompanionTheory.SW.StageF GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.WeilSiegel.Free NumberField IsDedekindDomain MeasureTheory Topology
+open scoped TensorProduct ENNReal NNReal Matrix
+
+noncomputable section
+
+namespace GlobalTheory.CompanionTheory.SW.StageF.ToOld
+
+theorem linearIndependent_of_isUnit_gram {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R]
+    [Algebra F R] (σ : E →ₐ[F] E) {M n : ℕ} (J : Matrix (Fin M) (Fin M) E) (X : Fin n → Fin M → R ⊗[F] E)
+    (h : IsUnit (gramR R σ J X).det) : LinearIndependent (R ⊗[F] E) X := by
+  rw [Fintype.linearIndependent_iff]
+  intro w hw
+  have hj : ∀ j, ∑ b, w b * X b j = 0 := fun j => by
+    have := congrFun hw j
+    simpa [Finset.sum_apply] using this
+  have hmul : (gramR R σ J X).mulVec w = 0 := by
+    funext a
+    show ∑ b, hform (sigR R σ) (JR R J) (X a) (X b) * w b = 0
+    simp only [hform, Finset.sum_mul]
+    rw [Finset.sum_comm]
+    refine Finset.sum_eq_zero fun i _ => ?_
+    rw [Finset.sum_comm]
+    refine Finset.sum_eq_zero fun j _ => ?_
+    have : ∑ b, sigR R σ (X a i) * JR R J i j * X b j * w b =
+        sigR R σ (X a i) * JR R J i j * ∑ b, w b * X b j := by
+      rw [Finset.mul_sum]
+      exact Finset.sum_congr rfl fun b _ => by ring
+    rw [this, hj j, mul_zero]
+  have h1 := congrArg (Matrix.mulVec (gramR R σ J X)⁻¹) hmul
+  rw [Matrix.mulVec_mulVec, Matrix.nonsing_inv_mul _ h, Matrix.one_mulVec, Matrix.mulVec_zero] at h1
+  exact fun i => congrFun h1 i
+
+
+open Classical in
+theorem isFibreFamily_restrict {V X Y : Type} [TopologicalSpace V] [MeasurableSpace V] [TopologicalSpace X]
+    [MeasurableSpace X] (μ : Measure V) (f : V → Y) (ι : X → Y) (U W : Set V) (ν : Measure X)
+    (B : Set X) (fib : X → Measure V) (hUW : U ⊆ W) (hU : MeasurableSet U)
+    (hUB : ∀ v b, f v = ι b → (v ∈ U ↔ b ∈ B))
+    (h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.IsFibreFamily μ f ι W ν Set.univ fib) :
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.IsFibreFamily μ f ι U ν B (fun b => if b ∈ B then fib b else 0) := by
+  obtain ⟨h1, h2, h3⟩ := h
+  refine ⟨fun b => ?_, fun φ hφ => ?_, fun φ hc hs ht => ?_⟩
+  · by_cases hb : b ∈ B
+    · simp only [hb, ite_true]
+      refine measure_mono_null (Set.compl_subset_compl.2 fun v (hv : v ∈ f ⁻¹' {ι b} ∩ W) => ⟨hv.1, ?_⟩) (h1 b)
+      exact (hUB v b hv.1).2 hb
+    · simp [hb]
+  · have key := h2 (U.indicator φ) (hφ.indicator hU)
+    rw [lintegral_indicator hU, Measure.restrict_restrict hU, Set.inter_eq_left.2 hUW] at key
+    rw [key]
+    refine lintegral_congr fun b => ?_
+    have hae : ∀ᵐ v ∂(fib b), f v = ι b := by
+      have : ∀ᵐ v ∂(fib b), v ∈ f ⁻¹' {ι b} ∩ W := mem_ae_iff.2 (h1 b)
+      filter_upwards [this] with v hv using hv.1
+    by_cases hb : b ∈ B
+    · simp only [hb, ite_true]
+      refine lintegral_congr_ae ?_
+      filter_upwards [hae] with v hv
+      exact Set.indicator_of_mem ((hUB v b hv).2 hb) φ
+    · simp only [hb, ite_false, lintegral_zero_measure]
+      refine (lintegral_congr_ae (g := fun _ => 0) ?_).trans lintegral_zero
+      filter_upwards [hae] with v hv
+      exact Set.indicator_of_notMem (fun hvU => hb ((hUB v b hv).1 hvU)) φ
+  · obtain ⟨k1, k2⟩ := h3 φ hc hs (ht.trans hUW)
+    refine ⟨fun b hb => ?_, ?_⟩
+    · simpa only [hb, ite_true] using k1 b (Set.mem_univ b)
+    · exact (k2.mono (Set.subset_univ B)).congr fun b hb => by simp only [hb, ite_true]
+
+theorem stageData_of_stageDataF : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (M : ℕ) (J : Matrix (Fin M) (Fin M) E) (t : F) (n : ℕ) (R : Type) [CommRing R] [Algebra F R] [TopologicalSpace R] [MeasurableSpace R] [BorelSpace R] (d : ℕ) (b : Module.Basis (Fin d) F E) (lam : Measure R) (m₁ : HermR R σ 1 → Measure (Fin 1 → Fin (M + 1) → R ⊗[F] E)) (m' : HermR R σ n → Measure (Fin n → Fin M → R ⊗[F] E)) (s : (Fin 1 → Fin (M + 1) → R ⊗[F] E) → HA R σ (blockOne (algebraMap F E t) J)) (B₀ : Set R) (a : R → Rˣ) (κ₁ cm : Rˣ → ℝ≥0), HermitianMeasureData σ J t n b lam m₁ m' s B₀ a κ₁ cm → ∃ m₀ : HermR R σ n → Measure (Fin n → Fin M → R ⊗[F] E), StageData σ J t n b lam m₁ m₀ s B₀ a κ₁ cm := by
+  intro F E _ _ _ _ _ σ M J t n R _ _ _ _ _ d b lam m₁ m' s B₀ a κ₁ cm D
+  obtain ⟨iTR, iLC, iSC, iT2, -⟩ := id D.hR
+  haveI := iTR; haveI := iLC; haveI := iSC; haveI := iT2
+  obtain ⟨kTR, kLC, kSC, kT2, -, -, -, kB, -, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ D.hCM R
+  haveI := kTR; haveI := kLC; haveI := kSC; haveI := kT2
+  haveI := kB n M
+  obtain ⟨-, -, -, -, hg⟩ := _root_.GlobalTheory.CompanionTheory.SW.HermTop.herm_top F E σ D.hCM R n
+  obtain ⟨g, gc, hgg⟩ := hg M J D.hJ
+  have hopen : IsOpen (Unt σ R n) := by
+    have hu : IsOpen {x : R ⊗[F] E | IsUnit x} := by
+      have := (_root_.GlobalTheory.CompanionTheory.SW.KUnits.units_val_isOpenEmbedding F E σ D.hCM R D.hR).isOpen_range
+      convert this using 1
+      ext x
+      simp [IsUnit]
+    have hc : Continuous fun S : HermR R σ n => (S : Matrix (Fin n) (Fin n) (R ⊗[F] E)).det :=
+      continuous_subtype_val.matrix_det
+    exact hu.preimage hc
+  have hset : {X | IsUnit (gramR R σ J X).det} = g ⁻¹' (Unt σ R n) := by
+    ext X
+    simp only [Set.mem_setOf_eq, Set.mem_preimage, Unt, hgg X]
+  have hmeas : MeasurableSet {X : Fin n → Fin M → R ⊗[F] E | IsUnit (gramR R σ J X).det} := by
+    rw [hset]
+    exact (hopen.preimage gc).measurableSet
+  have hfam := isFibreFamily_restrict (coordW R b lam n M) (gramR R σ J) Subtype.val
+    {X | IsUnit (gramR R σ J X).det} {X | LinearIndependent (R ⊗[F] E) X} (coordHerm R σ b lam n)
+    {S | IsUnit (S : Matrix (Fin n) (Fin n) (R ⊗[F] E)).det} m'
+    (fun X hX => linearIndependent_of_isUnit_gram R σ J X hX) hmeas
+    (fun X S hX => by simp only [Set.mem_setOf_eq, hX]) D.hm'
+  exact ⟨_, { hCM := D.hCM, hJ := D.hJ, ht := D.ht, hR := D.hR, hlam := D.hlam, hm₁ := D.hm₁, hm' := hfam,
+              hs := D.hs, hsec := D.hsec, hcpt := D.hcpt, hB₀ := D.hB₀, htB := D.htB, hac := D.hac,
+              hoff := D.hoff, hsq := D.hsq, ha1 := D.ha1, hκc := D.hκc, hκ1 := D.hκ1, hscale := D.hscale,
+              hcmc := D.hcmc, hmod := D.hmod }⟩
+
+end GlobalTheory.CompanionTheory.SW.StageF.ToOld
+end
+end
+end
+
+section
+@[expose] public section
+
+open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW GlobalTheory.CompanionTheory.SW.PiLocalization₂ GlobalTheory.CompanionTheory.SW.StageF GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.WeilSiegel.Free NumberField IsDedekindDomain MeasureTheory Topology
+open scoped TensorProduct ENNReal NNReal Matrix
+
+namespace GlobalTheory.CompanionTheory.SW.StageF
+
+theorem isSFiniteKernel_of_compact_open {α β : Type} [MeasurableSpace α] [TopologicalSpace β]
+    [MeasurableSpace β] [BorelSpace β] [T2Space β] (κ : ProbabilityTheory.Kernel α β)
+    {K : ℕ → Set β} (hK : ∀ k, IsCompact (K k)) {U : Set β} (hU : (⋃ k, K k) = U)
+    (hc : ∀ a, κ a Uᶜ = 0) (hf : ∀ a k, κ a (K k) < ⊤) : ProbabilityTheory.IsSFiniteKernel κ := by
+  let C : ℕ → Set β := disjointed K
+  have hCm : ∀ k, MeasurableSet (C k) := fun k =>
+    MeasurableSet.disjointed (fun i => (hK i).measurableSet) k
+  have hCd : Pairwise (Function.onFun Disjoint C) := disjoint_disjointed _
+  have hCu : ⋃ k, C k = U := by
+    simp only [C, iUnion_disjointed]
+    exact hU
+  have hk : ∀ k, ProbabilityTheory.IsSFiniteKernel (ProbabilityTheory.Kernel.restrict κ (hCm k)) := fun k =>
+    isSFiniteKernel_of_forall_univ_lt_top _ (fun a => by
+      rw [ProbabilityTheory.Kernel.restrict_apply]
+      simpa using (measure_mono (disjointed_subset _ k)).trans_lt (hf a k))
+  have hsum : κ = ProbabilityTheory.Kernel.sum fun k => ProbabilityTheory.Kernel.restrict κ (hCm k) := by
+    ext a s hs
+    rw [ProbabilityTheory.Kernel.sum_apply]
+    simp only [ProbabilityTheory.Kernel.restrict_apply]
+    rw [← Measure.restrict_iUnion hCd hCm, hCu,
+      Measure.restrict_eq_self_of_ae_mem (mem_ae_iff.2 (hc a))]
+  rw [hsum]
+  infer_instance
+
+theorem gramFibFree_basic : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → ∀ (N n : ℕ) (J₂ : Matrix (Fin N) (Fin N) E), IsHermND σ J₂ → ∀ (R : Type) [CommRing R] [Algebra F R] [TopologicalSpace R] [MeasurableSpace R] [BorelSpace R], IsLocR R → ∀ (d : ℕ) (b : Module.Basis (Fin d) F E) (lam : Measure R), lam.IsAddHaarMeasure → ∀ m : HermR R σ n → Measure (Fin n → Fin N → R ⊗[F] E), IsGramFibFree R σ J₂ n (coordW R b lam n N) (coordHerm R σ b lam n) m → (∀ S, SFinite (m S)) ∧ (∃ κ : ProbabilityTheory.Kernel (HermR R σ n) (Fin n → Fin N → R ⊗[F] E), ProbabilityTheory.IsSFiniteKernel κ ∧ ∀ S, κ S = m S) ∧ (∀ (C : Set (Fin n → Fin N → R ⊗[F] E)) (D : Set (HermR R σ n)), IsCompact C → C ⊆ {X | LinearIndependent (R ⊗[F] E) X} → IsCompact D → ∃ c : ℝ≥0, ∀ S ∈ D, m S C ≤ c) ∧ ∀ S : HermR R σ n, ∀ᵐ X ∂(m S), gramR R σ J₂ X = (S : Matrix (Fin n) (Fin n) (R ⊗[F] E)) ∧ LinearIndependent (R ⊗[F] E) X := by
+  intro F E _ _ _ _ _ σ hCM N n J₂ hJ R _ _ _ _ _ hR d b lam hlam m hm
+  obtain ⟨iTR, iLC, iSC, iT2, -⟩ := id hR
+  haveI := iTR; haveI := iLC; haveI := iSC; haveI := iT2
+  obtain ⟨kTR, kLC, kSC, kT2, -, -, -, kB, -, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ hCM R
+  haveI := kTR; haveI := kLC; haveI := kSC; haveI := kT2
+  haveI := kB n N
+  obtain ⟨hLC, hSC, hT2, hB, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.HermTop.herm_top F E σ hCM R n
+  haveI := hLC; haveI := hSC; haveI := hT2; haveI := hB
+  have hU : IsOpen {X : Fin n → Fin N → R ⊗[F] E | LinearIndependent (R ⊗[F] E) X} :=
+    _root_.GlobalTheory.CompanionTheory.WeilSiegel.FreeOpen.isOpen_free F E σ hCM R hR n N
+  obtain ⟨h1, -, h3⟩ := hm
+  have hbf : GlobalTheory.CompanionTheory.SW.FibreFam.BumpFamily {X : Fin n → Fin N → R ⊗[F] E | LinearIndependent (R ⊗[F] E) X}
+      (Set.univ : Set (HermR R σ n)) m :=
+    ⟨fun S hS => absurd (Set.mem_univ S) hS, h3⟩
+  have hUc : ∀ S, m S {X : Fin n → Fin N → R ⊗[F] E | LinearIndependent (R ⊗[F] E) X}ᶜ = 0 := fun S =>
+    measure_mono_null (Set.compl_subset_compl.2 Set.inter_subset_right) (h1 S)
+  have hmeas : ∀ A : Set (Fin n → Fin N → R ⊗[F] E), MeasurableSet A → Measurable fun S => m S A :=
+    fun A hA => hbf.measurable_apply isOpen_univ hU hUc hA
+  let κ : ProbabilityTheory.Kernel (HermR R σ n) (Fin n → Fin N → R ⊗[F] E) :=
+    ⟨m, Measure.measurable_of_measurable_coe _ hmeas⟩
+  obtain ⟨K, W, hK, -, -, hKU, -, -, hKun, -⟩ := GlobalTheory.CompanionTheory.SW.FibreFam.exists_exhaustion hU
+  haveI hκ : ProbabilityTheory.IsSFiniteKernel κ :=
+    isSFiniteKernel_of_compact_open κ hK hKun hUc
+      (fun S k => hbf.lt_top hU (hK k) (hKU k) S)
+  refine ⟨fun S => (inferInstance : SFinite (κ S)), ⟨κ, hκ, fun _ => rfl⟩, ?_, fun S => ?_⟩
+  · intro C D hC hCU hD
+    obtain ⟨φ, hc, hcs, hs, h0, -, hone⟩ := GlobalTheory.CompanionTheory.SW.FibreFam.exists_bump hC hU hCU
+    obtain ⟨hi, hco⟩ := h3 φ hc hcs hs
+    obtain ⟨M, hM⟩ := hD.exists_bound_of_continuousOn (hco.mono (Set.subset_univ D))
+    refine ⟨M.toNNReal, fun S hS => ?_⟩
+    calc m S C ≤ ∫⁻ v, ENNReal.ofReal (φ v) ∂(m S) :=
+          GlobalTheory.CompanionTheory.SW.FibreFam.le_lintegral_bump _ hC h0 hone
+      _ = ENNReal.ofReal (∫ v, φ v ∂(m S)) :=
+          (ofReal_integral_eq_lintegral_ofReal (hi S (Set.mem_univ S))
+            (Filter.Eventually.of_forall h0)).symm
+      _ ≤ ENNReal.ofReal M := ENNReal.ofReal_le_ofReal ((le_abs_self _).trans (hM S hS))
+      _ = (M.toNNReal : ℝ≥0∞) := rfl
+  · have : ∀ᵐ X ∂(m S), X ∈ gramR R σ J₂ ⁻¹' {((S : HermR R σ n) : Matrix (Fin n) (Fin n) (R ⊗[F] E))} ∩
+        {X : Fin n → Fin N → R ⊗[F] E | LinearIndependent (R ⊗[F] E) X} :=
+      mem_ae_iff.2 (h1 S)
+    filter_upwards [this] with X hX
+    exact ⟨hX.1, hX.2⟩
+
+end GlobalTheory.CompanionTheory.SW.StageF
+end
+end
+
 @[expose] public section
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW GlobalTheory.CompanionTheory.SW.PiLocalization₂ GlobalTheory.CompanionTheory.SW.StageF GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.WeilSiegel.Free NumberField IsDedekindDomain MeasureTheory Topology
@@ -145,6 +425,78 @@ end -- clump:auto
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreMeasureExtensionHaar =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreMeasureExtensionHaar", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianMeasureData\npublic import CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerProducts.IsEulerProd\npublic import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.AdelicUnitaryGroupLocallyCompact\npublic import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.BlockOneScalarPreservesNondegenerate\npublic import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.GramFiberConsProductScaling\npublic import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.StageData\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactFreeSetProjectsCompact\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LinearIndependentUnitaryActionIff\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TrMMemFramesEIff\npublic import Mathlib.Probability.Kernel.Defs\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFibreMeasureOrthogonalSum\nimport Aesop.Main\nimport CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.GramFiberMeasureGeneralRankExtension\nimport Formalism.UnipotentAdelicQuotients.SWXSDefs\nimport CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.TensorLocallyCompactRing\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.DetAdmA\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HypOneZeroZero\n\n"}
 section -- clump:auto
+section
+@[expose] public section
+
+open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW GlobalTheory.CompanionTheory.SW.PiLocalization₂ GlobalTheory.CompanionTheory.SW.StageF GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.WeilSiegel.Free NumberField IsDedekindDomain MeasureTheory Topology
+open scoped TensorProduct ENNReal NNReal Matrix
+
+namespace GlobalTheory.CompanionTheory.SW.StageF.Tails
+
+theorem linearIndependent_tails {K : Type} [CommRing K] {M n : ℕ} {Y : Fin (n + 1) → Fin (M + 1) → K}
+    (hY : LinearIndependent K Y) (h0 : ∀ i : Fin M, Y 0 i.succ = 0) :
+    LinearIndependent K (fun (j : Fin n) (i : Fin M) => Y j.succ i.succ) := by
+  have hfree := Fintype.linearIndependent_iff.1 hY
+
+  have hnzd : ∀ b : K, b * Y 0 0 = 0 → b = 0 := by
+    intro b hb
+    have hsum : ∑ i, (Pi.single 0 b : Fin (n + 1) → K) i • Y i = 0 := by
+      rw [Finset.sum_eq_single_of_mem (0 : Fin (n + 1)) (Finset.mem_univ _)
+        (fun i _ hi => by simp [Pi.single_eq_of_ne hi])]
+      funext i
+      refine Fin.cases ?_ (fun i => ?_) i
+      · simpa using hb
+      · simp [h0 i]
+    simpa using hfree _ hsum 0
+  refine Fintype.linearIndependent_iff.2 fun w hw j => ?_
+  have hw' : ∀ i : Fin M, ∑ j, w j * Y j.succ i.succ = 0 := by
+    intro i
+    have := congrFun hw i
+    simpa [Finset.sum_apply] using this
+  set r : K := ∑ j, w j * Y j.succ 0 with hr
+  have hsum : ∑ i, (Fin.cons (-r) (fun j => Y 0 0 * w j) : Fin (n + 1) → K) i • Y i = 0 := by
+    rw [Fin.sum_univ_succ]
+    funext i
+    refine Fin.cases ?_ (fun i => ?_) i
+    · simp only [Fin.cons_zero, Fin.cons_succ, Pi.add_apply, Pi.smul_apply, Finset.sum_apply, smul_eq_mul,
+        Pi.zero_apply]
+      have h1 : ∑ j, Y 0 0 * w j * Y j.succ 0 = r * Y 0 0 := by
+        rw [hr, Finset.sum_mul]
+        exact Finset.sum_congr rfl fun j _ => by ring
+      rw [h1]
+      ring
+    · simp only [Fin.cons_zero, Fin.cons_succ, Pi.add_apply, Pi.smul_apply, Finset.sum_apply, smul_eq_mul,
+        Pi.zero_apply, h0 i, mul_zero, zero_add]
+      have : ∑ j, Y 0 0 * w j * Y j.succ i.succ = Y 0 0 * ∑ j, w j * Y j.succ i.succ := by
+        rw [Finset.mul_sum]
+        exact Finset.sum_congr rfl fun j _ => by ring
+      rw [this, hw' i, mul_zero]
+  have hj := hfree _ hsum j.succ
+  rw [Fin.cons_succ] at hj
+  exact hnzd _ (by rw [mul_comm]; exact hj)
+
+theorem exists_compact_tails (K : Type) [CommRing K] [TopologicalSpace K] [T2Space K] (M n : ℕ)
+    (Q : Set (Fin (n + 1) → Fin (M + 1) → K)) (hQ : IsCompact Q)
+    (hfree : ∀ Y ∈ Q, LinearIndependent K Y) :
+    ∃ C : Set (Fin n → Fin M → K), IsCompact C ∧ (∀ X ∈ C, LinearIndependent K X) ∧
+      ∀ (A : K) (c : Fin n → K) (X : Fin n → Fin M → K), vec A c X ∈ Q → X ∈ C := by
+  let tl : (Fin (n + 1) → Fin (M + 1) → K) → Fin n → Fin M → K := fun Y j i => Y j.succ i.succ
+  have htl : Continuous tl :=
+    continuous_pi fun j => continuous_pi fun i => (continuous_apply i.succ).comp (continuous_apply j.succ)
+  have hclosed : IsClosed {Y : Fin (n + 1) → Fin (M + 1) → K | ∀ i : Fin M, Y 0 i.succ = 0} := by
+    rw [Set.ofPred_forall]
+    exact isClosed_iInter fun i =>
+      isClosed_eq ((continuous_apply i.succ).comp (continuous_apply 0)) continuous_const
+  refine ⟨tl '' (Q ∩ {Y | ∀ i : Fin M, Y 0 i.succ = 0}), (hQ.inter_right hclosed).image htl, ?_, ?_⟩
+  · rintro _ ⟨Y, ⟨hYQ, h0⟩, rfl⟩
+    exact linearIndependent_tails (hfree Y hYQ) h0
+  · intro A c X h
+    exact ⟨vec A c X, ⟨h, fun i => by simp [vec]⟩, by funext j i; simp [tl, vec]⟩
+
+end GlobalTheory.CompanionTheory.SW.StageF.Tails
+end
+end
+
 @[expose] public section
 
 noncomputable section
